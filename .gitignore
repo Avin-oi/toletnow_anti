@@ -1,0 +1,10 @@
+# Supabase credentials - NEVER commit this
+js/supabase-config.js
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Dev tools
+*.log
+node_modules/

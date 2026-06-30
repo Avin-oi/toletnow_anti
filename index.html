@@ -1,0 +1,996 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Post Property Free – ToLetNow.in | List Your Home in Salem</title>
+  <meta name="description" content="List your rental property in Salem for free. No broker, no commission. Reach thousands of genuine tenants directly on ToLetNow.in." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/pages.css" />
+  <style>
+    /* ════════════════════════════════════════
+       OWNERS PAGE – Fresh Split Hero Design
+    ════════════════════════════════════════ */
+
+    /* ── HERO WRAPPER ── */
+    .oh-hero {
+      min-height: 100vh;
+      background: linear-gradient(150deg, #fdf2f5 0%, #fff8fa 45%, #ffffff 100%);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      padding-top: 68px;
+      position: relative;
+      overflow: hidden;
+      gap: 0;
+    }
+
+    /* Entrance keyframes */
+    @keyframes oh-slide-up {
+      from { opacity: 0; transform: translateY(28px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes oh-slide-right {
+      from { opacity: 0; transform: translateX(-24px); }
+      to   { opacity: 1; transform: translateX(0); }
+    }
+    @keyframes oh-slide-left {
+      from { opacity: 0; transform: translateX(24px); }
+      to   { opacity: 1; transform: translateX(0); }
+    }
+    @keyframes oh-spin-slow {
+      from { transform: translate(-50%, -50%) rotate(0deg); }
+      to   { transform: translate(-50%, -50%) rotate(360deg); }
+    }
+    @keyframes oh-shimmer {
+      0%   { background-position: -400px 0; }
+      100% { background-position: 400px 0; }
+    }
+    @keyframes oh-float {
+      0%, 100% { transform: translateY(0); }
+      50%       { transform: translateY(-8px); }
+    }
+
+    /* Subtle blobs */
+    .oh-blob {
+      position: absolute;
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .oh-blob-1 {
+      width: 560px; height: 560px;
+      background: radial-gradient(circle, rgba(183,42,84,0.07) 0%, transparent 70%);
+      top: -160px; left: -100px;
+    }
+    .oh-blob-2 {
+      width: 420px; height: 420px;
+      background: radial-gradient(circle, rgba(183,42,84,0.05) 0%, transparent 70%);
+      bottom: -80px; right: -80px;
+    }
+    .oh-blob-3 {
+      width: 240px; height: 240px;
+      border: 1.5px dashed rgba(183,42,84,0.13);
+      top: 40%; left: 48%;
+      transform: translate(-50%, -50%);
+      animation: oh-spin-slow 28s linear infinite;
+    }
+
+    /* ── LEFT PANEL ── */
+    .oh-left {
+      padding: 60px 4% 60px 8%;
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 0;
+      transform: translateY(-24px);
+      animation: oh-slide-right 0.7s cubic-bezier(0.22,1,0.36,1) both;
+    }
+
+    .oh-pill {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+      background: rgba(183,42,84,0.08);
+      border: 1px solid rgba(183,42,84,0.2);
+      color: var(--primary);
+      font-size: 13px;
+      font-weight: 600;
+      padding: 6px 18px;
+      border-radius: 99px;
+      margin: 0 auto 28px;
+      width: fit-content;
+      letter-spacing: 0.2px;
+    }
+
+    .oh-title {
+      font-family: var(--font-heading);
+      font-size: clamp(34px, 3.8vw, 54px);
+      font-weight: 900;
+      line-height: 1.12;
+      color: var(--text);
+      letter-spacing: -0.5px;
+      margin-bottom: 20px;
+    }
+    .oh-title .oh-em {
+      color: var(--primary);
+      position: relative;
+    }
+    .oh-title .oh-em::after {
+      content: '';
+      position: absolute;
+      bottom: -2px; left: 0; right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary) 0%, rgba(183,42,84,0) 100%);
+      border-radius: 2px;
+    }
+
+    .oh-sub {
+      font-size: 17px;
+      color: var(--text-muted);
+      line-height: 1.7;
+      margin-bottom: 32px;
+      max-width: 480px;
+    }
+
+    /* Feature badges – 2-column grid */
+    .oh-features {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 32px;
+      max-width: 480px;
+    }
+    .oh-feat {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 99px;
+      padding: 8px 16px 8px 8px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text);
+      box-shadow: 0 2px 8px rgba(183,42,84,0.04);
+      transition: all 0.28s cubic-bezier(0.4,0,0.2,1);
+      cursor: default;
+    }
+    .oh-feat:hover {
+      border-color: var(--primary-light);
+      box-shadow: 0 4px 14px rgba(183,42,84,0.1);
+      transform: translateY(-2px);
+      background: #fdf5f8;
+    }
+    .oh-feat:hover .oh-feat-icon {
+      background: var(--primary);
+      color: white;
+    }
+    .oh-feat-icon {
+      width: 28px; height: 28px;
+      background: var(--pink-50);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 14px;
+      flex-shrink: 0;
+      transition: all 0.28s ease;
+    }
+
+    /* Stats bar */
+    .oh-stats {
+      display: flex;
+      align-items: stretch;
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: 0 4px 18px rgba(183,42,84,0.08);
+      margin-top: 8px;
+      width: 100%;
+      max-width: 480px;
+    }
+    .oh-stat {
+      flex: 1;
+      padding: 20px 14px;
+      text-align: center;
+      position: relative;
+      transition: background 0.25s ease;
+    }
+    .oh-stat:hover { background: #fdf5f8; }
+    .oh-stat + .oh-stat::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 20%; bottom: 20%;
+      width: 1px;
+      background: var(--border);
+    }
+    .oh-stat-val {
+      display: block;
+      font-family: var(--font-heading);
+      font-size: 28px;
+      font-weight: 900;
+      color: var(--primary);
+      line-height: 1;
+      letter-spacing: -0.5px;
+    }
+    .oh-stat-lbl {
+      display: block;
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--text-muted);
+      margin-top: 5px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    /* CTA buttons below stats */
+    .oh-cta-row {
+      display: flex;
+      gap: 12px;
+      margin-top: 28px;
+      flex-wrap: wrap;
+    }
+
+    /* ── RIGHT PANEL (form card) ── */
+    .oh-right {
+      padding: 60px 13% 60px 5%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      z-index: 1;
+      animation: oh-slide-left 0.7s cubic-bezier(0.22,1,0.36,1) 0.1s both;
+    }
+
+    .oh-card {
+      background: white;
+      border-radius: var(--radius-xl);
+      /* gradient border glow */
+      border: 1px solid transparent;
+      background-clip: padding-box;
+      box-shadow: 0 0 0 1.5px rgba(183,42,84,0.18), 0 28px 80px rgba(183,42,84,0.16);
+      overflow: hidden;
+      width: 100%;
+      max-width: 440px;
+      animation: oh-float 5s ease-in-out infinite;
+    }
+
+    .oh-card-header {
+      background: linear-gradient(135deg, var(--primary) 0%, #8c1e3e 100%);
+      padding: 28px 32px;
+      position: relative;
+      overflow: hidden;
+    }
+    /* Shimmer sweep */
+    .oh-card-header::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(105deg, transparent 40%, rgba(255,255,255,0.12) 50%, transparent 60%);
+      background-size: 400px 100%;
+      animation: oh-shimmer 3.5s infinite;
+    }
+    /* Decorative rings */
+    .oh-card-header-ring1 {
+      position: absolute;
+      top: -50px; right: -50px;
+      width: 160px; height: 160px;
+      border: 1.5px solid rgba(255,255,255,0.12);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+    .oh-card-header-ring2 {
+      position: absolute;
+      top: -16px; right: -16px;
+      width: 90px; height: 90px;
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+    .oh-card-header h3 {
+      font-size: 21px;
+      font-weight: 800;
+      color: white;
+      margin-bottom: 5px;
+      font-family: var(--font-heading);
+      position: relative;
+      z-index: 1;
+    }
+    .oh-card-header p {
+      font-size: 13px;
+      color: rgba(255,255,255,0.82);
+      margin: 0;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Pill tabs */
+    .oh-tabs {
+      display: flex;
+      background: var(--pink-50);
+      border-radius: 10px;
+      padding: 4px;
+      margin: 20px 24px 0;
+    }
+    .oh-tab {
+      flex: 1;
+      padding: 10px;
+      border: none;
+      background: transparent;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 14px;
+      cursor: pointer;
+      transition: var(--transition);
+      color: var(--text-muted);
+      font-family: var(--font);
+    }
+    .oh-tab.active {
+      background: white;
+      color: var(--primary);
+      box-shadow: var(--shadow-sm);
+    }
+
+    /* Form panels */
+    .oh-body { padding: 20px 24px 28px; }
+    .oh-body.hidden { display: none; }
+
+    .oh-iw { position: relative; }
+    .oh-ii {
+      position: absolute;
+      left: 13px; top: 50%;
+      transform: translateY(-50%);
+      font-size: 15px;
+      pointer-events: none;
+    }
+    .oh-ii.ta { top: 14px; transform: none; }
+    .oh-inp { padding-left: 42px !important; }
+    .oh-eye {
+      position: absolute;
+      right: 12px; top: 50%;
+      transform: translateY(-50%);
+      background: none; border: none;
+      cursor: pointer; font-size: 15px;
+      opacity: 0.5; transition: opacity 0.2s;
+    }
+    .oh-eye:hover { opacity: 1; }
+    .oh-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .oh-full { grid-column: 1 / -1; }
+    .oh-req { color: var(--primary); }
+    .oh-terms {
+      display: flex; align-items: flex-start;
+      gap: 8px; font-size: 13px;
+      color: var(--text-muted); line-height: 1.5;
+    }
+    .oh-terms input { margin-top: 2px; flex-shrink: 0; accent-color: var(--primary); }
+    .oh-terms a { color: var(--primary); text-decoration: none; font-weight: 600; }
+    .oh-sw { text-align: center; font-size: 13px; color: var(--text-muted); margin-top: 8px; }
+    .oh-sw a { color: var(--primary); font-weight: 600; text-decoration: none; }
+    .oh-back { display: block; background: none; border: none; color: var(--primary); font-weight: 600; font-size: 13px; cursor: pointer; margin: 10px auto 0; font-family: var(--font); }
+    .oh-state { text-align: center; padding: 8px 0 4px; }
+    .oh-state-icon { font-size: 52px; display: block; margin-bottom: 12px; }
+    .oh-state h4 { font-family: var(--font-heading); font-size: 18px; font-weight: 800; color: var(--text); margin-bottom: 6px; }
+    .oh-state p { font-size: 13px; color: var(--text-muted); line-height: 1.7; margin: 0; }
+    .oh-hl { color: var(--primary); font-weight: 700; }
+
+    /* ── SECTIONS BELOW HERO ── */
+
+    /* How it works */
+    .oh-steps { padding: 88px 0; background: var(--bg-soft); }
+    .oh-steps-grid {
+      display: grid;
+      grid-template-columns: repeat(3,1fr);
+      gap: 24px; margin-top: 44px;
+    }
+    .oh-step {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 44px 28px 32px;
+      text-align: center;
+      position: relative; overflow: hidden;
+      transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
+      cursor: default;
+    }
+    .oh-step::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; height: 3px;
+      background: linear-gradient(90deg, var(--primary), var(--primary-dark));
+      transform: scaleX(0); transition: transform 0.35s cubic-bezier(0.4,0,0.2,1);
+    }
+    .oh-step:hover::before { transform: scaleX(1); }
+    .oh-step:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 16px 48px rgba(183,42,84,0.14);
+      border-color: var(--primary-light);
+    }
+    .oh-step-n {
+      position: absolute; top: 14px; right: 18px;
+      font-family: var(--font-heading); font-size: 56px;
+      font-weight: 900; color: var(--pink-100); line-height: 1;
+    }
+    .oh-step-ic {
+      font-size: 48px; display: block; margin-bottom: 16px;
+      transition: transform 0.3s ease;
+    }
+    .oh-step:hover .oh-step-ic { transform: scale(1.12); }
+    .oh-step h3 { font-size: 16px; font-weight: 700; margin-bottom: 10px; color: var(--text); }
+    .oh-step p { font-size: 13px; color: var(--text-muted); line-height: 1.7; }
+
+
+
+    /* ── NEW CTA SECTION ── */
+    .oh-cta-sec {
+      padding: 80px 4%;
+      background: linear-gradient(160deg, var(--bg) 0%, var(--pink-50) 100%);
+      position: relative;
+    }
+    .oh-cta-layout {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+    .oh-cta-ey {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: var(--pink-100); color: var(--primary);
+      font-size: 13px; font-weight: 700;
+      padding: 6px 14px; border-radius: 99px;
+      margin-bottom: 20px; border: 1px solid var(--primary-light);
+    }
+    .oh-cta-left h2 {
+      font-family: var(--font-heading);
+      font-size: clamp(32px, 4vw, 48px);
+      font-weight: 900; color: var(--text);
+      line-height: 1.15; margin-bottom: 16px;
+    }
+    .oh-cta-left p {
+      font-size: 16px; color: var(--text-muted); line-height: 1.7; margin-bottom: 40px; max-width: 480px;
+    }
+    .oh-cta-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px 32px;
+    }
+    .oh-cta-item {
+      display: flex; gap: 14px; align-items: flex-start;
+    }
+    .oh-cta-icon {
+      font-size: 24px; line-height: 1; flex-shrink: 0;
+      background: white; width: 44px; height: 44px; border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 4px 12px rgba(183,42,84,0.08); border: 1px solid var(--border);
+    }
+    .oh-cta-text h4 { font-size: 15px; font-weight: 700; color: var(--text); margin-bottom: 4px; }
+    .oh-cta-text p { font-size: 13px; color: var(--text-muted); line-height: 1.5; margin: 0; }
+    
+    .oh-cta-stats {
+      display: flex; gap: 32px; padding-top: 40px; margin-top: 40px;
+      border-top: 1px solid var(--border); flex-wrap: wrap;
+    }
+    .oh-stat-item h3 { font-size: 36px; font-weight: 900; color: var(--primary); font-family: var(--font-heading); margin-bottom: 4px; }
+    .oh-stat-item p { font-size: 13px; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; }
+
+    @media (max-width: 900px) {
+      .oh-cta-layout { grid-template-columns: 1fr; gap: 40px; }
+      .oh-cta-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .oh-hero { grid-template-columns: 1fr; min-height: unset; }
+      .oh-left { padding: 52px 24px 32px; }
+      .oh-right { padding: 0 24px 52px; }
+      .oh-card { max-width: 100%; }
+      .oh-steps-grid { grid-template-columns: 1fr; max-width: 420px; margin-left: auto; margin-right: auto; }
+      .oh-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 580px) {
+      .oh-features { grid-template-columns: 1fr 1fr; }
+      .oh-title { font-size: 30px; }
+    }
+    @media (max-width: 420px) {
+      .oh-features { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+
+  <!-- ═══════════════════════════════
+       HERO — SPLIT LAYOUT
+  ════════════════════════════════ -->
+  <section class="oh-hero" id="home">
+
+    <!-- Background blobs -->
+    <div class="oh-blob oh-blob-1"></div>
+    <div class="oh-blob oh-blob-2"></div>
+    <div class="oh-blob oh-blob-3"></div>
+
+    <!-- LEFT: Content -->
+    <div class="oh-left">
+      <div class="oh-pill">
+        <span class="pulse-dot"></span>
+        🏠 Owner Portal · Salem's #1 Rental Platform
+      </div>
+
+      <h1 class="oh-title">
+        List Your Property<br/>
+        <span class="oh-em">For Free</span> in Salem
+      </h1>
+
+      <p class="oh-sub">
+        Connect directly with genuine tenants.<br/>
+        Zero brokerage. Zero hassle. Zero cost — always.
+      </p>
+
+      <!-- Feature grid -->
+      <div class="oh-features">
+        <div class="oh-feat">
+          <div class="oh-feat-icon">✅</div>
+          Verified Tenants
+        </div>
+        <div class="oh-feat">
+          <div class="oh-feat-icon">🆓</div>
+          100% Free to List
+        </div>
+        <div class="oh-feat">
+          <div class="oh-feat-icon">📞</div>
+          Direct Inquiries
+        </div>
+        <div class="oh-feat">
+          <div class="oh-feat-icon">🔒</div>
+          Safe &amp; Private
+        </div>
+      </div>
+
+      <!-- Stats bar -->
+      <div class="oh-stats">
+        <div class="oh-stat">
+          <span class="oh-stat-val" data-count="500" data-suffix="+">500+</span>
+          <span class="oh-stat-lbl">Active Tenants</span>
+        </div>
+        <div class="oh-stat">
+          <span class="oh-stat-val">24 hrs</span>
+          <span class="oh-stat-lbl">Avg. Rent Time</span>
+        </div>
+        <div class="oh-stat">
+          <span class="oh-stat-val">₹0</span>
+          <span class="oh-stat-lbl">Listing Cost</span>
+        </div>
+      </div>
+
+
+    </div>
+
+    <!-- RIGHT: Auth Card -->
+    <div class="oh-right">
+      <div class="oh-card">
+        <div class="oh-card-header">
+          <div class="oh-card-header-ring1"></div>
+          <div class="oh-card-header-ring2"></div>
+          <h3>🏠 Owner Portal</h3>
+          <p>Login or sign up free — takes under 2 minutes</p>
+        </div>
+
+        <!-- Tabs -->
+        <div class="oh-tabs">
+          <button class="oh-tab active" id="ohTabLogin" onclick="ohSwitch('login')">Login</button>
+          <button class="oh-tab" id="ohTabSignup" onclick="ohSwitch('signup')">Create Account</button>
+        </div>
+
+        <!-- LOGIN -->
+        <div class="oh-body" id="ohPanelLogin">
+          <form class="auth-form" id="ownerLoginForm" onsubmit="handleOwnerLogin(event)" style="margin-top:4px;">
+            <div class="form-group">
+              <label>Email Address <span class="oh-req">*</span></label>
+              <div class="oh-iw">
+                <span class="oh-ii">✉️</span>
+                <input type="email" id="loginEmail" placeholder="yourname@email.com" class="form-input oh-inp" required />
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Password <span class="oh-req">*</span></label>
+              <div class="oh-iw">
+                <span class="oh-ii">🔐</span>
+                <input type="password" id="loginPassword" placeholder="Enter your password" class="form-input oh-inp" style="padding-right:40px;" required />
+                <button type="button" class="oh-eye" onclick="togglePw('loginPassword')">👁</button>
+              </div>
+            </div>
+            <div style="text-align:right; margin-top:-2px;">
+              <a href="#" onclick="ohShowForgot();return false;" style="font-size:13px;color:var(--primary);font-weight:600;text-decoration:none;">Forgot Password?</a>
+            </div>
+            <button type="submit" class="btn-primary btn-full" id="loginSubmitBtn" style="margin-top:10px;">
+              <span id="loginBtnText">Login to Dashboard</span>
+            </button>
+            <p class="oh-sw">No account? <a href="#" onclick="ohSwitch('signup')">Sign Up Free →</a></p>
+          </form>
+        </div>
+
+        <!-- FORGOT -->
+        <div class="oh-body hidden" id="ohPanelForgot">
+          <div class="oh-state" style="margin-bottom:16px;">
+            <span class="oh-state-icon">🔑</span>
+            <h4>Forgot Password?</h4>
+            <p>Enter your email and we'll send a reset link.</p>
+          </div>
+          <form class="auth-form" onsubmit="handleOwnerForgotPassword(event)">
+            <div class="form-group">
+              <label>Email Address <span class="oh-req">*</span></label>
+              <div class="oh-iw">
+                <span class="oh-ii">✉️</span>
+                <input type="email" id="forgotEmail" placeholder="yourname@email.com" class="form-input oh-inp" required />
+              </div>
+            </div>
+            <button type="submit" class="btn-primary btn-full" id="forgotSubmitBtn" style="margin-top:8px;">✉️ Send Reset Link</button>
+          </form>
+          <button class="oh-back" onclick="ohSwitch('login')">← Back to Login</button>
+        </div>
+
+        <!-- FORGOT SENT -->
+        <div class="oh-body hidden" id="ohPanelForgotSent">
+          <div class="oh-state">
+            <span class="oh-state-icon">📬</span>
+            <h4>Reset Link Sent!</h4>
+            <p>Sent to <span class="oh-hl" id="forgotEmailDisplay">your@email.com</span>.<br/>Check your inbox and spam folder.</p>
+          </div>
+          <button class="btn-outline btn-full" style="margin-top:20px;" onclick="ohSwitch('login')">← Back to Login</button>
+        </div>
+
+        <!-- SIGNUP -->
+        <div class="oh-body hidden" id="ohPanelSignup">
+          <form class="auth-form" id="ownerSignupForm" onsubmit="handleOwnerSignup(event)" style="margin-top:4px;">
+            <div class="oh-grid">
+              <div class="form-group">
+                <label>Full Name <span class="oh-req">*</span></label>
+                <div class="oh-iw">
+                  <span class="oh-ii">👤</span>
+                  <input type="text" id="signupName" placeholder="Your full name" class="form-input oh-inp" required />
+                </div>
+              </div>
+              <div class="form-group">
+                <label>Phone <span class="oh-req">*</span></label>
+                <div class="oh-iw">
+                  <span class="oh-ii">📞</span>
+                  <input type="tel" id="signupPhone" placeholder="+91 98765 43210" class="form-input oh-inp" required />
+                </div>
+              </div>
+              <div class="form-group oh-full">
+                <label>Email Address <span class="oh-req">*</span></label>
+                <div class="oh-iw">
+                  <span class="oh-ii">✉️</span>
+                  <input type="email" id="signupEmail" placeholder="yourname@email.com" class="form-input oh-inp" required />
+                </div>
+              </div>
+              <div class="form-group oh-full">
+                <label>Password <span class="oh-req">*</span></label>
+                <div class="oh-iw">
+                  <span class="oh-ii">🔐</span>
+                  <input type="password" id="signupPassword" placeholder="Min 6 characters" class="form-input oh-inp" style="padding-right:40px;" required minlength="6" />
+                  <button type="button" class="oh-eye" onclick="togglePw('signupPassword')">👁</button>
+                </div>
+              </div>
+              <div class="form-group oh-full">
+                <label>Your Address <span class="oh-req">*</span></label>
+                <div class="oh-iw" style="align-items:flex-start;">
+                  <span class="oh-ii ta">📍</span>
+                  <textarea id="signupAddress" placeholder="12, Gandhi Nagar, Salem – 636007" class="form-input oh-inp form-textarea" rows="2" required></textarea>
+                </div>
+              </div>
+            </div>
+            <div class="oh-terms" style="margin-top:4px;">
+              <input type="checkbox" id="signupTerms" required />
+              <label for="signupTerms">I agree to the <a href="https://toletnow.in/terms.html">Terms &amp; Conditions</a> and <a href="https://toletnow.in/privacy.html">Privacy Policy</a></label>
+            </div>
+            <button type="submit" class="btn-primary btn-full" id="signupSubmitBtn">
+              <span id="signupBtnText">Create Free Account</span>
+            </button>
+            <p class="oh-sw">Have an account? <a href="#" onclick="ohSwitch('login')">Login →</a></p>
+          </form>
+        </div>
+
+        <!-- VERIFY EMAIL -->
+        <div class="oh-body hidden" id="ohPanelVerify">
+          <div class="oh-state">
+            <span class="oh-state-icon">📬</span>
+            <h4>Verify Your Email!</h4>
+            <p>We sent a link to <span class="oh-hl" id="signupEmailDisplay">your@email.com</span>.<br/>Click it to activate, then login.</p>
+          </div>
+          <button class="btn-primary btn-full" style="margin-top:20px;" onclick="ohSwitch('login')">Go to Login →</button>
+        </div>
+
+        <!-- RESET PASSWORD -->
+        <div class="oh-body hidden" id="ohPanelReset">
+          <div class="oh-state" style="margin-bottom:16px;">
+            <span class="oh-state-icon">🔒</span>
+            <h4>Set New Password</h4>
+            <p>Enter and confirm your new password.</p>
+          </div>
+          <form class="auth-form" onsubmit="handleOwnerResetPassword(event)">
+            <div class="form-group">
+              <label>New Password <span class="oh-req">*</span></label>
+              <div class="oh-iw">
+                <span class="oh-ii">🔐</span>
+                <input type="password" id="resetNewPassword" placeholder="Min 6 characters" class="form-input oh-inp" style="padding-right:40px;" required minlength="6" />
+                <button type="button" class="oh-eye" onclick="togglePw('resetNewPassword')">👁</button>
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Confirm Password <span class="oh-req">*</span></label>
+              <div class="oh-iw">
+                <span class="oh-ii">🔐</span>
+                <input type="password" id="resetConfirmPassword" placeholder="Re-enter password" class="form-input oh-inp" style="padding-right:40px;" required minlength="6" />
+                <button type="button" class="oh-eye" onclick="togglePw('resetConfirmPassword')">👁</button>
+              </div>
+            </div>
+            <button type="submit" class="btn-primary btn-full" id="resetSubmitBtn" style="margin-top:8px;">🔒 Update Password</button>
+          </form>
+        </div>
+
+        <!-- RESET SUCCESS -->
+        <div class="oh-body hidden" id="ohPanelResetSuccess">
+          <div class="oh-state">
+            <span class="oh-state-icon">✅</span>
+            <h4>Password Updated!</h4>
+            <p>Your password was changed. You can now login.</p>
+          </div>
+          <button class="btn-primary btn-full" style="margin-top:20px;" onclick="ohSwitch('login')">Login Now →</button>
+        </div>
+
+      </div><!-- /.oh-card -->
+    </div>
+  </section>
+
+  <!-- TRUST STRIP -->
+  <div class="trust-strip">
+    <div class="trust-item">
+      <span class="trust-icon">🏠</span>
+      <div><strong>Verified Owners</strong><p>No brokers, no extra charges</p></div>
+    </div>
+    <div class="trust-divider"></div>
+    <div class="trust-item">
+      <span class="trust-icon">💰</span>
+      <div><strong>100% Free</strong><p>Browsing and posting, always</p></div>
+    </div>
+    <div class="trust-divider"></div>
+    <div class="trust-item">
+      <span class="trust-icon">📞</span>
+      <div><strong>Direct Call</strong><p>Connect directly with tenants</p></div>
+    </div>
+    <div class="trust-divider"></div>
+    <div class="trust-item">
+      <span class="trust-icon">🔄</span>
+      <div><strong>30-Day Fresh</strong><p>Auto-expire keeps it current</p></div>
+    </div>
+  </div>
+
+  <!-- HOW IT WORKS -->
+  <section class="oh-steps">
+    <div class="section-container">
+      <div class="section-header center">
+        <div class="upcoming-eyebrow">🚀 Simple Process</div>
+        <h2 class="section-title">How It <span class="text-pink">Works</span></h2>
+        <p class="section-sub">List your property in 3 quick steps and start getting tenant calls today</p>
+      </div>
+      <div class="oh-steps-grid">
+        <div class="oh-step fade-up">
+          <span class="oh-step-n">01</span>
+          <span class="oh-step-ic">📝</span>
+          <h3>Create Free Account</h3>
+          <p>Sign up with your name, phone and email in under a minute. No credit card, no fees — ever.</p>
+        </div>
+        <div class="oh-step fade-up" style="transition-delay:.1s;">
+          <span class="oh-step-n">02</span>
+          <span class="oh-step-ic">🏡</span>
+          <h3>Post Your Property</h3>
+          <p>Fill in details — type, BHK, rent, address, photos. Your listing goes live in under 5 minutes.</p>
+        </div>
+        <div class="oh-step fade-up" style="transition-delay:.2s;">
+          <span class="oh-step-n">03</span>
+          <span class="oh-step-ic">📞</span>
+          <h3>Get Tenant Calls</h3>
+          <p>Genuine tenants browse and call you directly. No middlemen, no broker cuts, no delays.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CTA SECTION ===== -->
+  <section class="oh-cta-sec">
+    <div class="oh-cta-layout">
+      <div class="oh-cta-left fade-up">
+        <div class="oh-cta-ey">🏠 List Your Property</div>
+        <h2>Have a Home<br/>to Rent Out?</h2>
+        <p>Reach thousands of genuine tenants in Salem — completely free. No broker, no commission, no hidden charges.</p>
+        
+        <div class="oh-cta-stats">
+          <div class="oh-stat-item">
+            <h3 class="stat-count" data-target="500" data-suffix="+">0</h3>
+            <p>Active Listings</p>
+          </div>
+          <div class="oh-stat-item">
+            <h3 class="stat-count" data-target="1000" data-suffix="+">0</h3>
+            <p>Owners Listed</p>
+          </div>
+          <div class="oh-stat-item">
+            <h3 class="stat-count" data-target="3000" data-suffix="+">0</h3>
+            <p>Happy Tenants</p>
+          </div>
+        </div>
+      </div>
+      <div class="oh-cta-right fade-up" style="transition-delay: 0.1s;">
+        <div class="oh-cta-grid">
+          <div class="oh-cta-item">
+            <div class="oh-cta-icon">✅</div>
+            <div class="oh-cta-text">
+              <h4>Free Forever</h4>
+              <p>Posting and browsing are 100% free</p>
+            </div>
+          </div>
+          <div class="oh-cta-item">
+            <div class="oh-cta-icon">👁️</div>
+            <div class="oh-cta-text">
+              <h4>Active Tenants</h4>
+              <p>Real people searching right now</p>
+            </div>
+          </div>
+          <div class="oh-cta-item">
+            <div class="oh-cta-icon">📞</div>
+            <div class="oh-cta-text">
+              <h4>Direct Inquiries</h4>
+              <p>Tenants call you directly — no middlemen</p>
+            </div>
+          </div>
+          <div class="oh-cta-item">
+            <div class="oh-cta-icon">🔄</div>
+            <div class="oh-cta-text">
+              <h4>Auto-Expire in 30 Days</h4>
+              <p>Keeps listings fresh and relevant</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer" id="contact">
+    <div class="footer-container">
+      <div class="footer-brand">
+        <div class="footer-logo">
+          <img src="assets/images/logo.png" alt="ToLetNow.in Logo" class="logo-img-footer" />
+        </div>
+        <p class="footer-tagline">Simple. Local. Direct.<br/>Rental homes in Salem, directly from owners.</p>
+        <div class="footer-social">
+          <a href="#" class="social-link">f</a>
+          <a href="#" class="social-link">in</a>
+          <a href="#" class="social-link">tw</a>
+          <a href="#" class="social-link">ig</a>
+        </div>
+      </div>
+      <div class="footer-col"><h4>Quick Links</h4><ul>
+        <li><a href="https://toletnow.in">Home</a></li>
+        <li><a href="https://toletnow.in#search">Search</a></li>
+        <li><a href="index.html">Post Property</a></li>
+        <li><a href="https://toletnow.in/contact.html">Contact Us</a></li>
+      </ul></div>
+      <div class="footer-col"><h4>Legal</h4><ul>
+        <li><a href="https://toletnow.in/privacy.html">Privacy Policy</a></li>
+        <li><a href="https://toletnow.in/terms.html">Terms &amp; Conditions</a></li>
+        <li><a href="https://toletnow.in/disclaimer.html">Disclaimer</a></li>
+        <li><a href="https://toletnow.in/about.html">About Us</a></li>
+      </ul></div>
+      <div class="footer-col"><h4>Support</h4><ul>
+        <li><a href="mailto:support@toletnow.in">support@toletnow.in</a></li>
+        <li><a href="https://toletnow.in/contact.html">Contact Form</a></li>
+        <li><a href="tel:+919876543210">+91 98765 43210</a></li>
+      </ul></div>
+    </div>
+    <div class="footer-bottom"><p>© 2024 ToLetNow.in · All rights reserved · Made with ❤️ for Salem</p></div>
+  </footer>
+
+
+
+  <div class="toast" id="toast"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/supabase-config.js"></script>
+  <script src="js/pages.js"></script>
+  <script src="js/owner-auth.js"></script>
+
+  <script>
+    /* Panel IDs */
+    const OH_PANELS = ['ohPanelLogin','ohPanelForgot','ohPanelForgotSent','ohPanelSignup','ohPanelVerify','ohPanelReset','ohPanelResetSuccess'];
+
+    function ohShowPanel(id) {
+      OH_PANELS.forEach(p => { const el = document.getElementById(p); if(el) el.classList.add('hidden'); });
+      const t = document.getElementById(id); if(t) t.classList.remove('hidden');
+    }
+
+    function ohSwitch(tab) {
+      document.getElementById('ohTabLogin').classList.toggle('active', tab==='login');
+      document.getElementById('ohTabSignup').classList.toggle('active', tab==='signup');
+      ohShowPanel(tab==='login' ? 'ohPanelLogin' : 'ohPanelSignup');
+    }
+
+
+
+    function ohShowForgot() { ohShowPanel('ohPanelForgot'); }
+
+    /* owner-auth.js bridge */
+    function switchOwnerTab(tab)       { ohSwitch(tab); }
+    function showOwnerForgotPassword() { ohShowForgot(); }
+
+    const _ohPanelMap = {
+      oaLoginWrap:'ohPanelLogin', oaForgotWrap:'ohPanelForgot',
+      oaForgotSentWrap:'ohPanelForgotSent', oaSignupWrap:'ohPanelSignup',
+      oaSignupVerifyWrap:'ohPanelVerify', oaResetWrap:'ohPanelReset',
+      oaResetSuccessWrap:'ohPanelResetSuccess'
+    };
+    const _ohOrigGetById = document.getElementById.bind(document);
+    document.getElementById = id => _ohOrigGetById(_ohPanelMap[id] || id);
+
+
+
+    function scrollToAuth(tab) {
+      const s = document.querySelector('.oh-right');
+      if(s) { s.scrollIntoView({behavior:'smooth',block:'center'}); setTimeout(()=>ohSwitch(tab),350); }
+    }
+
+    (function() {
+      const a = new URLSearchParams(window.location.search).get('action');
+      if(a==='signup'||a==='login') setTimeout(()=>scrollToAuth(a),400);
+    })();
+
+    const obs = new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');})},{threshold:0.12});
+    document.querySelectorAll('.fade-up').forEach(el=>obs.observe(el));
+
+    /* ─── Animated stat counter ─── */
+    function animateCount(el, target, suffix, duration) {
+      let start = 0;
+      const step = Math.ceil(target / (duration / 16));
+      const timer = setInterval(() => {
+        start += step;
+        if (start >= target) { start = target; clearInterval(timer); }
+        el.textContent = start + suffix;
+      }, 16);
+    }
+    
+    // Trigger animations when in view
+    const statObs = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if(e.isIntersecting) {
+          const target = parseInt(e.target.getAttribute('data-target') || '0');
+          const suffix = e.target.getAttribute('data-suffix') || '';
+          animateCount(e.target, target, suffix, 1500);
+          statObs.unobserve(e.target);
+        }
+      });
+    }, {threshold: 0.5});
+    document.querySelectorAll('.stat-count').forEach(el => statObs.observe(el));
+    const countObs = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (!e.isIntersecting) return;
+        const el = e.target;
+        const target = parseInt(el.dataset.count);
+        const suffix = el.dataset.suffix || '';
+        if (!isNaN(target)) animateCount(el, target, suffix, 1400);
+        countObs.unobserve(el);
+      });
+    }, { threshold: 0.5 });
+    document.querySelectorAll('[data-count]').forEach(el => countObs.observe(el));
+  </script>
+</body>
+</html>
+
