@@ -10,7 +10,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/style.css" />
   <link rel="stylesheet" href="css/pages.css" />
-  <link rel="stylesheet" href="css/profile.css" />
+  <link rel="stylesheet" href="css/owner-profile.css?v=2" />
 <style>
 
 
@@ -285,15 +285,15 @@
 
 
   <!-- ===== PROFILE MAIN ===== -->
-  <div class="profile-section-container">
-    <div class="profile-layout-grid">
+  <div class="op-section-container">
+    <div class="op-layout-grid">
 
       <!-- ===== LEFT SIDEBAR ===== -->
-      <aside class="profile-sidebar-card">
+      <aside class="op-sidebar-card">
 
-        <div class="profile-sidebar-header">
-          <h2 class="profile-sidebar-title">Owner Dashboard</h2>
-          <button class="notification-bell-btn" title="Notifications">
+        <div class="op-sidebar-header">
+          <h2 class="op-sidebar-title">Owner Dashboard</h2>
+          <button class="op-bell-btn" title="Notifications">
             <svg class="bell-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
               <path stroke-linecap="round" stroke-linejoin="round" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6 6 0 10-12 0v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
             </svg>
@@ -301,28 +301,28 @@
         </div>
 
         <!-- Avatar + Name -->
-        <div class="profile-avatar-block">
-          <div class="profile-avatar-wrap">
-            <div class="profile-avatar-letter" id="profileAvatarLetter">T</div>
-            <button class="profile-avatar-edit-btn" title="Change Photo">✏️</button>
+        <div class="op-avatar-block">
+          <div class="op-avatar-wrap">
+            <div class="op-avatar-letter" id="profileAvatarLetter">T</div>
+            <button class="op-avatar-edit-btn" title="Change Photo">✏️</button>
           </div>
-          <h3 class="profile-user-name" id="profileDisplayName">Loading...</h3>
-          <div class="profile-user-badge">✅ Verified Owner</div>
-          <p class="profile-user-phone" id="profileDisplayEmail">—</p>
+          <h3 class="op-user-name" id="profileDisplayName">Loading...</h3>
+          <div class="op-verified-badge">✅ Verified Owner</div>
+          <p class="op-phone" id="profileDisplayEmail">—</p>
         </div>
 
         <!-- Stats -->
         
-        <div class="profile-stats-grid">
-          <button class="stat-box-btn" onclick="switchProfileTab('properties')">
-            <div class="stat-box-icon">🏢</div>
+        <div class="op-props-stats-grid">
+          <button class="op-stat-item" onclick="switchProfileTab('properties')">
+            <div class="op-stat-icon">🏢</div>
             <div class="stat-box-info">
               <strong id="propertiesCount">0</strong>
               <span>My Properties</span>
             </div>
           </button>
-          <button class="stat-box-btn" onclick="switchProfileTab('edit')">
-            <div class="stat-box-icon">👤</div>
+          <button class="op-stat-item" onclick="switchProfileTab('edit')">
+            <div class="op-stat-icon">👤</div>
             <div class="stat-box-info">
               <strong>1</strong>
               <span>Profile</span>
@@ -332,46 +332,46 @@
 
         <!-- Menu -->
         
-        <nav class="profile-settings-menu">
-          <button class="menu-item-btn active" id="menuEdit" onclick="switchProfileTab('edit')">
-            <div class="menu-item-icon">👤</div>
-            <div class="menu-item-text">
+        <nav class="op-menu-list">
+          <button class="op-menu-item active" id="menuEdit" onclick="switchProfileTab('edit')">
+            <div class="op-menu-icon">👤</div>
+            <div class="op-menu-text">
               <strong>Edit Profile</strong>
               <span>Update your personal details</span>
             </div>
-            <span class="menu-item-arrow">›</span>
+            <span class="op-menu-arrow">›</span>
           </button>
 
-          <button class="menu-item-btn" id="menuProperties" onclick="switchProfileTab('properties')">
-            <div class="menu-item-icon">🏢</div>
-            <div class="menu-item-text">
+          <button class="op-menu-item" id="menuProperties" onclick="switchProfileTab('properties')">
+            <div class="op-menu-icon">🏢</div>
+            <div class="op-menu-text">
               <strong>My Properties</strong>
               <span>Manage your listings</span>
             </div>
-            <span class="menu-item-arrow">›</span>
+            <span class="op-menu-arrow">›</span>
           </button>
           
-          <button class="menu-item-btn" id="menuPost" onclick="switchProfileTab('post')">
-            <div class="menu-item-icon">➕</div>
-            <div class="menu-item-text">
+          <button class="op-menu-item" id="menuPost" onclick="switchProfileTab('post')">
+            <div class="op-menu-icon">➕</div>
+            <div class="op-menu-text">
               <strong>Post Property</strong>
               <span>Add a new listing</span>
             </div>
-            <span class="menu-item-arrow">›</span>
+            <span class="op-menu-arrow">›</span>
           </button>
 
-          <button class="menu-item-btn" id="menuPassword" onclick="switchProfileTab('password')">
-            <div class="menu-item-icon">🔒</div>
-            <div class="menu-item-text">
+          <button class="op-menu-item" id="menuPassword" onclick="switchProfileTab('password')">
+            <div class="op-menu-icon">🔒</div>
+            <div class="op-menu-text">
               <strong>Change Password</strong>
               <span>Update your login password</span>
             </div>
-            <span class="menu-item-arrow">›</span>
+            <span class="op-menu-arrow">›</span>
           </button>
 
-          <button class="menu-item-btn menu-logout-btn" onclick="ownerProfileLogout()">
-            <div class="menu-item-icon">🚪</div>
-            <div class="menu-item-text">
+          <button class="op-menu-item op-menu-logout" onclick="ownerProfileLogout()">
+            <div class="op-menu-icon">🚪</div>
+            <div class="op-menu-text">
               <strong>Logout</strong>
               <span>Sign out of your account</span>
             </div>
@@ -380,9 +380,9 @@
 
 
         <!-- Privacy Banner -->
-        <div class="privacy-banner-card">
-          <div class="privacy-icon-shield">🛡️</div>
-          <div class="privacy-banner-text">
+        <div class="op-verified-banner">
+          <div class="op-verified-banner-icon">🛡️</div>
+          <div class="op-verified-banner-text">
             <strong>Your data is safe</strong>
             <p>We never share your personal details with third parties.</p>
           </div>
@@ -391,16 +391,16 @@
       </aside>
 
       <!-- ===== RIGHT CONTENT ===== -->
-      <main class="profile-details-content-card">
+      <main class="op-content-card">
 
         <!-- TAB: Edit Profile -->
-        <div id="tabEdit" class="profile-tab-content">
-          <div class="tab-header-block">
+        <div id="tabEdit" class="op-tab-content">
+          <div class="op-tab-header">
             <h2>Edit Profile</h2>
             <p>Keep your details updated so owners can reach you easily.</p>
           </div>
           <form id="profileEditForm" onsubmit="saveProfileDetails(event)">
-            <div class="tab-form-grid">
+            <div class="op-form-grid">
               <div class="form-group">
                 <label>Full Name</label>
                 <input type="text" id="editName" class="form-input" placeholder="Your full name" required />
@@ -424,7 +424,7 @@
                   <option>Other</option>
                 </select>
               </div>
-              <div class="form-group full-width">
+              <div class="form-group op-full">
                 <label>Current Address</label>
                 <textarea id="editAddress" class="form-input form-textarea" rows="3" placeholder="Where do you currently stay?"></textarea>
               </div>
@@ -435,7 +435,7 @@
 
         
         <!-- TAB: My Properties -->
-        <div id="tabProperties" class="profile-tab-content hidden">
+        <div id="tabProperties" class="op-tab-content hidden">
           <div class="tab-header-block">
             <h2>My Properties 🏢</h2>
             <p>Manage and track your listed properties.</p>
@@ -461,11 +461,11 @@
           </div>
 
           <div class="op-filters" style="display: flex; gap: 10px; margin-bottom: 24px; overflow-x: auto; padding-bottom: 5px;">
-            <button class="op-filter-btn active" onclick="filterOpProperties('all', this)" style="padding: 8px 16px; border-radius: 20px; font-size: 14px; font-weight: 500; cursor: pointer; background: var(--text-dark); color: #fff; border: 1px solid var(--text-dark);">All</button>
-            <button class="op-filter-btn" onclick="filterOpProperties('Active', this)" style="padding: 8px 16px; border-radius: 20px; font-size: 14px; font-weight: 500; cursor: pointer; background: #fff; border: 1px solid var(--border); color: var(--text-muted);">Active</button>
-            <button class="op-filter-btn" onclick="filterOpProperties('Pending', this)" style="padding: 8px 16px; border-radius: 20px; font-size: 14px; font-weight: 500; cursor: pointer; background: #fff; border: 1px solid var(--border); color: var(--text-muted);">Pending</button>
-            <button class="op-filter-btn" onclick="filterOpProperties('Rented', this)" style="padding: 8px 16px; border-radius: 20px; font-size: 14px; font-weight: 500; cursor: pointer; background: #fff; border: 1px solid var(--border); color: var(--text-muted);">Rented</button>
-            <button class="op-filter-btn" onclick="filterOpProperties('Expired', this)" style="padding: 8px 16px; border-radius: 20px; font-size: 14px; font-weight: 500; cursor: pointer; background: #fff; border: 1px solid var(--border); color: var(--text-muted);">Expired</button>
+            <button class="op-filter-tab active" onclick="filterOpProperties('all', this)" style="padding: 8px 16px; border-radius: 20px; font-size: 14px; font-weight: 500; cursor: pointer; background: var(--text-dark); color: #fff; border: 1px solid var(--text-dark);">All</button>
+            <button class="op-filter-tab" onclick="filterOpProperties('Active', this)" style="padding: 8px 16px; border-radius: 20px; font-size: 14px; font-weight: 500; cursor: pointer; background: #fff; border: 1px solid var(--border); color: var(--text-muted);">Active</button>
+            <button class="op-filter-tab" onclick="filterOpProperties('Pending', this)" style="padding: 8px 16px; border-radius: 20px; font-size: 14px; font-weight: 500; cursor: pointer; background: #fff; border: 1px solid var(--border); color: var(--text-muted);">Pending</button>
+            <button class="op-filter-tab" onclick="filterOpProperties('Rented', this)" style="padding: 8px 16px; border-radius: 20px; font-size: 14px; font-weight: 500; cursor: pointer; background: #fff; border: 1px solid var(--border); color: var(--text-muted);">Rented</button>
+            <button class="op-filter-tab" onclick="filterOpProperties('Expired', this)" style="padding: 8px 16px; border-radius: 20px; font-size: 14px; font-weight: 500; cursor: pointer; background: #fff; border: 1px solid var(--border); color: var(--text-muted);">Expired</button>
           </div>
 
           <!-- Empty state -->
@@ -482,7 +482,7 @@
 
 
         <!-- TAB: Post Property -->
-        <div id="tabPost" class="profile-tab-content hidden">
+        <div id="tabPost" class="op-tab-content hidden">
           <div class="wizard-card">
     <div class="wizard-header">
       <h1>Post Your Property</h1>
@@ -652,7 +652,7 @@
           <!-- Previews will go here -->
         </div>
 
-        <p id="photoErrorMsg" style="color:#D32F2F; font-size:13px; font-weight:600; display:none;">⚠️ Please upload at least 5 photos.</p>
+        <p id="photoErrorMsg" style="color:#D32F2F; font-size:13px; font-weight:600; display:none;">ℹ️ Photos are optional — recommended for better responses.</p>
 
         <div class="wizard-footer">
           <button class="btn-back" onclick="goToStep(2)">← Back</button>
@@ -667,7 +667,7 @@
         </div>
 
         <!-- TAB: Change Password -->
-        <div id="tabPassword" class="profile-tab-content hidden">
+        <div id="tabPassword" class="op-tab-content hidden">
           <div class="tab-header-block">
             <h2>Change Password 🔒</h2>
             <p>Use a strong password to keep your account secure.</p>
@@ -740,16 +740,7 @@
   </footer>
 
   <!-- Mobile Bottom Nav -->
-  <nav class="mobile-bottom-nav">
-    <a href="index.html" class="mob-nav-item" id="mobHome">
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mob-icon-svg"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
-      <span>Post</span>
-    </a>
-    <a href="owner-profile.html" class="mob-nav-item" id="mobProfile">
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mob-icon-svg"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
-      <span>Profile</span>
-    </a>
-  </nav>
+  
 
   <!-- Toast -->
   <div class="toast" id="toast"></div>
@@ -757,9 +748,9 @@
   <!-- Scripts -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="js/supabase-config.js?v=2"></script>
+  <script src="js/ui-utils.js"></script>
   <script src="js/owner-auth.js"></script>
   <script src="js/owner-profile.js"></script>
-  <script src="js/add-property.js"></script>
 
   
   <script>
@@ -782,6 +773,176 @@
       });
     }
 
+    // ===== POST PROPERTY LOGIC (inlined from add-property.js) =====
+    let currentStep = 1;
+    const totalSteps = 3;
+    let uploadedPhotos = [];
+
+    function goToStep(step) {
+      if (step === 2 && currentStep === 1) {
+        if (!document.getElementById('propType').value ||
+            !document.getElementById('propBhk').value ||
+            !document.getElementById('propRent').value) {
+          showToast('⚠️ Please fill required fields (Type, BHK, Rent)');
+          return;
+        }
+      }
+      if (step === 3 && currentStep === 2) {
+        if (!document.getElementById('locDoor').value ||
+            !document.getElementById('locStreet').value ||
+            !document.getElementById('locArea').value ||
+            !document.getElementById('ownerName').value ||
+            !document.getElementById('ownerPhone').value) {
+          showToast('⚠️ Please fill all required location and contact details');
+          return;
+        }
+      }
+      document.querySelectorAll('.form-step').forEach(el => el.classList.remove('active'));
+      document.getElementById('step' + step).classList.add('active');
+      currentStep = step;
+      updateStepperUI();
+      window.scrollTo(0, 0);
+    }
+
+    function updateStepperUI() {
+      const line = document.getElementById('stepLine');
+      if (currentStep === 1) line.style.width = '0%';
+      if (currentStep === 2) line.style.width = '50%';
+      if (currentStep === 3) line.style.width = '100%';
+      for (let i = 1; i <= totalSteps; i++) {
+        const stepEl = document.getElementById('stepper' + i);
+        if (!stepEl) continue;
+        if (i < currentStep) stepEl.className = 'step completed';
+        else if (i === currentStep) stepEl.className = 'step active';
+        else stepEl.className = 'step';
+      }
+    }
+
+    function getSelectedPills(containerId) {
+      return Array.from(document.querySelectorAll('#' + containerId + ' .pill.selected')).map(p => p.getAttribute('data-val'));
+    }
+
+    function handleFiles(files) {
+      const maxPhotos = 5;
+      const maxSize = 2 * 1024 * 1024;
+      if (uploadedPhotos.length >= maxPhotos) { showToast('⚠️ You can upload up to 5 photos only.'); return; }
+      Array.from(files).forEach(file => {
+        if (!file.type.startsWith('image/')) return;
+        if (uploadedPhotos.length >= maxPhotos) return;
+        if (file.size > maxSize) { showToast('⚠️ Each photo must be 2MB or smaller.'); return; }
+        const reader = new FileReader();
+        reader.onload = (e) => { uploadedPhotos.push(e.target.result); renderPhotoPreviews(); };
+        reader.readAsDataURL(file);
+      });
+    }
+
+    function removePhoto(index) {
+      uploadedPhotos.splice(index, 1);
+      renderPhotoPreviews();
+    }
+
+    function renderPhotoPreviews() {
+      const grid = document.getElementById('photoPreviewGrid');
+      if (!grid) return;
+      grid.innerHTML = '';
+      uploadedPhotos.forEach((src, idx) => {
+        const item = document.createElement('div');
+        item.className = 'photo-preview-item';
+        const img = document.createElement('img');
+        img.src = src; img.alt = 'Property photo ' + (idx + 1);
+        item.appendChild(img);
+        const removeBtn = document.createElement('button');
+        removeBtn.className = 'photo-remove';
+        removeBtn.type = 'button';
+        removeBtn.textContent = '✕';
+        removeBtn.addEventListener('click', () => removePhoto(idx));
+        item.appendChild(removeBtn);
+        grid.appendChild(item);
+      });
+      const err = document.getElementById('photoErrorMsg');
+      if (err) err.style.display = 'none';
+    }
+
+    function sanitizePropertyInput(value) {
+      return escapeHtml(value?.trim?.() || '');
+    }
+
+    async function submitProperty() {
+      const btn = document.querySelector('.btn-submit');
+      if (!btn) { showToast('❌ Unable to post property. Try again.'); return; }
+      btn.disabled = true;
+      btn.textContent = 'Posting...';
+
+      const propertyData = {
+        type: sanitizePropertyInput(document.getElementById('propType').value),
+        bhk: sanitizePropertyInput(document.getElementById('propBhk').value),
+        rent: parseInt(document.getElementById('propRent').value) || 0,
+        deposit: parseInt(document.getElementById('propDeposit').value) || 0,
+        furnishing: sanitizePropertyInput(document.getElementById('propFurnishing').value),
+        area: parseInt(document.getElementById('propArea').value) || 0,
+        preferred_tenants: getSelectedPills('tenantPills'),
+        door_no: sanitizePropertyInput(document.getElementById('locDoor').value),
+        street: sanitizePropertyInput(document.getElementById('locStreet').value),
+        locality: sanitizePropertyInput(document.getElementById('locLocality')?.value || document.getElementById('locArea').value),
+        city: sanitizePropertyInput(document.getElementById('locCity').value),
+        state: sanitizePropertyInput(document.getElementById('locState').value),
+        pincode: sanitizePropertyInput(document.getElementById('locPin').value),
+        landmark: sanitizePropertyInput(document.getElementById('locLandmark').value),
+        description: sanitizePropertyInput(document.getElementById('propDesc').value),
+        owner_name: sanitizePropertyInput(document.getElementById('ownerName').value),
+        owner_phone: sanitizePropertyInput(document.getElementById('ownerPhone').value),
+        images: uploadedPhotos,
+        status: 'Active',
+        created_at: new Date().toISOString()
+      };
+
+      try {
+        const { data: { session } } = await window.supabaseClient.auth.getSession();
+        if (!session) {
+          btn.disabled = false; btn.textContent = 'Post Property';
+          showToast('⚠️ Please login to post a property');
+          setTimeout(() => { window.location.href = 'index.html'; }, 1200);
+          return;
+        }
+        propertyData.owner_id = session.user.id;
+
+        const { data, error } = await window.supabaseClient.from('properties').insert([propertyData]);
+        if (error) throw error;
+
+        showToast('✅ Property Posted Successfully!');
+        setTimeout(async () => {
+          if (typeof initOwnerProfilePage === 'function') {
+            await initOwnerProfilePage();
+            switchProfileTab('properties');
+            // Reset form
+            document.querySelectorAll('#tabPost .form-step')[0]?.classList.add('active');
+            document.querySelectorAll('#tabPost .form-step').forEach((el, i) => { if (i > 0) el.classList.remove('active'); });
+            const previewGrid = document.getElementById('photoPreviewGrid');
+            if (previewGrid) previewGrid.innerHTML = '';
+            uploadedPhotos = [];
+            currentStep = 1;
+            updateStepperUI();
+          } else {
+            window.location.href = 'owner-profile.html';
+          }
+        }, 1500);
+      } catch (err) {
+        console.error(err);
+        showToast('❌ Error posting property. Please check console.');
+        btn.disabled = false;
+        btn.textContent = 'Post Property';
+      }
+    }
+
+    // Pill toggle logic
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('.pill').forEach(pill => {
+        pill.addEventListener('click', () => pill.classList.toggle('selected'));
+      });
+    });
+
+    // ===== END POST PROPERTY LOGIC =====
+
     function toggleLike(e) {
         e.preventDefault();
         e.stopPropagation();
@@ -789,10 +950,11 @@
     
     // Modify saveProfileDetails to use owner logic (from owner-profile.js)
     function saveProfileDetails(e) {
-        e.preventDefault();
-        if(typeof saveOpSettings === 'function') {
-            saveOwnerProfile(e);
-        }
+      e.preventDefault();
+      if (typeof saveOwnerProfile === 'function') {
+        return saveOwnerProfile(e);
+      }
+      if (typeof saveOpSettings === 'function') return saveOpSettings(e);
     }
   </script>
 

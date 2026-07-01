@@ -10,15 +10,47 @@ let currentFilter = 'all';
 let currentOwnerTab = 'properties';
 
 // ===== ON LOAD =====
-document.addEventListener('DOMContentLoaded', () => {
-  const saved = localStorage.getItem('ownerUser');
-  if (!saved) {
-    showToast('⚠️ Owner access only. Please login first.');
-    setTimeout(() => { window.location.href = 'index.html'; }, 1200);
-    return;
+document.addEventListener('DOMContentLoaded', async () => {
+  // Auth guard: verify real Supabase session
+  if (window.supabaseClient) {
+    try {
+      const { data: { session } } = await window.supabaseClient.auth.getSession();
+      if (!session) {
+        localStorage.removeItem('ownerUser');
+        showToast('⚠️ Owner access only. Please login first.');
+        setTimeout(() => { window.location.href = 'index.html'; }, 1200);
+        return;
+      }
+      // Session valid — refresh owner data from DB
+      const user = session.user;
+      const { data: docData } = await window.supabaseClient.from('users').select('*').eq('id', user.id).maybeSingle();
+      currentOwner = docData || {
+        id: user.id,
+        name: user.user_metadata?.full_name || user.email.split('@')[0],
+        email: user.email,
+        phone: user.user_metadata?.phone || '',
+        role: 'OWNER',
+        address: ''
+      };
+      localStorage.setItem('ownerUser', JSON.stringify(currentOwner));
+    } catch (err) {
+      console.error('Profile auth guard error:', err);
+      localStorage.removeItem('ownerUser');
+      showToast('⚠️ Session invalid. Please login first.');
+      setTimeout(() => { window.location.href = 'index.html'; }, 1200);
+      return;
+    }
+  } else {
+    // Fallback: localStorage only (dev mode)
+    const saved = localStorage.getItem('ownerUser');
+    if (!saved) {
+      showToast('⚠️ Owner access only. Please login first.');
+      setTimeout(() => { window.location.href = 'index.html'; }, 1200);
+      return;
+    }
+    currentOwner = JSON.parse(saved);
   }
 
-  currentOwner = JSON.parse(saved);
   initOwnerProfilePage();
 });
 
@@ -129,37 +161,94 @@ function renderOwnerProperties(filter) {
   filtered.forEach(p => {
     const card = document.createElement('div');
     card.className = 'op-prop-card';
-    
-    const img = (p.images && p.images.length > 0) ? p.images[0] : 'assets/house_listing_1.png';
-    const title = `${p.bhk || ''} ${p.type || 'Property'}`.trim();
-    const location = `${p.locality || ''}, ${p.city || ''}`.trim();
+
+    const imgSrc = normalizeImageSrc((p.images && p.images.length > 0) ? p.images[0] : 'assets/house_listing_1.png');
+    const title = `${escapeHtml(p.bhk || '')} ${escapeHtml(p.type || 'Property')}`.trim();
+    const location = `${escapeHtml(p.locality || '')}, ${escapeHtml(p.city || '')}`.trim();
     const price = p.rent ? p.rent.toLocaleString('en-IN') : '0';
     const time = p.created_at ? new Date(p.created_at).toLocaleDateString() : 'N/A';
+    const statusLabel = escapeHtml(p.status || 'Unknown');
+    const statusClassMap = { Active: 'active', Pending: 'pending', Rented: 'rented', Expired: 'expired' };
+    const statusClass = statusClassMap[p.status] || 'unknown';
+    const bhkText = escapeHtml(p.bhk || 'N/A');
+    const areaText = escapeHtml(p.area || 0);
+    const furnishingText = escapeHtml(p.furnishing || 'N/A');
 
-    card.innerHTML = `
-      <img src="${img}" alt="${title}" class="op-prop-card-img"
-        onerror="this.style.background='linear-gradient(135deg,#FCE4EC,#F8BBD9)';this.removeAttribute('src');" />
-      <div class="op-prop-card-info">
-        <div class="op-prop-card-title">${title}</div>
-        <div class="op-prop-card-location">📍 ${location}</div>
-        <div class="op-prop-card-price">₹${price}<span> / month</span></div>
-        <div class="op-prop-card-meta">
-          <span class="op-prop-meta-tag">🏠 ${p.bhk || 'N/A'}</span>
-          <span class="op-prop-meta-tag">📐 ${p.area || 0} sq.ft</span>
-          <span class="op-prop-meta-tag">🪑 ${p.furnishing || 'N/A'}</span>
-          <span class="op-prop-meta-tag">🕐 ${time}</span>
-        </div>
-      </div>
-      <div class="op-prop-card-actions">
-        <span class="op-prop-status-badge ${p.status}">${p.status}</span>
-        <div class="op-prop-action-btns">
-          <button class="op-btn-edit-prop" onclick="showToast('✏️ Edit property coming soon!')">✏️ Edit</button>
-          ${p.status === 'Expired'
-            ? `<button class="op-btn-renew-prop" onclick="renewProperty('${p.id}')">🔄 Renew</button>`
-            : `<button class="op-btn-edit-prop" onclick="deleteProperty('${p.id}')">🗑️ Delete</button>`}
-        </div>
-      </div>
-    `;
+    const imgEl = document.createElement('img');
+    imgEl.src = imgSrc;
+    imgEl.alt = title || 'Property image';
+    imgEl.className = 'op-prop-card-img';
+    imgEl.onerror = function () {
+      this.style.background = 'linear-gradient(135deg,#FCE4EC,#F8BBD9)';
+      this.removeAttribute('src');
+    };
+    card.appendChild(imgEl);
+
+    const info = document.createElement('div');
+    info.className = 'op-prop-card-info';
+
+    const titleEl = document.createElement('div');
+    titleEl.className = 'op-prop-card-title';
+    titleEl.textContent = title;
+    info.appendChild(titleEl);
+
+    const locationEl = document.createElement('div');
+    locationEl.className = 'op-prop-card-location';
+    locationEl.textContent = `📍 ${location}`;
+    info.appendChild(locationEl);
+
+    const priceEl = document.createElement('div');
+    priceEl.className = 'op-prop-card-price';
+    priceEl.innerHTML = `₹${price}<span> / month</span>`;
+    info.appendChild(priceEl);
+
+    const meta = document.createElement('div');
+    meta.className = 'op-prop-card-meta';
+    ['🏠 ' + bhkText, '📐 ' + areaText + ' sq.ft', '🪑 ' + furnishingText, '🕐 ' + time].forEach(text => {
+      const span = document.createElement('span');
+      span.className = 'op-prop-meta-tag';
+      span.textContent = text;
+      meta.appendChild(span);
+    });
+    info.appendChild(meta);
+    card.appendChild(info);
+
+    const actions = document.createElement('div');
+    actions.className = 'op-prop-card-actions';
+
+    const status = document.createElement('span');
+    status.className = `op-prop-status-badge ${statusClass}`;
+    status.textContent = statusLabel;
+    actions.appendChild(status);
+
+    const btnGroup = document.createElement('div');
+    btnGroup.className = 'op-prop-action-btns';
+
+    const editBtn = document.createElement('button');
+    editBtn.className = 'op-btn-edit-prop';
+    editBtn.type = 'button';
+    editBtn.textContent = '✏️ Edit';
+    editBtn.addEventListener('click', () => showToast('✏️ Edit property coming soon!'));
+    btnGroup.appendChild(editBtn);
+
+    if (p.status === 'Expired') {
+      const renewBtn = document.createElement('button');
+      renewBtn.className = 'op-btn-renew-prop';
+      renewBtn.type = 'button';
+      renewBtn.textContent = '🔄 Renew';
+      renewBtn.addEventListener('click', () => renewProperty(p.id));
+      btnGroup.appendChild(renewBtn);
+    } else {
+      const deleteBtn = document.createElement('button');
+      deleteBtn.className = 'op-btn-edit-prop';
+      deleteBtn.type = 'button';
+      deleteBtn.textContent = '🗑️ Delete';
+      deleteBtn.addEventListener('click', () => deleteProperty(p.id));
+      btnGroup.appendChild(deleteBtn);
+    }
+
+    actions.appendChild(btnGroup);
+    card.appendChild(actions);
     list.appendChild(card);
   });
 }
@@ -167,9 +256,10 @@ function renderOwnerProperties(filter) {
 // ===== SAVE PROFILE =====
 async function saveOwnerProfile(e) {
   e.preventDefault();
-  const name    = document.getElementById('editName')?.value.trim();
-  const phone   = document.getElementById('editPhone')?.value.trim();
-  const address = document.getElementById('editAddress')?.value.trim();
+  const name       = document.getElementById('editName')?.value.trim();
+  const phone      = document.getElementById('editPhone')?.value.trim();
+  const occupation = document.getElementById('editOccupation')?.value || '';
+  const address    = document.getElementById('editAddress')?.value.trim();
 
   if (!name || !phone) {
     showToast('⚠️ Please fill all required fields');
@@ -181,25 +271,31 @@ async function saveOwnerProfile(e) {
   btn.innerHTML = 'Saving...';
   btn.disabled = true;
 
+  let dbError = null;
   if (window.supabaseClient) {
-    const { error } = await window.supabaseClient
-      .from('users')
-      .update({ name, phone, address })
-      .eq('id', currentOwner.id);
-      
-    if (error) {
-      showToast('❌ Failed to update profile');
-      btn.innerHTML = originalText;
-      btn.disabled = false;
-      return;
+    try {
+      const { error } = await window.supabaseClient
+        .from('users')
+        .update({ name, phone, occupation, address })
+        .eq('id', currentOwner.id);
+      if (error) dbError = error;
+    } catch (err) {
+      dbError = err;
     }
   }
 
+  // Always update local state and UI optimistically so changes reflect immediately
   currentOwner = { ...currentOwner, name, phone, address };
   localStorage.setItem('ownerUser', JSON.stringify(currentOwner));
   await initOwnerProfilePage();
-  showToast('💾 Profile saved successfully!');
-  
+
+  if (dbError) {
+    console.error('Owner profile DB update error:', dbError);
+    showToast('⚠️ Saved locally, but failed to update server');
+  } else {
+    showToast('💾 Profile saved successfully!');
+  }
+
   btn.innerHTML = originalText;
   btn.disabled = false;
 }
@@ -207,8 +303,11 @@ async function saveOwnerProfile(e) {
 // ===== PROPERTY ACTIONS =====
 async function deleteProperty(id) {
   if (!confirm('Are you sure you want to delete this property?')) return;
-  if (window.supabaseClient) {
-    const { error } = await window.supabaseClient.from('properties').delete().eq('id', id);
+  if (window.supabaseClient && currentOwner) {
+    const { error } = await window.supabaseClient.from('properties')
+      .delete()
+      .eq('id', id)
+      .eq('owner_id', currentOwner.id);
     if (error) {
       console.error(error);
       showToast('❌ Error deleting property');
@@ -220,29 +319,65 @@ async function deleteProperty(id) {
 }
 
 async function renewProperty(id) {
-  if (window.supabaseClient) {
-    const { error } = await window.supabaseClient.from('properties').update({ status: 'Active', created_at: new Date().toISOString() }).eq('id', id);
+  if (!confirm('Are you sure you want to renew this property?')) return;
+  if (window.supabaseClient && currentOwner) {
+    const { error } = await window.supabaseClient.from('properties')
+      .update({ status: 'Active' })
+      .eq('id', id)
+      .eq('owner_id', currentOwner.id);
     if (error) {
       console.error(error);
       showToast('❌ Error renewing property');
       return;
     }
   }
-  showToast('🔄 Property renewed for 30 days!');
+  showToast('🔄 Property renewed successfully!');
   await initOwnerProfilePage();
 }
 
 // ===== CHANGE PASSWORD =====
-function saveOwnerPassword(e) {
+async function saveOwnerPassword(e) {
   e.preventDefault();
   const np = document.getElementById('newPassword')?.value;
   const cp = document.getElementById('confirmPassword')?.value;
   if (np !== cp) { showToast('⚠️ Passwords do not match'); return; }
-  if (np.length < 6) { showToast('⚠️ Minimum 6 characters required'); return; }
-  if(document.getElementById('currentPassword')) document.getElementById('currentPassword').value = '';
+  if (!np || np.length < 6) { showToast('⚠️ Minimum 6 characters required'); return; }
+
+  const btn = e.target.querySelector('button[type="submit"]');
+  const originalText = btn ? btn.innerHTML : 'Saving...';
+  if (btn) {
+    btn.disabled = true;
+    btn.innerHTML = '⏳ Updating...';
+  }
+
+  if (!window.supabaseClient) {
+    showToast('❌ Unable to update password right now.');
+    if (btn) {
+      btn.disabled = false;
+      btn.innerHTML = originalText;
+    }
+    return;
+  }
+
+  const { error } = await window.supabaseClient.auth.updateUser({ password: np });
+  if (error) {
+    showToast(getFriendlyError(error));
+    if (btn) {
+      btn.disabled = false;
+      btn.innerHTML = originalText;
+    }
+    return;
+  }
+
+  if (document.getElementById('currentPassword')) document.getElementById('currentPassword').value = '';
   document.getElementById('newPassword').value = '';
   document.getElementById('confirmPassword').value = '';
   showToast('🔐 Password updated successfully!');
+
+  if (btn) {
+    btn.disabled = false;
+    btn.innerHTML = originalText;
+  }
 }
 
 // ===== FAQ ACCORDION =====
@@ -275,14 +410,5 @@ function toggleOwnerMenu() {
   drawer.classList.toggle('open');
   overlay?.classList.toggle('visible');
   document.body.style.overflow = drawer.classList.contains('open') ? 'hidden' : '';
-}
-
-// ===== TOAST =====
-function showToast(msg) {
-  const t = document.getElementById('toast');
-  if (!t) return;
-  t.textContent = msg;
-  t.classList.add('show');
-  setTimeout(() => t.classList.remove('show'), 3000);
 }
 

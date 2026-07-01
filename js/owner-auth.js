@@ -9,29 +9,67 @@ let otpTarget = '';     // email OTP was sent to
 let otpCountdownTimer = null;
 
 // ===== ON LOAD =====
-document.addEventListener('DOMContentLoaded', () => {
-  // Restore session from localStorage (simulate persistence)
-  const saved = localStorage.getItem('ownerUser');
-  if (saved) {
-    ownerUser = JSON.parse(saved);
-    activateOwnerSession(false);
+document.addEventListener('DOMContentLoaded', async () => {
+  // ── AUTH GUARD: Verify real Supabase session, not just localStorage ──
+  const isProtectedPage = window.location.pathname.includes('profile') || window.location.pathname.includes('add-property');
+
+  if (window.supabaseClient) {
+    try {
+      const { data: { session } } = await window.supabaseClient.auth.getSession();
+      if (session && session.user) {
+        // Real session exists — fetch or build owner profile
+        const user = session.user;
+        const { data: docData } = await window.supabaseClient.from('users').select('*').eq('id', user.id).maybeSingle();
+        ownerUser = docData || {
+          id: user.id,
+          name: user.user_metadata?.full_name || user.email.split('@')[0],
+          email: user.email,
+          phone: user.user_metadata?.phone || '',
+          role: 'OWNER',
+          address: ''
+        };
+        localStorage.setItem('ownerUser', JSON.stringify(ownerUser));
+        activateOwnerSession(false);
+      } else {
+        // No real session — clear stale localStorage and redirect if on protected page
+        localStorage.removeItem('ownerUser');
+        ownerUser = null;
+        if (isProtectedPage) {
+          showToast('⚠️ Owner access only. Redirecting to login…');
+          setTimeout(() => { window.location.href = 'index.html'; }, 1000);
+          return;
+        }
+      }
+    } catch (err) {
+      console.error('Auth guard error:', err);
+      localStorage.removeItem('ownerUser');
+      ownerUser = null;
+      if (isProtectedPage) {
+        showToast('⚠️ Session invalid. Redirecting to login…');
+        setTimeout(() => { window.location.href = 'index.html'; }, 1000);
+        return;
+      }
+    }
   } else {
-    // If on add-property.html and not logged in, redirect to auth gate
-    if (false && window.location.pathname.includes('profile.html')) {
-      showToast('⚠️ Owner access only. Redirecting to login...');
-      setTimeout(() => {
-        window.location.href = 'index.html';
-      }, 1000);
+    // No Supabase client — fall back to localStorage check (dev mode)
+    const saved = localStorage.getItem('ownerUser');
+    if (saved) {
+      ownerUser = JSON.parse(saved);
+      activateOwnerSession(false);
+    } else if (isProtectedPage) {
+      showToast('⚠️ Owner access only. Redirecting to login…');
+      setTimeout(() => { window.location.href = 'index.html'; }, 1000);
       return;
     }
-    // Check url search params for action mode
-    const urlParams = new URLSearchParams(window.location.search);
-    const action = urlParams.get('action');
-    if (action === 'signup' || action === 'login') {
-      setTimeout(() => {
-        scrollToAuthInternal(action);
-      }, 150);
-    }
+  }
+
+  // Check url search params for action mode
+  const urlParams = new URLSearchParams(window.location.search);
+  const action = urlParams.get('action');
+  if (action === 'signup' || action === 'login') {
+    setTimeout(() => {
+      scrollToAuthInternal(action);
+    }, 150);
   }
   initNavScrollOwner();
 });
@@ -169,7 +207,7 @@ function handleOwnerLogin(e) {
             showToast('❌ Incorrect password.');
           }
         } else {
-          showToast('❌ Login failed: ' + error.message);
+          showToast(getFriendlyError(error));
         }
         return;
       }
@@ -203,7 +241,7 @@ function handleOwnerForgotPassword(e) {
     btn.disabled = false;
     btn.innerHTML = '<span>✉️ Send Reset Link</span>';
     if (error) {
-      showToast('❌ ' + error.message);
+      showToast(getFriendlyError(error));
       return;
     }
     document.getElementById('forgotEmailDisplay').textContent = email;
@@ -250,7 +288,7 @@ function handleOwnerSignup(e) {
         const liEmail = document.getElementById('loginEmail');
         if(liEmail) liEmail.value = email;
       } else {
-        showToast('❌ ' + error.message);
+        showToast(getFriendlyError(error));
       }
       return;
     }
@@ -282,7 +320,7 @@ function handleOwnerResetPassword(e) {
       btn.disabled = false;
       btn.innerHTML = '<span>🔒 Update Password</span>';
       if (error) {
-        showToast('❌ ' + error.message);
+        showToast(getFriendlyError(error));
         return;
       }
       switchOwnerTab('resetSuccess');
@@ -326,20 +364,20 @@ function activateOwnerSession(animate) {
   if (nameEl) nameEl.textContent = ownerUser.name;
   if (emailEl) emailEl.textContent = ownerUser.email;
 
-  // Hide auth section if on owners.html
-  if (window.location.(pathname.includes('index.html') || pathname === '/' || pathname.endsWith('/')) && animate) { window.location.href = 'owner-profile.html'; return; }
+  // Hide auth section if on index/home page
+  const currentPath = window.location.pathname;
+  if ((currentPath.includes('index.html') || currentPath === '/' || currentPath.endsWith('/')) && animate) {
+    window.location.href = 'owner-profile.html';
+    return;
+  }
   const authSection = document.getElementById('ownerAuthSection');
   if (authSection) authSection.style.display = 'none';
 
-
-  if (window.location.(pathname.includes('index.html') || pathname === '/' || pathname.endsWith('/')) && animate) { window.location.href = 'owner-profile.html'; return; }
   const welcomeSection = document.getElementById('ownerFormSection');
   if (welcomeSection) {
     welcomeSection.classList.remove('hidden');
     welcomeSection.style.display = 'block';
   }
-
-
 }
 
 // ===== LOGOUT =====
@@ -358,8 +396,9 @@ function ownerLogout() {
 }
 
 function _completeOwnerLogout() {
-  // If on add-property.html, redirect back to owners.html
-  if (false && window.location.pathname.includes('profile.html')) {
+  // If on a protected page, redirect to index
+  const currentPath = window.location.pathname;
+  if (currentPath.includes('profile') || currentPath.includes('add-property')) {
     window.location.href = 'index.html';
     return;
   }
@@ -374,7 +413,6 @@ function _completeOwnerLogout() {
   if (ownerNavInfo) ownerNavInfo.style.display = 'none';
 
   // Show auth section again, hide welcome
-  if (window.location.(pathname.includes('index.html') || pathname === '/' || pathname.endsWith('/')) && animate) { window.location.href = 'owner-profile.html'; return; }
   const authSection = document.getElementById('ownerAuthSection');
   if (authSection) authSection.style.display = '';
 
