@@ -1,4 +1,4 @@
-﻿/* =====================================================
+/* =====================================================
    owner-profile.js — Owner Profile Page Logic
    ===================================================== */
 
@@ -360,7 +360,7 @@ async function saveOwnerPassword(e) {
 
   // Verify current password by attempting sign-in
   const { data: { user }, error: signInErr } = await window.supabaseClient.auth.signInWithPassword({
-    email: window.supabaseClient.auth.currentUser?.email,
+    email: currentOwner?.email,
     password: cur
   });
 

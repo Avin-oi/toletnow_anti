@@ -1,4 +1,4 @@
-﻿/* =====================================================
+/* =====================================================
    owner-auth.js — Owner Auth Gate Logic
    ===================================================== */
 
@@ -230,7 +230,7 @@ function showOwnerForgotPassword() {
 }
 
 // ===== FORGOT PASSWORD =====
-function handleOwnerForgotPassword(e) {
+async function handleOwnerForgotPassword(e) {
   e.preventDefault();
   if (!window.supabaseClient) {
     showToast('⚠️ Connection issue. Please refresh and try again.');
@@ -244,8 +244,24 @@ function handleOwnerForgotPassword(e) {
   btn.disabled = true;
   btn.innerHTML = '⏳ Sending...';
 
+  // Check if user exists using our RPC function
+  try {
+    const { data: exists, error: rpcError } = await window.supabaseClient.rpc('check_user_exists', { lookup_email: email });
+    
+    // If the RPC ran successfully and returned false, the user doesn't exist
+    if (!rpcError && exists === false) {
+      btn.disabled = false;
+      btn.innerHTML = '<span>✉️ Send Reset Link</span>';
+      shakeInputById('forgotEmail');
+      showToast('⚠️ No account found with this email address.');
+      return;
+    }
+  } catch (err) {
+    console.warn('RPC check_user_exists failed, proceeding with fallback', err);
+  }
+
   window.supabaseClient.auth.resetPasswordForEmail(email, {
-    redirectTo: getNormalizedOrigin() + '/'
+    redirectTo: window.location.origin + '/'
   }).then(({ error }) => {
     btn.disabled = false;
     btn.innerHTML = '<span>✉️ Send Reset Link</span>';
