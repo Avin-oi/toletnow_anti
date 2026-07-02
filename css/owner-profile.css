@@ -1,9 +1,18 @@
 /* =====================================================
    owner-profile.css — Owner Profile Page Styles
    ===================================================== */
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  overflow-x: hidden;
+  max-width: 100%;
+}
 
 /* ===== PAGE LAYOUT ===== */
 .op-section-container {
+  width: 100%;
   max-width: 1280px;
   margin: 0 auto;
   padding: 40px 24px 80px;
@@ -406,6 +415,8 @@
   display: flex;
   flex-direction: column;
   gap: 0;
+  box-sizing: border-box;
+  max-width: 100%;
 }
 
 .op-tab-content {
@@ -481,6 +492,8 @@
   transition: var(--transition);
   position: relative;
   overflow: hidden;
+  box-sizing: border-box;
+  max-width: 100%;
 }
 
 .op-prop-card:hover {
@@ -500,6 +513,8 @@
 .op-prop-card-info {
   flex: 1;
   min-width: 0;
+  max-width: 100%;
+  overflow: hidden;
 }
 
 .op-prop-card-title {
@@ -740,12 +755,22 @@
 
 @media (max-width: 640px) {
   .op-section-container {
-    padding: 20px 16px 80px;
+    padding: 12px 10px 80px;
+  }
+  .op-content-card {
+    padding: 16px;
+  }
+  .wizard-body {
+    padding: 0 16px 24px;
+  }
+  .stepper {
+    padding: 0 16px;
   }
   .op-form-grid {
     grid-template-columns: 1fr;
   }
   .op-props-stats-grid {
+    grid-template-columns: repeat(2, 1fr);
     gap: 8px;
   }
   .op-prop-card {
@@ -755,6 +780,9 @@
   .op-prop-card-img {
     width: 100%;
     height: 160px;
+  }
+  .op-prop-card-info {
+    width: 100%;
   }
   .op-prop-card-actions {
     flex-direction: row;

@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Owner Profile – ToLetNow.in Salem</title>
   <meta name="description" content="Manage your tenant profile, view liked homes, change password, and contact support on ToLetNow.in." />
+  <link rel="icon" type="image/png" href="assets/images/favicon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
@@ -18,10 +19,11 @@
       background: white;
       border-radius: 24px;
       width: 100%;
-      max-width: 600px;
+      max-width: 100%;
       box-shadow: 0 20px 40px rgba(204,18,72,0.1);
       overflow: hidden;
       position: relative;
+      box-sizing: border-box;
     }
     .wizard-header {
       background: #8E1638; /* Maroon header */
@@ -431,20 +433,20 @@
             <p>Manage and track your listed properties.</p>
           </div>
           
-          <div class="op-stats-grid" style="display:grid; grid-template-columns: repeat(4, 1fr); gap: 15px; margin-bottom: 30px;">
-            <div class="op-stat-card" style="background: #f8fafc; padding: 20px; border-radius: 10px; text-align: center; border: 1px solid var(--border);">
+          <div class="op-props-stats-grid" style="margin-bottom: 30px;">
+            <div class="op-stat-item">
               <div class="op-stat-num" id="opActiveCount" style="font-size: 28px; font-weight: 800; color: var(--primary); margin-bottom: 4px;">0</div>
               <div class="op-stat-label" style="font-size: 13px; color: var(--text-muted); font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px;">Active</div>
             </div>
-            <div class="op-stat-card" style="background: #f8fafc; padding: 20px; border-radius: 10px; text-align: center; border: 1px solid var(--border);">
+            <div class="op-stat-item">
               <div class="op-stat-num" id="opPendingCount" style="font-size: 28px; font-weight: 800; color: var(--primary); margin-bottom: 4px;">0</div>
               <div class="op-stat-label" style="font-size: 13px; color: var(--text-muted); font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px;">Pending</div>
             </div>
-            <div class="op-stat-card" style="background: #f8fafc; padding: 20px; border-radius: 10px; text-align: center; border: 1px solid var(--border);">
+            <div class="op-stat-item">
               <div class="op-stat-num" id="opRentedCount" style="font-size: 28px; font-weight: 800; color: var(--primary); margin-bottom: 4px;">0</div>
               <div class="op-stat-label" style="font-size: 13px; color: var(--text-muted); font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px;">Rented</div>
             </div>
-            <div class="op-stat-card" style="background: #f8fafc; padding: 20px; border-radius: 10px; text-align: center; border: 1px solid var(--border);">
+            <div class="op-stat-item">
               <div class="op-stat-num" id="opExpiredCount" style="font-size: 28px; font-weight: 800; color: var(--primary); margin-bottom: 4px;">0</div>
               <div class="op-stat-label" style="font-size: 13px; color: var(--text-muted); font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px;">Expired</div>
             </div>
@@ -870,9 +872,10 @@
       const rentValue = parseInt(document.getElementById('propRent').value) || 0;
       const city = sanitizePropertyInput(document.getElementById('locCity').value);
       const state = sanitizePropertyInput(document.getElementById('locState').value);
+      const furnishing = sanitizePropertyInput(document.getElementById('propFurnishing').value);
       const propertyTitle = `${bhk || 'Property'} ${propType || 'Listing'}`.trim();
 
-      if (!propType || !bhk || rentValue <= 0 || !city || !state) {
+      if (!propType || !bhk || rentValue <= 0 || !city || !state || !furnishing) {
         showToast('⚠️ Please complete the required property details before posting.');
         btn.disabled = false;
         btn.textContent = 'Post Property';
@@ -903,7 +906,8 @@
         contact_name: sanitizePropertyInput(document.getElementById('ownerName').value),
         contact_phone: sanitizePropertyInput(document.getElementById('ownerPhone').value),
         status: 'Active',
-        created_at: new Date().toISOString()
+        created_at: new Date().toISOString(),
+        expires_at: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString()
       };
 
       try {

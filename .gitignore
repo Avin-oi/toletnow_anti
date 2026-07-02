@@ -11,3 +11,9 @@ node_modules/
 
 # Ignore production secrets
 js/supabase-config.js
+
+# Exclude as requested
+*.sql
+test/
+README.md
+readme.md
