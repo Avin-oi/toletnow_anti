@@ -920,9 +920,24 @@
     }
 
     function ohSwitch(tab) {
-      document.getElementById('ohTabLogin').classList.toggle('active', tab==='login');
-      document.getElementById('ohTabSignup').classList.toggle('active', tab==='signup');
-      ohShowPanel(tab==='login' ? 'ohPanelLogin' : 'ohPanelSignup');
+      const panelMap = {
+        login: 'ohPanelLogin',
+        signup: 'ohPanelSignup',
+        forgot: 'ohPanelForgot',
+        forgotSent: 'ohPanelForgotSent',
+        signupVerify: 'ohPanelVerify',
+        verify: 'ohPanelVerify',
+        reset: 'ohPanelReset',
+        resetSuccess: 'ohPanelResetSuccess'
+      };
+
+      const targetPanel = panelMap[tab] || 'ohPanelLogin';
+      const loginTab = document.getElementById('ohTabLogin');
+      const signupTab = document.getElementById('ohTabSignup');
+
+      if (loginTab) loginTab.classList.toggle('active', tab === 'login');
+      if (signupTab) signupTab.classList.toggle('active', tab === 'signup');
+      ohShowPanel(targetPanel);
     }
 
 

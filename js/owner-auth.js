@@ -181,6 +181,11 @@ function showAuthSection(mode) {
 // ===== LOGIN =====
 function handleOwnerLogin(e) {
   e.preventDefault();
+  if (!window.supabaseClient) {
+    showToast('⚠️ Connection issue. Please refresh and try again.');
+    return;
+  }
+
   const email = document.getElementById('loginEmail').value.trim();
   const pw = document.getElementById('loginPassword').value;
   if (!isValidEmail(email)) { shakeInputById('loginEmail'); showToast('⚠️ Please enter a valid email address'); return; }
@@ -196,22 +201,21 @@ function handleOwnerLogin(e) {
       btn.disabled = false;
       txt.textContent = 'Login';
       if (error) {
-        if (error.message.includes('Invalid login credentials')) {
-          const { data: existUser } = await window.supabaseClient.from('users').select('id').eq('email', email).maybeSingle();
-          if (!existUser) {
-            showToast('⚠️ Account not found. Please create an account.');
-            switchOwnerTab('signup');
-            const suEmail = document.getElementById('signupEmail');
-            if(suEmail) suEmail.value = email;
-          } else {
-            showToast('❌ Incorrect password.');
-          }
+        const message = error.message.toLowerCase();
+        if (message.includes('invalid login credentials')) {
+          showToast('⚠️ Invalid email or password. Please try again.');
+        } else if (message.includes('confirm') || message.includes('not confirmed') || message.includes('email not confirmed')) {
+          showToast('⚠️ Please verify your email first. Check your inbox and spam.');
         } else {
           showToast(getFriendlyError(error));
         }
         return;
       }
       const user = data.user;
+      if (!user) {
+        showToast('⚠️ Login failed. Please try again or reset your password.');
+        return;
+      }
       window.supabaseClient.from('users').select('*').eq('id', user.id).single().then(({ data: docData }) => {
         ownerUser = docData || { id: user.id, name: user.user_metadata?.full_name || 'Verified Owner', email: email, phone: '', address: '', role: 'OWNER' };
         localStorage.removeItem('tenantUser');
@@ -228,6 +232,11 @@ function showOwnerForgotPassword() {
 // ===== FORGOT PASSWORD =====
 function handleOwnerForgotPassword(e) {
   e.preventDefault();
+  if (!window.supabaseClient) {
+    showToast('⚠️ Connection issue. Please refresh and try again.');
+    return;
+  }
+
   const email = document.getElementById('forgotEmail').value.trim();
   if (!isValidEmail(email)) { shakeInputById('forgotEmail'); showToast('⚠️ Please enter a valid email address'); return; }
 
@@ -236,7 +245,7 @@ function handleOwnerForgotPassword(e) {
   btn.innerHTML = '⏳ Sending...';
 
   window.supabaseClient.auth.resetPasswordForEmail(email, {
-    redirectTo: window.location.origin + '/'
+    redirectTo: getNormalizedOrigin() + '/'
   }).then(({ error }) => {
     btn.disabled = false;
     btn.innerHTML = '<span>✉️ Send Reset Link</span>';
@@ -271,6 +280,13 @@ function handleOwnerSignup(e) {
   btn.disabled = true;
   txt.textContent = '⏳ Creating Account…';
 
+  if (!window.supabaseClient) {
+    showToast('⚠️ Connection issue. Please refresh and try again.');
+    btn.disabled = false;
+    txt.textContent = 'Create Account';
+    return;
+  }
+
   window.supabaseClient.auth.signUp({
     email,
     password: pw,
@@ -293,9 +309,22 @@ function handleOwnerSignup(e) {
       return;
     }
     const user = data.user;
-    if (user) {
-      const userData = { id: user.id, name, email, phone, address, role: 'OWNER' };
-      await window.supabaseClient.from('users').upsert(userData, { onConflict: 'id' });
+    const userData = { id: user?.id || null, name, email, phone, address, role: 'OWNER' };
+    if (userData.id) {
+      try {
+        const { error: profileError } = await window.supabaseClient.from('users').upsert(userData, { onConflict: 'id' });
+        if (profileError) {
+          console.warn('Profile sync failed; continuing with local fallback.', profileError);
+          localStorage.setItem('ownerUser', JSON.stringify({ ...userData, profilePending: true }));
+        } else {
+          localStorage.setItem('ownerUser', JSON.stringify(userData));
+        }
+      } catch (profileError) {
+        console.warn('Profile sync failed; continuing with local fallback.', profileError);
+        localStorage.setItem('ownerUser', JSON.stringify({ ...userData, profilePending: true }));
+      }
+    } else {
+      localStorage.setItem('ownerUser', JSON.stringify({ ...userData, profilePending: true }));
     }
     document.getElementById('signupEmailDisplay').textContent = email;
     switchOwnerTab('signupVerify');
@@ -305,6 +334,11 @@ function handleOwnerSignup(e) {
 // ===== RESET PASSWORD =====
 function handleOwnerResetPassword(e) {
   e.preventDefault();
+  if (!window.supabaseClient) {
+    showToast('⚠️ Connection issue. Please refresh and try again.');
+    return;
+  }
+
   const newPw = document.getElementById('resetNewPassword').value;
   const confirmPw = document.getElementById('resetConfirmPassword').value;
 

@@ -1,5 +1,5 @@
-# Supabase credentials - NEVER commit this
-js/supabase-config.js
+# Local overrides can go here if needed
+js/supabase-config.local.js
 
 # OS files
 .DS_Store

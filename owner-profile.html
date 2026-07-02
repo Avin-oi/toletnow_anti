@@ -870,28 +870,48 @@
     async function submitProperty() {
       const btn = document.querySelector('.btn-submit');
       if (!btn) { showToast('❌ Unable to post property. Try again.'); return; }
+      if (!window.supabaseClient) {
+        showToast('⚠️ Connection issue. Please refresh and try again.');
+        return;
+      }
+
+      const propType = sanitizePropertyInput(document.getElementById('propType').value);
+      const bhk = sanitizePropertyInput(document.getElementById('propBhk').value);
+      const rentValue = parseInt(document.getElementById('propRent').value) || 0;
+      const city = sanitizePropertyInput(document.getElementById('locCity').value);
+      const state = sanitizePropertyInput(document.getElementById('locState').value);
+      const propertyTitle = `${bhk || 'Property'} ${propType || 'Listing'}`.trim();
+
+      if (!propType || !bhk || rentValue <= 0 || !city || !state) {
+        showToast('⚠️ Please complete the required property details before posting.');
+        btn.disabled = false;
+        btn.textContent = 'Post Property';
+        return;
+      }
+
       btn.disabled = true;
       btn.textContent = 'Posting...';
 
       const propertyData = {
-        type: sanitizePropertyInput(document.getElementById('propType').value),
-        bhk: sanitizePropertyInput(document.getElementById('propBhk').value),
+        title: propertyTitle,
+        property_type: propType,
+        bhk,
         rent: parseInt(document.getElementById('propRent').value) || 0,
         deposit: parseInt(document.getElementById('propDeposit').value) || 0,
         furnishing: sanitizePropertyInput(document.getElementById('propFurnishing').value),
-        area: parseInt(document.getElementById('propArea').value) || 0,
+        area_sqft: parseInt(document.getElementById('propArea').value) || 0,
         preferred_tenants: getSelectedPills('tenantPills'),
+        amenities: getSelectedPills('amenityPills'),
         door_no: sanitizePropertyInput(document.getElementById('locDoor').value),
         street: sanitizePropertyInput(document.getElementById('locStreet').value),
-        locality: sanitizePropertyInput(document.getElementById('locLocality')?.value || document.getElementById('locArea').value),
+        area: sanitizePropertyInput(document.getElementById('locLocality')?.value || document.getElementById('locArea').value),
         city: sanitizePropertyInput(document.getElementById('locCity').value),
         state: sanitizePropertyInput(document.getElementById('locState').value),
         pincode: sanitizePropertyInput(document.getElementById('locPin').value),
         landmark: sanitizePropertyInput(document.getElementById('locLandmark').value),
         description: sanitizePropertyInput(document.getElementById('propDesc').value),
-        owner_name: sanitizePropertyInput(document.getElementById('ownerName').value),
-        owner_phone: sanitizePropertyInput(document.getElementById('ownerPhone').value),
-        images: uploadedPhotos,
+        contact_name: sanitizePropertyInput(document.getElementById('ownerName').value),
+        contact_phone: sanitizePropertyInput(document.getElementById('ownerPhone').value),
         status: 'Active',
         created_at: new Date().toISOString()
       };

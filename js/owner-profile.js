@@ -163,15 +163,15 @@ function renderOwnerProperties(filter) {
     card.className = 'op-prop-card';
 
     const imgSrc = normalizeImageSrc((p.images && p.images.length > 0) ? p.images[0] : 'assets/house_listing_1.png');
-    const title = `${escapeHtml(p.bhk || '')} ${escapeHtml(p.type || 'Property')}`.trim();
-    const location = `${escapeHtml(p.locality || '')}, ${escapeHtml(p.city || '')}`.trim();
+    const title = `${escapeHtml(p.title || p.bhk || '')} ${escapeHtml(p.property_type || p.type || 'Property')}`.trim();
+    const location = `${escapeHtml(p.area || p.locality || '')}, ${escapeHtml(p.city || '')}`.trim();
     const price = p.rent ? p.rent.toLocaleString('en-IN') : '0';
     const time = p.created_at ? new Date(p.created_at).toLocaleDateString() : 'N/A';
     const statusLabel = escapeHtml(p.status || 'Unknown');
     const statusClassMap = { Active: 'active', Pending: 'pending', Rented: 'rented', Expired: 'expired' };
     const statusClass = statusClassMap[p.status] || 'unknown';
     const bhkText = escapeHtml(p.bhk || 'N/A');
-    const areaText = escapeHtml(p.area || 0);
+    const areaText = escapeHtml(p.area_sqft || p.area || 0);
     const furnishingText = escapeHtml(p.furnishing || 'N/A');
 
     const imgEl = document.createElement('img');
@@ -258,7 +258,6 @@ async function saveOwnerProfile(e) {
   e.preventDefault();
   const name       = document.getElementById('editName')?.value.trim();
   const phone      = document.getElementById('editPhone')?.value.trim();
-  const occupation = document.getElementById('editOccupation')?.value || '';
   const address    = document.getElementById('editAddress')?.value.trim();
 
   if (!name || !phone) {
@@ -276,7 +275,7 @@ async function saveOwnerProfile(e) {
     try {
       const { error } = await window.supabaseClient
         .from('users')
-        .update({ name, phone, occupation, address })
+        .update({ name, phone, address })
         .eq('id', currentOwner.id);
       if (error) dbError = error;
     } catch (err) {
@@ -338,8 +337,11 @@ async function renewProperty(id) {
 // ===== CHANGE PASSWORD =====
 async function saveOwnerPassword(e) {
   e.preventDefault();
+  const cur = document.getElementById('currentPassword')?.value;
   const np = document.getElementById('newPassword')?.value;
   const cp = document.getElementById('confirmPassword')?.value;
+
+  if (!cur) { showToast('⚠️ Please enter your current password'); return; }
   if (np !== cp) { showToast('⚠️ Passwords do not match'); return; }
   if (!np || np.length < 6) { showToast('⚠️ Minimum 6 characters required'); return; }
 
@@ -347,29 +349,37 @@ async function saveOwnerPassword(e) {
   const originalText = btn ? btn.innerHTML : 'Saving...';
   if (btn) {
     btn.disabled = true;
-    btn.innerHTML = '⏳ Updating...';
+    btn.innerHTML = '⏳ Verifying...';
   }
 
   if (!window.supabaseClient) {
     showToast('❌ Unable to update password right now.');
-    if (btn) {
-      btn.disabled = false;
-      btn.innerHTML = originalText;
-    }
+    if (btn) { btn.disabled = false; btn.innerHTML = originalText; }
     return;
   }
+
+  // Verify current password by attempting sign-in
+  const { data: { user }, error: signInErr } = await window.supabaseClient.auth.signInWithPassword({
+    email: window.supabaseClient.auth.currentUser?.email,
+    password: cur
+  });
+
+  if (signInErr || !user) {
+    showToast('❌ Current password is incorrect');
+    if (btn) { btn.disabled = false; btn.innerHTML = originalText; }
+    return;
+  }
+
+  if (btn) btn.innerHTML = '⏳ Updating...';
 
   const { error } = await window.supabaseClient.auth.updateUser({ password: np });
   if (error) {
     showToast(getFriendlyError(error));
-    if (btn) {
-      btn.disabled = false;
-      btn.innerHTML = originalText;
-    }
+    if (btn) { btn.disabled = false; btn.innerHTML = originalText; }
     return;
   }
 
-  if (document.getElementById('currentPassword')) document.getElementById('currentPassword').value = '';
+  document.getElementById('currentPassword').value = '';
   document.getElementById('newPassword').value = '';
   document.getElementById('confirmPassword').value = '';
   showToast('🔐 Password updated successfully!');
@@ -396,7 +406,15 @@ function handleOwnerSupportSubmit(e) {
 }
 
 // ===== LOGOUT =====
-function ownerProfileLogout() {
+async function ownerProfileLogout() {
+  try {
+    if (window.supabaseClient && window.supabaseClient.auth && typeof window.supabaseClient.auth.signOut === 'function') {
+      await window.supabaseClient.auth.signOut();
+    }
+  } catch (err) {
+    console.warn('Logout sign-out warning:', err);
+  }
+
   localStorage.removeItem('ownerUser');
   showToast('👋 Logged out successfully');
   setTimeout(() => { window.location.href = 'index.html'; }, 1000);

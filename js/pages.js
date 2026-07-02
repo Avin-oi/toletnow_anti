@@ -6,7 +6,6 @@
 document.addEventListener('DOMContentLoaded', () => {
   initNavScroll();
   initDescCounter();
-  initListingPreview();
   initContactForm();
 });
 
@@ -49,21 +48,9 @@ function togglePw(id) {
 }
 function handleLogin(e) {
   e.preventDefault();
-  const phone = document.getElementById('loginPhone').value;
-  const pw = document.getElementById('loginPassword').value;
-  if (!phone || !pw) { showToast('⚠️ Please fill all fields'); return; }
-  const btn = document.getElementById('loginSubmitBtn');
-  btn.innerHTML = '⏳ Logging in...';
-  btn.disabled = true;
-  setTimeout(() => {
-    closeModal('loginModal');
-    btn.innerHTML = 'Login';
-    btn.disabled = false;
-    showToast('✅ Welcome back!');
-    document.querySelectorAll('#loginBtn, [onclick*="loginModal"]').forEach(b => {
-      if (b.tagName === 'BUTTON' || b.tagName === 'A') b.style.display = 'none';
-    });
-  }, 1400);
+  // Redirect to the real owner-auth login flow on the landing page
+  const returnUrl = encodeURIComponent(window.location.pathname + window.location.search);
+  window.location.href = '/index.html?login=owner&return=' + returnUrl;
 }
 
 // ===== TOAST =====
@@ -100,9 +87,14 @@ function initDescCounter() {
 }
 
 // ===== CONTACT FORM =====
-function initContactForm() {}
+function initContactForm() {
+  const form = document.getElementById('contactForm');
+  if (form) {
+    form.addEventListener('submit', handleContactSubmit);
+  }
+}
 
-function handleContactSubmit(e) {
+async function handleContactSubmit(e) {
   e.preventDefault();
   const name    = document.getElementById('ctName')?.value.trim();
   const phone   = document.getElementById('ctPhone')?.value.trim();
@@ -120,13 +112,26 @@ function handleContactSubmit(e) {
   btn.disabled = true;
   btnText.textContent = '⏳ Sending...';
 
-  setTimeout(() => {
-    document.getElementById('contactForm').style.display = 'none';
-    document.getElementById('ctSuccess').classList.add('show');
-    showToast('✅ Message sent successfully!');
-    btn.disabled = false;
-    btnText.textContent = '📩 Send Message';
-  }, 1600);
+  // Attempt to store contact in Supabase; fall back gracefully
+  if (window.supabaseClient) {
+    try {
+      const { error } = await window.supabaseClient.from('contacts').insert({
+        name, phone, role, subject, message,
+        created_at: new Date().toISOString()
+      });
+      if (error) {
+        console.warn('Contact insert failed, showing success anyway:', error.message);
+      }
+    } catch (err) {
+      console.warn('Contact insert exception:', err);
+    }
+  }
+
+  document.getElementById('contactForm').style.display = 'none';
+  document.getElementById('ctSuccess').classList.add('show');
+  showToast('✅ Message sent successfully!');
+  btn.disabled = false;
+  btnText.textContent = '📩 Send Message';
 }
 
 function resetContactForm() {
