@@ -1,9 +1,20 @@
 [build]
   publish = "."
 
+[build.processing]
+  skip_processing = false
+
+[build.processing.html]
+  pretty_urls = true
+
 [[redirects]]
-  from = "/*"
-  to = "/index.html"
+  from = "/owner-profile"
+  to = "/owner-profile.html"
+  status = 200
+
+[[redirects]]
+  from = "/dashboard"
+  to = "/owner-profile.html"
   status = 200
 
 [[headers]]
