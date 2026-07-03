@@ -15,7 +15,7 @@ window.addEventListener('pageshow', async (event) => {
   if (event.persisted) {
     // Page was restored from bfcache — re-check session
     const isProtectedPage = window.location.pathname.includes('profile') || window.location.pathname.includes('add-property');
-    const isHomePage = window.location.pathname.includes('/') || window.location.pathname === '/' || window.location.pathname.endsWith('/');
+    const isHomePage = window.location.pathname === '/' || window.location.pathname === '/index.html';
 
     if (window.supabaseClient) {
       try {
@@ -442,7 +442,7 @@ function activateOwnerSession(animate) {
 
   // Redirect to profile if on index/home page and session exists
   const currentPath = window.location.pathname;
-  if (currentPath.includes('/') || currentPath === '/' || currentPath.endsWith('/')) {
+  if (currentPath === '/' || currentPath === '/index.html') {
     window.location.replace('/owner-profile');
     return;
   }
