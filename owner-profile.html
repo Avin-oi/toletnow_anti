@@ -704,14 +704,14 @@
       </div>
 
       <div class="footer-col"><h4>Legal</h4><ul>
-        <li><a href="https://toletnow.in/privacy.html">Privacy Policy</a></li>
-        <li><a href="https://toletnow.in/terms.html">Terms &amp; Conditions</a></li>
-        <li><a href="https://toletnow.in/disclaimer.html">Disclaimer</a></li>
-        <li><a href="https://toletnow.in/about.html">About Us</a></li>
+        <li><a href="https://toletnow.in/privacy">Privacy Policy</a></li>
+        <li><a href="https://toletnow.in/terms">Terms &amp; Conditions</a></li>
+        <li><a href="https://toletnow.in/disclaimer">Disclaimer</a></li>
+        <li><a href="https://toletnow.in/about">About Us</a></li>
       </ul></div>
       <div class="footer-col"><h4>Support</h4><ul>
         <li><a href="mailto:support@toletnow.in">support@toletnow.in</a></li>
-        <li><a href="https://toletnow.in/contact.html">Contact Form</a></li>
+        <li><a href="https://toletnow.in/contact">Contact Form</a></li>
       </ul></div>
     </div>
     <div class="footer-bottom">
@@ -912,7 +912,7 @@
         if (!session) {
           btn.disabled = false; btn.textContent = 'Post Property';
           showToast('⚠️ Please login to post a property');
-          setTimeout(() => { window.location.replace('index.html'); }, 1200);
+          setTimeout(() => { window.location.replace('/'); }, 1200);
           return;
         }
         propertyData.owner_id = session.user.id;
@@ -934,7 +934,7 @@
             currentStep = 1;
             updateStepperUI();
           } else {
-            window.location.href = 'owner-profile.html';
+            window.location.href = '/owner-profile';
           }
         }, 1500);
       } catch (err) {

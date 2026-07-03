@@ -1,5 +1,5 @@
-﻿/* =====================================================
-   pages.js — Logic for Post Property & Contact Pages
+/* =====================================================
+   pages.js � Logic for Post Property & Contact Pages
    ===================================================== */
 
 // ===== SHARED: NAVBAR SCROLL + HAMBURGER =====
@@ -50,7 +50,7 @@ function handleLogin(e) {
   e.preventDefault();
   // Redirect to the real owner-auth login flow on the landing page
   const returnUrl = encodeURIComponent(window.location.pathname + window.location.search);
-  window.location.href = '/index.html?login=owner&return=' + returnUrl;
+  window.location.href = '/?login=owner&return=' + returnUrl;
 }
 
 // ===== TOAST =====
@@ -103,14 +103,14 @@ async function handleContactSubmit(e) {
   const message = document.getElementById('ctMessage')?.value.trim();
 
   if (!name || !phone || !role || !subject || !message) {
-    showToast('⚠️ Please fill all required fields');
+    showToast('?? Please fill all required fields');
     return;
   }
 
   const btn = document.getElementById('ctSubmitBtn');
   const btnText = document.getElementById('ctBtnText');
   btn.disabled = true;
-  btnText.textContent = '⏳ Sending...';
+  btnText.textContent = '? Sending...';
 
   // Attempt to store contact in Supabase; fall back gracefully
   if (window.supabaseClient) {
@@ -129,9 +129,9 @@ async function handleContactSubmit(e) {
 
   document.getElementById('contactForm').style.display = 'none';
   document.getElementById('ctSuccess').classList.add('show');
-  showToast('✅ Message sent successfully!');
+  showToast('? Message sent successfully!');
   btn.disabled = false;
-  btnText.textContent = '📩 Send Message';
+  btnText.textContent = '?? Send Message';
 }
 
 function resetContactForm() {

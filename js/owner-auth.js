@@ -15,20 +15,20 @@ window.addEventListener('pageshow', async (event) => {
   if (event.persisted) {
     // Page was restored from bfcache — re-check session
     const isProtectedPage = window.location.pathname.includes('profile') || window.location.pathname.includes('add-property');
-    const isHomePage = window.location.pathname.includes('index.html') || window.location.pathname === '/' || window.location.pathname.endsWith('/');
+    const isHomePage = window.location.pathname.includes('/') || window.location.pathname === '/' || window.location.pathname.endsWith('/');
 
     if (window.supabaseClient) {
       try {
         const { data: { session } } = await window.supabaseClient.auth.getSession();
         if (!session && isProtectedPage) {
           // Logged out but on profile page — kick to login
-          window.location.replace('index.html');
+          window.location.replace('/');
         } else if (session && isHomePage) {
           // Logged in but on login page — send to profile
-          window.location.replace('owner-profile.html');
+          window.location.replace('/owner-profile');
         }
       } catch (e) {
-        if (isProtectedPage) window.location.replace('index.html');
+        if (isProtectedPage) window.location.replace('/');
       }
     }
   }
@@ -62,7 +62,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         ownerUser = null;
         if (isProtectedPage) {
           showToast('⚠️ Owner access only. Redirecting to login…');
-          setTimeout(() => { window.location.replace('index.html'); }, 1000);
+          setTimeout(() => { window.location.replace('/'); }, 1000);
           return;
         }
       }
@@ -72,7 +72,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       ownerUser = null;
       if (isProtectedPage) {
         showToast('⚠️ Session invalid. Redirecting to login…');
-        setTimeout(() => { window.location.replace('index.html'); }, 1000);
+        setTimeout(() => { window.location.replace('/'); }, 1000);
         return;
       }
     }
@@ -84,7 +84,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       activateOwnerSession(false);
     } else if (isProtectedPage) {
       showToast('⚠️ Owner access only. Redirecting to login…');
-      setTimeout(() => { window.location.replace('index.html'); }, 1000);
+      setTimeout(() => { window.location.replace('/'); }, 1000);
       return;
     }
   }
@@ -178,7 +178,7 @@ window.scrollToAuth = function (mode) {
 };
 function scrollToAuthInternal(mode) {
   if (ownerUser) {
-    window.location.href = 'owner-profile.html';
+    window.location.href = '/owner-profile';
     return;
   }
   const authSection = document.getElementById('ownerAuthSection');
@@ -198,7 +198,7 @@ function scrollToAuthInternal(mode) {
 function showAuthSection(mode) {
   if (ownerUser) {
     // Already logged in — redirect straight to form page
-    window.location.href = 'owner-profile.html';
+    window.location.href = '/owner-profile';
     return;
   }
   scrollToAuthInternal(mode);
@@ -425,7 +425,7 @@ function activateOwnerSession(animate) {
     ownerNavInfo.onclick = (e) => {
       // Don't navigate if logout button clicked
       if (!e.target.closest('button')) {
-        window.location.href = 'owner-profile.html';
+        window.location.href = '/owner-profile';
       }
     };
   }
@@ -442,8 +442,8 @@ function activateOwnerSession(animate) {
 
   // Redirect to profile if on index/home page and session exists
   const currentPath = window.location.pathname;
-  if (currentPath.includes('index.html') || currentPath === '/' || currentPath.endsWith('/')) {
-    window.location.replace('owner-profile.html');
+  if (currentPath.includes('/') || currentPath === '/' || currentPath.endsWith('/')) {
+    window.location.replace('/owner-profile');
     return;
   }
   const authSection = document.getElementById('ownerAuthSection');
@@ -475,7 +475,7 @@ function _completeOwnerLogout() {
   // If on a protected page, redirect to index
   const currentPath = window.location.pathname;
   if (currentPath.includes('profile') || currentPath.includes('add-property')) {
-    window.location.replace('index.html');
+    window.location.replace('/');
     return;
   }
 

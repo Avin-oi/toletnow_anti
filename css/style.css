@@ -1867,6 +1867,11 @@ h4 {
   color: rgba(255, 255, 255, 0.35);
 }
 
+.footer-bottom p {
+  margin: 0;
+  padding: 0;
+}
+
 /* ===== MOBILE BOTTOM NAV ===== */
 .mobile-bottom-nav {
   display: none;
@@ -2536,8 +2541,9 @@ h4 {
     display: flex;
   }
 
-  body {
-    padding-bottom: 0;
+  html, body {
+    padding-bottom: 0 !important;
+    margin-bottom: 0 !important;
   }
 
   /* space for mobile nav only on mobile */
