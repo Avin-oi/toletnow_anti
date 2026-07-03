@@ -544,6 +544,14 @@
           </div>
         </div>
 
+        <label class="form-label">Front Facing</label>
+        <div class="pill-group" id="facingPills">
+          <div class="pill" data-val="North">North</div>
+          <div class="pill" data-val="East">East</div>
+          <div class="pill" data-val="West">West</div>
+          <div class="pill" data-val="South">South</div>
+        </div>
+
         <label class="form-label">Preferred Tenants</label>
         <div class="pill-group" id="tenantPills">
           <div class="pill" data-val="Family">Family</div>
@@ -572,25 +580,19 @@
         <div class="form-grid">
           <div class="form-group full">
             <label class="form-label">Door No</label>
-            <input type="text" class="form-input" id="locDoor" placeholder="e.g. 110-1" />
+            <input type="text" class="form-input" id="locDoor" placeholder="" />
           </div>
           <div class="form-group full">
             <label class="form-label">Street</label>
-            <input type="text" class="form-input" id="locStreet" placeholder="e.g. Syed Kadar Street" />
+            <input type="text" class="form-input" id="locStreet" placeholder="" />
           </div>
           <div class="form-group full">
             <label class="form-label">Area</label>
-            <input type="text" class="form-input" id="locArea" placeholder="e.g. Indian Bank Colony" />
+            <input type="text" class="form-input" id="locArea" placeholder="" />
           </div>
           <div class="form-group">
-            <label class="form-label">Area / Locality</label>
-            <select class="form-input" id="locLocality">
-              <option value="">Select area</option>
-              <option value="Fairlands">Fairlands</option>
-              <option value="Alagapuram">Alagapuram</option>
-              <option value="Hasthampatti">Hasthampatti</option>
-              <option value="Omalur">Omalur</option>
-            </select>
+            <label class="form-label">Locality</label>
+            <input type="text" class="form-input" id="locLocality" placeholder="" />
           </div>
           <div class="form-group">
             <label class="form-label">City</label>
@@ -614,11 +616,11 @@
           </div>
           <div class="form-group">
             <label class="form-label">Your Name</label>
-            <input type="text" class="form-input" id="ownerName" placeholder="Owner name" />
+            <input type="text" class="form-input" id="ownerName" disabled style="background:#F5F5F5;" />
           </div>
           <div class="form-group">
             <label class="form-label">Contact Number</label>
-            <input type="tel" class="form-input" id="ownerPhone" placeholder="+91 98765 43210" />
+            <input type="tel" class="form-input" id="ownerPhone" disabled style="background:#F5F5F5;" />
           </div>
         </div>
 
@@ -697,34 +699,20 @@
         </div>
         <p class="footer-tagline">Simple. Local. Direct.<br/>Rental homes in Salem, directly from owners.</p>
         <div class="footer-social">
-          <a href="#" class="social-link">f</a>
-          <a href="#" class="social-link">in</a>
-          <a href="#" class="social-link">tw</a>
           <a href="#" class="social-link">ig</a>
         </div>
       </div>
-      <div class="footer-col">
-        <h4>Quick Links</h4>
-        <ul>
-          <li><a href="https://toletnow.in">Home</a></li>
-          <li><a href="https://toletnow.in#search">Search</a></li>
-          </ul>
-      </div>
-      <div class="footer-col">
-        <h4>Legal</h4>
-        <ul>
-          <li><a href="#">Privacy Policy</a></li>
-          <li><a href="#">Terms & Conditions</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>Support</h4>
-        <ul>
-          <li><a href="mailto:support@toletnow.in">support@toletnow.in</a></li>
-          <li><a href="https://toletnow.in/contact.html">Contact Form</a></li>
-          <li><a href="#">+91 98765 43210</a></li>
-        </ul>
-      </div>
+
+      <div class="footer-col"><h4>Legal</h4><ul>
+        <li><a href="https://toletnow.in/privacy.html">Privacy Policy</a></li>
+        <li><a href="https://toletnow.in/terms.html">Terms &amp; Conditions</a></li>
+        <li><a href="https://toletnow.in/disclaimer.html">Disclaimer</a></li>
+        <li><a href="https://toletnow.in/about.html">About Us</a></li>
+      </ul></div>
+      <div class="footer-col"><h4>Support</h4><ul>
+        <li><a href="mailto:support@toletnow.in">support@toletnow.in</a></li>
+        <li><a href="https://toletnow.in/contact.html">Contact Form</a></li>
+      </ul></div>
     </div>
     <div class="footer-bottom">
       <p>© 2024 ToLetNow.in · All rights reserved · Made with ❤️ for Salem</p>
@@ -763,6 +751,14 @@
           else el.classList.remove('active');
         }
       });
+
+      // Auto-fill contact fields from profile when opening Post tab
+      if (tab === 'post' && typeof currentOwner !== 'undefined' && currentOwner) {
+        const n = document.getElementById('ownerName');
+        const p = document.getElementById('ownerPhone');
+        if (n) n.value = currentOwner.name || '';
+        if (p) p.value = currentOwner.phone || '';
+      }
     }
 
     // ===== POST PROPERTY LOGIC (inlined from add-property.js) =====
@@ -893,6 +889,7 @@
         deposit: parseInt(document.getElementById('propDeposit').value) || 0,
         furnishing: sanitizePropertyInput(document.getElementById('propFurnishing').value),
         area_sqft: parseInt(document.getElementById('propArea').value) || 0,
+        facing: getSelectedPills('facingPills')[0] || null,
         preferred_tenants: getSelectedPills('tenantPills'),
         amenities: getSelectedPills('amenityPills'),
         door_no: sanitizePropertyInput(document.getElementById('locDoor').value),
@@ -915,7 +912,7 @@
         if (!session) {
           btn.disabled = false; btn.textContent = 'Post Property';
           showToast('⚠️ Please login to post a property');
-          setTimeout(() => { window.location.href = 'index.html'; }, 1200);
+          setTimeout(() => { window.location.replace('index.html'); }, 1200);
           return;
         }
         propertyData.owner_id = session.user.id;
@@ -951,7 +948,14 @@
     // Pill toggle logic
     document.addEventListener('DOMContentLoaded', () => {
       document.querySelectorAll('.pill').forEach(pill => {
-        pill.addEventListener('click', () => pill.classList.toggle('selected'));
+        pill.addEventListener('click', () => {
+          if (pill.parentElement.id === 'facingPills') {
+            Array.from(pill.parentElement.children).forEach(p => {
+              if (p !== pill) p.classList.remove('selected');
+            });
+          }
+          pill.classList.toggle('selected');
+        });
       });
     });
 

@@ -8,6 +8,32 @@ let authMode = 'login'; // 'login' | 'signup'
 let otpTarget = '';     // email OTP was sent to
 let otpCountdownTimer = null;
 
+// ===== BACK-FORWARD CACHE GUARD =====
+// When user hits browser back button, the page may be restored from cache
+// without re-running DOMContentLoaded. This catches that case.
+window.addEventListener('pageshow', async (event) => {
+  if (event.persisted) {
+    // Page was restored from bfcache — re-check session
+    const isProtectedPage = window.location.pathname.includes('profile') || window.location.pathname.includes('add-property');
+    const isHomePage = window.location.pathname.includes('index.html') || window.location.pathname === '/' || window.location.pathname.endsWith('/');
+
+    if (window.supabaseClient) {
+      try {
+        const { data: { session } } = await window.supabaseClient.auth.getSession();
+        if (!session && isProtectedPage) {
+          // Logged out but on profile page — kick to login
+          window.location.replace('index.html');
+        } else if (session && isHomePage) {
+          // Logged in but on login page — send to profile
+          window.location.replace('owner-profile.html');
+        }
+      } catch (e) {
+        if (isProtectedPage) window.location.replace('index.html');
+      }
+    }
+  }
+});
+
 // ===== ON LOAD =====
 document.addEventListener('DOMContentLoaded', async () => {
   // ── AUTH GUARD: Verify real Supabase session, not just localStorage ──
@@ -36,7 +62,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         ownerUser = null;
         if (isProtectedPage) {
           showToast('⚠️ Owner access only. Redirecting to login…');
-          setTimeout(() => { window.location.href = 'index.html'; }, 1000);
+          setTimeout(() => { window.location.replace('index.html'); }, 1000);
           return;
         }
       }
@@ -46,7 +72,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       ownerUser = null;
       if (isProtectedPage) {
         showToast('⚠️ Session invalid. Redirecting to login…');
-        setTimeout(() => { window.location.href = 'index.html'; }, 1000);
+        setTimeout(() => { window.location.replace('index.html'); }, 1000);
         return;
       }
     }
@@ -58,7 +84,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       activateOwnerSession(false);
     } else if (isProtectedPage) {
       showToast('⚠️ Owner access only. Redirecting to login…');
-      setTimeout(() => { window.location.href = 'index.html'; }, 1000);
+      setTimeout(() => { window.location.replace('index.html'); }, 1000);
       return;
     }
   }
@@ -414,10 +440,10 @@ function activateOwnerSession(animate) {
   if (nameEl) nameEl.textContent = ownerUser.name;
   if (emailEl) emailEl.textContent = ownerUser.email;
 
-  // Hide auth section if on index/home page
+  // Redirect to profile if on index/home page and session exists
   const currentPath = window.location.pathname;
-  if ((currentPath.includes('index.html') || currentPath === '/' || currentPath.endsWith('/')) && animate) {
-    window.location.href = 'owner-profile.html';
+  if (currentPath.includes('index.html') || currentPath === '/' || currentPath.endsWith('/')) {
+    window.location.replace('owner-profile.html');
     return;
   }
   const authSection = document.getElementById('ownerAuthSection');
@@ -449,7 +475,7 @@ function _completeOwnerLogout() {
   // If on a protected page, redirect to index
   const currentPath = window.location.pathname;
   if (currentPath.includes('profile') || currentPath.includes('add-property')) {
-    window.location.href = 'index.html';
+    window.location.replace('index.html');
     return;
   }
 

@@ -2537,7 +2537,7 @@ h4 {
   }
 
   body {
-    padding-bottom: 80px;
+    padding-bottom: 0;
   }
 
   /* space for mobile nav only on mobile */
