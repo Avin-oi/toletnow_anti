@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       if (!session) {
         localStorage.removeItem('ownerUser');
         showToast('⚠️ Owner access only. Please login first.');
-        setTimeout(() => { window.location.href = '/'; }, 1200);
+        setTimeout(() => { window.location.replace('/'); }, 1200);
         return;
       }
       // Session valid — refresh owner data from DB
@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       console.error('Profile auth guard error:', err);
       localStorage.removeItem('ownerUser');
       showToast('⚠️ Session invalid. Please login first.');
-      setTimeout(() => { window.location.href = '/'; }, 1200);
+      setTimeout(() => { window.location.replace('/'); }, 1200);
       return;
     }
   } else {
@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     const saved = localStorage.getItem('ownerUser');
     if (!saved) {
       showToast('⚠️ Owner access only. Please login first.');
-      setTimeout(() => { window.location.href = '/'; }, 1200);
+      setTimeout(() => { window.location.replace('/'); }, 1200);
       return;
     }
     currentOwner = JSON.parse(saved);
@@ -417,7 +417,7 @@ async function ownerProfileLogout() {
 
   localStorage.removeItem('ownerUser');
   showToast('👋 Logged out successfully');
-  setTimeout(() => { window.location.href = '/'; }, 1000);
+  setTimeout(() => { window.location.replace('/'); }, 1000);
 }
 
 // ===== MOBILE MENU =====

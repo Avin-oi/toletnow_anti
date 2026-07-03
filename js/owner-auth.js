@@ -178,7 +178,7 @@ window.scrollToAuth = function (mode) {
 };
 function scrollToAuthInternal(mode) {
   if (ownerUser) {
-    window.location.href = '/owner-profile';
+    window.location.replace('/owner-profile');
     return;
   }
   const authSection = document.getElementById('ownerAuthSection');
@@ -198,7 +198,7 @@ function scrollToAuthInternal(mode) {
 function showAuthSection(mode) {
   if (ownerUser) {
     // Already logged in — redirect straight to form page
-    window.location.href = '/owner-profile';
+    window.location.replace('/owner-profile');
     return;
   }
   scrollToAuthInternal(mode);
@@ -425,7 +425,7 @@ function activateOwnerSession(animate) {
     ownerNavInfo.onclick = (e) => {
       // Don't navigate if logout button clicked
       if (!e.target.closest('button')) {
-        window.location.href = '/owner-profile';
+        window.location.replace('/owner-profile');
       }
     };
   }
