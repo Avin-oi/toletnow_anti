@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdn.jsdelivr.net 'unsafe-inline'; img-src 'self' data: https:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; connect-src 'self' https://saoqryectqrnuhoskvwc.supabase.co;" />
+  <title>Contact Us – ToLetNow.in Salem</title>
+  <link rel="icon" type="image/png" href="assets/images/logo.png" />
+  <meta name="description" content="Get in touch with the ToLetNow.in team. We're here to help you find or list rental homes in Salem. Reach us via email, phone or contact form." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/pages.css" />
+</head>
+<body>
+
+  <!-- ===== NAVIGATION ===== -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">
+        <img src="assets/images/logo.png" alt="ToLetNow.in Logo" class="logo-img" />
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+      </ul>
+      <div class="nav-actions">
+      </div>
+      <button class="hamburger" id="hamburger" onclick="toggleMenu()">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile Drawer -->
+  <div class="mobile-drawer" id="mobileDrawer">
+    <button class="drawer-close" onclick="toggleMenu()">✕</button>
+    <div class="drawer-logo">
+      <img src="assets/images/logo.png" alt="ToLetNow.in Logo" class="logo-img" />
+    </div>
+    <ul class="drawer-links">
+      <li><a href="index.html" onclick="toggleMenu()">Home</a></li>
+    </ul>
+    <div class="drawer-actions">
+    </div>
+  </div>
+  <div class="drawer-overlay" id="drawerOverlay" onclick="toggleMenu()"></div>
+
+  <!-- ===== PAGE HERO ===== -->
+  <section class="page-hero contact-hero">
+    <div class="page-hero-bg"></div>
+    <div class="page-hero-content">
+      <div class="page-breadcrumb">
+        <a href="index.html">Home</a>
+        <span>›</span>
+        <span>Contact Us</span>
+      </div>
+      <h1 class="page-hero-title">We're Here to <span class="highlight">Help</span></h1>
+      <p class="page-hero-sub">Got a question? Facing an issue? Just want to say hi? We'd love to hear from you.</p>
+      <div class="page-hero-stats">
+        <div class="hero-stat-pill">⚡ Replies within 2 hours</div>
+        <div class="hero-stat-pill">📞 Call us anytime</div>
+        <div class="hero-stat-pill">💬 Friendly support team</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CONTACT CARDS ===== -->
+  <section class="contact-cards-section">
+    <div class="contact-cards-container">
+      <a href="tel:+919876543210" class="contact-card" id="cardPhone">
+        <div class="contact-card-icon" style="background: linear-gradient(135deg,#10B981,#059669);">📞</div>
+        <h3>Call Us</h3>
+        <p>Speak directly with our team</p>
+        <strong>+91 98765 43210</strong>
+        <span class="contact-card-sub">Mon – Sat · 9 AM – 7 PM</span>
+      </a>
+      <a href="mailto:support@toletnow.in" class="contact-card" id="cardEmail">
+        <div class="contact-card-icon" style="background: linear-gradient(135deg,#6366F1,#4F46E5);">✉️</div>
+        <h3>Email Us</h3>
+        <p>We reply within 2 hours</p>
+        <strong>support@toletnow.in</strong>
+        <span class="contact-card-sub">Available 24/7</span>
+      </a>
+      <a href="https://wa.me/919876543210" class="contact-card" id="cardWhatsapp">
+        <div class="contact-card-icon" style="background: linear-gradient(135deg,#25D366,#128C7E);">💬</div>
+        <h3>WhatsApp</h3>
+        <p>Chat with us instantly</p>
+        <strong>+91 98765 43210</strong>
+        <span class="contact-card-sub">Online now · Quick replies</span>
+      </a>
+      <div class="contact-card" id="cardOffice">
+        <div class="contact-card-icon" style="background: linear-gradient(135deg,#F59E0B,#D97706);">📍</div>
+        <h3>Visit Us</h3>
+        <p>Our Salem office</p>
+        <strong>Fairlands, Salem – 636016</strong>
+        <span class="contact-card-sub">Tamil Nadu, India</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== MAIN CONTACT SECTION ===== -->
+  <section class="contact-main-section">
+    <div class="contact-main-container">
+
+      <!-- LEFT: Form -->
+      <div class="contact-form-wrap">
+        <div class="contact-form-card">
+          <div class="contact-form-header">
+            <h2>Send Us a Message</h2>
+            <p>We'll get back to you within 2 hours on working days</p>
+          </div>
+          <form class="contact-form" id="contactForm" onsubmit="handleContactSubmit(event)">
+            <div class="contact-form-grid">
+              <div class="form-group">
+                <label>Your Name <span class="req">*</span></label>
+                <input type="text" id="ctName" placeholder="Enter your name" class="form-input" />
+              </div>
+              <div class="form-group">
+                <label>Phone Number <span class="req">*</span></label>
+                <input type="tel" id="ctPhone" placeholder="+91 98765 43210" class="form-input" />
+              </div>
+              <div class="form-group ct-full">
+                <label>Email Address</label>
+                <input type="email" id="ctEmail" placeholder="yourname@email.com" class="form-input" />
+              </div>
+              <div class="form-group">
+                <label>I Am a... <span class="req">*</span></label>
+                <select class="form-input" id="ctRole">
+                  <option value="">Select</option>
+                  <option>Tenant looking for a home</option>
+                  <option>Property Owner</option>
+                  <option>Real Estate Agent</option>
+                  <option>Just Curious</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Subject <span class="req">*</span></label>
+                <select class="form-input" id="ctSubject">
+                  <option value="">Select subject</option>
+                  <option>General Inquiry</option>
+                  <option>Issue with a Listing</option>
+                  <option>Report Fake Listing</option>
+                  <option>Account Problem</option>
+                  <option>Partnership / Business</option>
+                  <option>Feedback & Suggestions</option>
+                  <option>Other</option>
+                </select>
+              </div>
+              <div class="form-group ct-full">
+                <label>Message <span class="req">*</span></label>
+                <textarea id="ctMessage" placeholder="Write your message here — be as detailed as possible so we can help you better..." class="form-input form-textarea" rows="6"></textarea>
+                <span class="char-count" id="ctMsgCount">0 / 1000</span>
+              </div>
+            </div>
+            <button type="submit" class="btn-primary btn-full ct-submit-btn" id="ctSubmitBtn">
+              <span id="ctBtnText">📩 Send Message</span>
+            </button>
+          </form>
+
+          <!-- Success state -->
+          <div class="ct-success" id="ctSuccess">
+            <div class="ct-success-icon">🎉</div>
+            <h3>Message Sent!</h3>
+            <p>Thanks for reaching out! Our team will get back to you within 2 hours.</p>
+            <button class="btn-outline" style="margin-top:16px;" onclick="resetContactForm()">Send Another Message</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT: Info + FAQ -->
+      <div class="contact-info-wrap">
+
+        <!-- Office Hours -->
+        <div class="contact-info-card">
+          <h3>🕐 Support Hours</h3>
+          <ul class="hours-list">
+            <li><span>Monday – Friday</span><strong>9:00 AM – 7:00 PM</strong></li>
+            <li><span>Saturday</span><strong>10:00 AM – 5:00 PM</strong></li>
+            <li><span>Sunday</span><strong>Closed</strong></li>
+            <li class="hours-note">📧 Email support available 24/7</li>
+          </ul>
+        </div>
+
+        <!-- FAQ -->
+        <div class="contact-info-card">
+          <h3>❓ Frequently Asked Questions</h3>
+          <div class="faq-list" id="faqList">
+            <div class="faq-item" onclick="toggleFaq(this)">
+              <div class="faq-q">Is posting a property really free?<span class="faq-icon">+</span></div>
+              <div class="faq-a">Yes! Posting and browsing properties on ToLetNow.in is 100% free, forever. No hidden charges, no broker fees.</div>
+            </div>
+            <div class="faq-item" onclick="toggleFaq(this)">
+              <div class="faq-q">How long will my listing be active?<span class="faq-icon">+</span></div>
+              <div class="faq-a">Each listing stays live for 30 days. After that, you can re-post for free to keep your property fresh and visible.</div>
+            </div>
+            <div class="faq-item" onclick="toggleFaq(this)">
+              <div class="faq-q">How do tenants contact me?<span class="faq-icon">+</span></div>
+              <div class="faq-a">Tenants call your registered phone number directly. There's no middleman — you negotiate and decide everything yourself.</div>
+            </div>
+            <div class="faq-item" onclick="toggleFaq(this)">
+              <div class="faq-q">How do I report a fake listing?<span class="faq-icon">+</span></div>
+              <div class="faq-a">Use the "Report Listing" button on any property card, or contact us with the listing details and we'll investigate within 24 hours.</div>
+            </div>
+            <div class="faq-item" onclick="toggleFaq(this)">
+              <div class="faq-q">Is ToLetNow.in available outside Salem?<span class="faq-icon">+</span></div>
+              <div class="faq-a">Currently we are focused exclusively on Salem city. We're planning to expand to nearby districts soon. Stay tuned!</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Social -->
+        <div class="contact-info-card social-card">
+          <h3>📱 Follow Us</h3>
+          <p>Stay updated with new listings, tips, and news.</p>
+          <div class="social-links-row">
+            <a href="#" class="social-big-link" style="background:#1877F2;">f<span>Facebook</span></a>
+            <a href="https://www.instagram.com/toletnowindia/" class="social-big-link" style="background:#E4405F;" target="_blank" rel="noopener">ig<span>Instagram</span></a>
+            <a href="#" class="social-big-link" style="background:#1DA1F2;">tw<span>Twitter</span></a>
+            <a href="#" class="social-big-link" style="background:#0A66C2;">in<span>LinkedIn</span></a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== MAP SECTION ===== -->
+  <section class="map-section">
+    <div class="map-container">
+      <div class="map-header">
+        <h2>📍 Find Us in Salem</h2>
+        <p>We're located in the heart of Fairlands, Salem</p>
+      </div>
+      <div class="map-embed">
+        <!-- Stylized map placeholder (real embed would go here) -->
+        <div class="map-placeholder">
+          <div class="map-pin-wrap">
+            <div class="map-pin-icon">📍</div>
+            <div class="map-pin-label">
+              <strong>ToLetNow.in Office</strong>
+              <span>Fairlands, Salem – 636016</span>
+            </div>
+          </div>
+          <div class="map-bg-text">SALEM</div>
+          <div class="map-road map-road-h"></div>
+          <div class="map-road map-road-v"></div>
+          <div class="map-open-gmaps">
+            <a href="https://maps.google.com/?q=Fairlands,Salem" target="_blank" class="btn-outline">🗺️ Open in Google Maps</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+    <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-brand">
+        <div class="footer-logo">
+          <img src="assets/images/logo.png" alt="ToLetNow.in Logo" class="logo-img-footer" />
+        </div>
+        <p class="footer-tagline">Simple. Local. Direct.<br/>Rental homes in Salem, directly from owners.</p>
+        <div class="footer-social">
+          <a href="#" class="social-link">f</a>
+          <a href="#" class="social-link">in</a>
+          <a href="#" class="social-link">tw</a>
+          <a href="https://www.instagram.com/toletnowindia/" class="social-link" target="_blank" rel="noopener">ig</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="index.html#search">Search</a></li>
+          </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Terms & Conditions</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Support</h4>
+        <ul>
+          <li><a href="mailto:support@toletnow.in">support@toletnow.in</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
+          <li><a href="#">+91 98765 43210</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2024 ToLetNow.in · All rights reserved · Made with ❤️ for Salem</p>
+    </div>
+  </footer>
+
+  <!-- MOBILE BOTTOM NAV -->
+  <nav class="mobile-bottom-nav">
+    <a href="index.html" class="mob-nav-item" id="mobHome">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mob-icon-svg"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+      <span>Home</span>
+    </a>
+    <a href="profile.html" class="mob-nav-item" id="mobProfile">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mob-icon-svg"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+      <span>Profile</span>
+    </a>
+  </nav>
+
+
+  <div class="toast" id="toast"></div>
+  <script src="js/pages.js"></script>
+
+  <!-- Supabase JS SDK -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/supabase-config.js"></script>
+</body>
+</html>
+
