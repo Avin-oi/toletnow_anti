@@ -1,49 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Owner Profile – ToLetNow.in Salem</title>
-  <meta name="description" content="Manage your tenant profile, view liked homes, change password, and contact support on ToLetNow.in." />
+  <meta name="description"
+    content="Manage your tenant profile, view liked homes, change password, and contact support on ToLetNow.in." />
   <link rel="icon" type="image/png" href="assets/images/favicon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Poppins:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet" />
   <link rel="stylesheet" href="css/style.css" />
   <link rel="stylesheet" href="css/pages.css" />
   <link rel="stylesheet" href="css/owner-profile.css?v=2" />
-<style>
-
-
+  <style>
     .wizard-card {
       background: white;
       border-radius: 24px;
       width: 100%;
       max-width: 100%;
-      box-shadow: 0 20px 40px rgba(204,18,72,0.1);
+      box-shadow: 0 20px 40px rgba(204, 18, 72, 0.1);
       overflow: hidden;
       position: relative;
       box-sizing: border-box;
     }
+
     .wizard-header {
-      background: #8E1638; /* Maroon header */
+      background: #8E1638;
+      /* Maroon header */
       color: white;
       padding: 32px;
       border-bottom-left-radius: 24px;
       border-bottom-right-radius: 24px;
       margin-bottom: 32px;
     }
+
     .wizard-header h1 {
       margin: 0 0 8px 0;
       font-size: 24px;
       font-weight: 700;
     }
+
     .wizard-header p {
       margin: 0;
       font-size: 14px;
       opacity: 0.9;
     }
-    
+
     /* Stepper */
     .stepper {
       display: flex;
@@ -53,6 +59,7 @@
       margin-bottom: 32px;
       position: relative;
     }
+
     .stepper::before {
       content: '';
       position: absolute;
@@ -63,6 +70,7 @@
       background: #F0F0F0;
       z-index: 1;
     }
+
     .step-line-active {
       position: absolute;
       top: 14px;
@@ -72,6 +80,7 @@
       z-index: 2;
       transition: width 0.3s ease;
     }
+
     .step {
       display: flex;
       align-items: center;
@@ -80,6 +89,7 @@
       padding: 0 8px;
       z-index: 3;
     }
+
     .step-circle {
       width: 28px;
       height: 28px;
@@ -93,23 +103,27 @@
       font-weight: 700;
       transition: all 0.3s ease;
     }
+
     .step-label {
       font-size: 13px;
       font-weight: 600;
       color: #757575;
     }
-    
+
     .step.active .step-circle {
       background: #8E1638;
       color: white;
     }
+
     .step.active .step-label {
       color: #8E1638;
     }
+
     .step.completed .step-circle {
       background: #10B981;
       color: white;
     }
+
     .step.completed .step-label {
       color: #10B981;
     }
@@ -118,30 +132,45 @@
     .wizard-body {
       padding: 0 32px 32px 32px;
     }
+
     .form-step {
       display: none;
       animation: fadeIn 0.3s ease;
     }
+
     .form-step.active {
       display: block;
     }
+
     @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
-    
+
     .form-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 20px;
       margin-bottom: 24px;
     }
+
     @media (max-width: 500px) {
-      .form-grid { grid-template-columns: 1fr; }
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
     }
+
     .form-group.full {
       grid-column: 1 / -1;
     }
+
     .form-label {
       display: block;
       font-size: 13px;
@@ -149,6 +178,7 @@
       color: #1A1A1A;
       margin-bottom: 8px;
     }
+
     .form-input {
       width: 100%;
       padding: 12px 14px;
@@ -161,9 +191,11 @@
       outline: none;
       transition: border-color 0.2s;
     }
+
     .form-input:focus {
       border-color: #8E1638;
     }
+
     select.form-input {
       appearance: none;
       background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
@@ -179,6 +211,7 @@
       gap: 10px;
       margin-bottom: 24px;
     }
+
     .pill {
       border: 1px solid #E0E0E0;
       background: white;
@@ -194,13 +227,71 @@
       align-items: center;
       gap: 6px;
     }
+
     .pill.selected {
       background: #FFF0F4;
       border-color: #8E1638;
       color: #8E1638;
     }
-    .pill-icon { color: #2196F3; } /* Default blueish for icons */
-    .pill.selected .pill-icon { color: #8E1638; }
+
+    .pill-icon {
+      color: #2196F3;
+    }
+
+    .pill.selected .pill-icon {
+      color: #8E1638;
+    }
+
+    /* Sell Wizard Type Pills — independent from rent pill system */
+    .sell-type-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+
+    .sell-type-pill {
+      border: 2px solid #E0E0E0;
+      background: white;
+      padding: 14px 20px;
+      border-radius: 12px;
+      font-size: 14px;
+      font-weight: 600;
+      color: #374151;
+      cursor: pointer;
+      user-select: none;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex: 1 1 calc(50% - 6px);
+      min-width: 140px;
+      box-sizing: border-box;
+    }
+
+    .sell-type-pill:hover {
+      border-color: #4F46E5;
+      background: #F5F3FF;
+      color: #4F46E5;
+      transform: translateY(-1px);
+    }
+
+    .sell-type-pill.selected {
+      background: #EEF2FF;
+      border-color: #4F46E5;
+      color: #4F46E5;
+      box-shadow: 0 0 0 3px rgba(79,70,229,0.12);
+    }
+
+    .sell-type-pill span {
+      font-size: 22px;
+    }
+
+    @media (max-width: 480px) {
+      .sell-type-pill {
+        flex: 1 1 100%;
+      }
+    }
 
     /* Buttons */
     .wizard-footer {
@@ -208,7 +299,9 @@
       gap: 16px;
       margin-top: 32px;
     }
-    .btn-next, .btn-submit {
+
+    .btn-next,
+    .btn-submit {
       flex: 1;
       background: #8E1638;
       color: white;
@@ -220,7 +313,12 @@
       cursor: pointer;
       transition: background 0.2s;
     }
-    .btn-next:hover, .btn-submit:hover { background: #6b1029; }
+
+    .btn-next:hover,
+    .btn-submit:hover {
+      background: #6b1029;
+    }
+
     .btn-back {
       flex: 1;
       background: white;
@@ -243,14 +341,24 @@
       cursor: pointer;
       margin-bottom: 16px;
     }
-    .photo-upload-zone:hover { border-color: #8E1638; background: #FFF0F4; }
-    .photo-upload-icon { font-size: 48px; margin-bottom: 16px; }
+
+    .photo-upload-zone:hover {
+      border-color: #8E1638;
+      background: #FFF0F4;
+    }
+
+    .photo-upload-icon {
+      font-size: 48px;
+      margin-bottom: 16px;
+    }
+
     .photo-preview-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
       gap: 12px;
       margin-bottom: 24px;
     }
+
     .photo-preview-item {
       aspect-ratio: 1;
       border-radius: 8px;
@@ -258,16 +366,18 @@
       position: relative;
       overflow: hidden;
     }
+
     .photo-preview-item img {
       width: 100%;
       height: 100%;
       object-fit: cover;
     }
+
     .photo-remove {
       position: absolute;
       top: 4px;
       right: 4px;
-      background: rgba(0,0,0,0.6);
+      background: rgba(0, 0, 0, 0.6);
       color: white;
       border: none;
       width: 20px;
@@ -279,9 +389,271 @@
       align-items: center;
       justify-content: center;
     }
-  
-</style>
+
+      /* ===== ENHANCED POST TYPE SELECTION CARD STYLES ===== */
+      .post-type-selection {
+        background: white;
+        border-radius: 28px;
+        padding: 44px 36px;
+        box-shadow: 0 24px 60px rgba(142, 22, 56, 0.09), 0 4px 16px rgba(0, 0, 0, 0.02);
+        margin-bottom: 24px;
+        border: 1px solid rgba(142, 22, 56, 0.12);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .post-type-selection::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: linear-gradient(90deg, #8E1638 0%, #B72A54 50%, #4F46E5 100%);
+      }
+
+      .post-type-header {
+        text-align: center;
+        margin-bottom: 40px;
+      }
+
+      .post-type-header-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 6px 16px;
+        border-radius: 99px;
+        background: rgba(142, 22, 56, 0.08);
+        color: #8E1638;
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.5px;
+        margin-bottom: 12px;
+      }
+
+      .post-type-header h2 {
+        font-family: inherit;
+        font-size: clamp(24px, 2.6vw, 32px);
+        font-weight: 900;
+        color: #111827;
+        margin: 0 0 10px 0;
+        letter-spacing: -0.5px;
+      }
+
+      .post-type-header h2 .accent-text {
+        background: linear-gradient(135deg, #8E1638 0%, #B72A54 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      .post-type-header p {
+        font-size: 15px;
+        color: #6B7280;
+        margin: 0;
+      }
+
+      .post-type-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 28px;
+      }
+
+      @media (max-width: 768px) {
+        .post-type-grid {
+          grid-template-columns: 1fr 1fr;
+          gap: 16px;
+        }
+
+        .post-type-selection {
+          padding: 32px 16px;
+        }
+      }
+
+      .post-option-card {
+        background: #FFFFFF;
+        border: 2px solid #F3F4F6;
+        border-radius: 24px;
+        padding: 36px 28px;
+        text-align: center;
+        cursor: pointer;
+        transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+        position: relative;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03);
+      }
+
+      .post-option-card.rent-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: linear-gradient(90deg, #8E1638, #B72A54);
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+
+      .post-option-card.buy-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: linear-gradient(90deg, #4F46E5, #6366F1);
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+
+      .post-option-card:hover::before {
+        opacity: 1;
+      }
+
+      .post-option-card.rent-card:hover {
+        border-color: #8E1638;
+        background: #FFF8FA;
+        transform: translateY(-8px);
+        box-shadow: 0 20px 40px rgba(142, 22, 56, 0.14);
+      }
+
+      .post-option-card.buy-card:hover {
+        border-color: #4F46E5;
+        background: #F8F8FF;
+        transform: translateY(-8px);
+        box-shadow: 0 20px 40px rgba(79, 70, 229, 0.14);
+      }
+
+      .post-option-badge {
+        font-size: 11px;
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: 0.6px;
+        padding: 6px 16px;
+        border-radius: 99px;
+        margin-bottom: 20px;
+      }
+
+      .rent-badge {
+        background: rgba(142, 22, 56, 0.08);
+        color: #8E1638;
+        border: 1px solid rgba(142, 22, 56, 0.15);
+      }
+
+      .buy-badge {
+        background: rgba(79, 70, 229, 0.08);
+        color: #4F46E5;
+        border: 1px solid rgba(79, 70, 229, 0.15);
+      }
+
+      .post-option-icon-wrap {
+        width: 80px;
+        height: 80px;
+        border-radius: 24px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 40px;
+        margin-bottom: 20px;
+        transition: all 0.35s ease;
+      }
+
+      .rent-icon-wrap {
+        background: linear-gradient(135deg, #FFF0F4 0%, #FCE4EC 100%);
+        box-shadow: 0 8px 20px rgba(142, 22, 56, 0.1);
+      }
+
+      .buy-icon-wrap {
+        background: linear-gradient(135deg, #EEF2FF 0%, #E0E7FF 100%);
+        box-shadow: 0 8px 20px rgba(79, 70, 229, 0.1);
+      }
+
+      .post-option-card:hover .post-option-icon-wrap {
+        transform: scale(1.12) rotate(-4deg);
+      }
+
+      .post-option-title {
+        font-family: inherit;
+        font-size: 24px;
+        font-weight: 900;
+        color: #111827;
+        margin: 0 0 10px 0;
+      }
+
+      .post-option-desc {
+        font-size: 13.5px;
+        color: #6B7280;
+        line-height: 1.6;
+        margin: 0 0 20px 0;
+      }
+
+      .post-option-features {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        width: 100%;
+        margin-bottom: 24px;
+        text-align: left;
+      }
+
+      .post-option-feature {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 12.5px;
+        font-weight: 600;
+        color: #374151;
+        background: rgba(255, 255, 255, 0.8);
+        padding: 6px 12px;
+        border-radius: 8px;
+        border: 1px solid #F3F4F6;
+      }
+
+      .post-option-feature .check-icon {
+        font-size: 14px;
+      }
+
+      .post-option-btn {
+        width: 100%;
+        padding: 14px 20px;
+        border-radius: 14px;
+        font-weight: 800;
+        font-size: 14.5px;
+        color: white;
+        border: none;
+        cursor: pointer;
+        transition: all 0.25s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
+      }
+
+      .rent-btn {
+        background: linear-gradient(135deg, #8E1638 0%, #B72A54 100%);
+      }
+
+      .rent-btn:hover {
+        background: linear-gradient(135deg, #70102B 0%, #9B2043 100%);
+        box-shadow: 0 8px 24px rgba(142, 22, 56, 0.3);
+      }
+
+      .buy-btn {
+        background: linear-gradient(135deg, #4F46E5 0%, #6366F1 100%);
+      }
+
+      .buy-btn:hover {
+        background: linear-gradient(135deg, #4338CA 0%, #4F46E5 100%);
+        box-shadow: 0 8px 24px rgba(79, 70, 229, 0.3);
+      }
+  </style>
 </head>
+
 <body class="bg-soft">
 
 
@@ -297,7 +669,8 @@
           <h2 class="op-sidebar-title">Owner Dashboard</h2>
           <button class="op-bell-btn" title="Notifications">
             <svg class="bell-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6 6 0 10-12 0v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6 6 0 10-12 0v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
             </svg>
           </button>
         </div>
@@ -314,7 +687,7 @@
         </div>
 
         <!-- Stats -->
-        
+
         <div class="op-props-stats-grid">
           <button class="op-stat-item" onclick="switchProfileTab('properties')">
             <div class="op-stat-icon">🏢</div>
@@ -333,7 +706,7 @@
         </div>
 
         <!-- Menu -->
-        
+
         <nav class="op-menu-list">
           <button class="op-menu-item active" id="menuEdit" onclick="switchProfileTab('edit')">
             <div class="op-menu-icon">👤</div>
@@ -352,7 +725,7 @@
             </div>
             <span class="op-menu-arrow">›</span>
           </button>
-          
+
           <button class="op-menu-item" id="menuPost" onclick="switchProfileTab('post')">
             <div class="op-menu-icon">➕</div>
             <div class="op-menu-text">
@@ -409,7 +782,8 @@
               </div>
               <div class="form-group">
                 <label>Email Address</label>
-                <input type="email" id="editEmail" class="form-input" placeholder="your@email.com" disabled style="background:#f9fafb; cursor:not-allowed;" />
+                <input type="email" id="editEmail" class="form-input" placeholder="your@email.com" disabled
+                  style="background:#f9fafb; cursor:not-allowed;" />
               </div>
               <div class="form-group">
                 <label>Phone Number</label>
@@ -418,46 +792,65 @@
 
               <div class="form-group op-full">
                 <label>Current Address</label>
-                <textarea id="editAddress" class="form-input form-textarea" rows="3" placeholder="Where do you currently stay?"></textarea>
+                <textarea id="editAddress" class="form-input form-textarea" rows="3"
+                  placeholder="Where do you currently stay?"></textarea>
               </div>
             </div>
             <button type="submit" class="btn-primary tab-submit-btn">💾 Save Profile Changes</button>
           </form>
         </div>
 
-        
+
         <!-- TAB: My Properties -->
         <div id="tabProperties" class="op-tab-content hidden">
           <div class="tab-header-block">
             <h2>My Properties 🏢</h2>
             <p>Manage and track your listed properties.</p>
           </div>
-          
+
           <div class="op-props-stats-grid" style="margin-bottom: 30px;">
             <div class="op-stat-item">
-              <div class="op-stat-num" id="opActiveCount" style="font-size: 28px; font-weight: 800; color: var(--primary); margin-bottom: 4px;">0</div>
-              <div class="op-stat-label" style="font-size: 13px; color: var(--text-muted); font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px;">Active</div>
+              <div class="op-stat-num" id="opActiveCount"
+                style="font-size: 28px; font-weight: 800; color: var(--primary); margin-bottom: 4px;">0</div>
+              <div class="op-stat-label"
+                style="font-size: 13px; color: var(--text-muted); font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px;">
+                Active</div>
             </div>
             <div class="op-stat-item">
-              <div class="op-stat-num" id="opPendingCount" style="font-size: 28px; font-weight: 800; color: var(--primary); margin-bottom: 4px;">0</div>
-              <div class="op-stat-label" style="font-size: 13px; color: var(--text-muted); font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px;">Pending</div>
+              <div class="op-stat-num" id="opPendingCount"
+                style="font-size: 28px; font-weight: 800; color: var(--primary); margin-bottom: 4px;">0</div>
+              <div class="op-stat-label"
+                style="font-size: 13px; color: var(--text-muted); font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px;">
+                Pending</div>
             </div>
             <div class="op-stat-item">
-              <div class="op-stat-num" id="opRentedCount" style="font-size: 28px; font-weight: 800; color: var(--primary); margin-bottom: 4px;">0</div>
-              <div class="op-stat-label" style="font-size: 13px; color: var(--text-muted); font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px;">Rented</div>
+              <div class="op-stat-num" id="opRentedCount"
+                style="font-size: 28px; font-weight: 800; color: var(--primary); margin-bottom: 4px;">0</div>
+              <div class="op-stat-label"
+                style="font-size: 13px; color: var(--text-muted); font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px;">
+                Rented</div>
             </div>
             <div class="op-stat-item">
-              <div class="op-stat-num" id="opExpiredCount" style="font-size: 28px; font-weight: 800; color: var(--primary); margin-bottom: 4px;">0</div>
-              <div class="op-stat-label" style="font-size: 13px; color: var(--text-muted); font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px;">Expired</div>
+              <div class="op-stat-num" id="opExpiredCount"
+                style="font-size: 28px; font-weight: 800; color: var(--primary); margin-bottom: 4px;">0</div>
+              <div class="op-stat-label"
+                style="font-size: 13px; color: var(--text-muted); font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px;">
+                Expired</div>
             </div>
           </div>
 
-          <div class="op-filters" style="display: flex; gap: 10px; margin-bottom: 24px; overflow-x: auto; padding-bottom: 5px;">
-            <button class="op-filter-tab active" onclick="filterOpProperties('all', this)" style="padding: 8px 16px; border-radius: 20px; font-size: 14px; font-weight: 500; cursor: pointer; background: var(--text-dark); color: #fff; border: 1px solid var(--text-dark);">All</button>
-            <button class="op-filter-tab" onclick="filterOpProperties('Active', this)" style="padding: 8px 16px; border-radius: 20px; font-size: 14px; font-weight: 500; cursor: pointer; background: #fff; border: 1px solid var(--border); color: var(--text-muted);">Active</button>
-            <button class="op-filter-tab" onclick="filterOpProperties('Pending', this)" style="padding: 8px 16px; border-radius: 20px; font-size: 14px; font-weight: 500; cursor: pointer; background: #fff; border: 1px solid var(--border); color: var(--text-muted);">Pending</button>
-            <button class="op-filter-tab" onclick="filterOpProperties('Rented', this)" style="padding: 8px 16px; border-radius: 20px; font-size: 14px; font-weight: 500; cursor: pointer; background: #fff; border: 1px solid var(--border); color: var(--text-muted);">Rented</button>
-            <button class="op-filter-tab" onclick="filterOpProperties('Expired', this)" style="padding: 8px 16px; border-radius: 20px; font-size: 14px; font-weight: 500; cursor: pointer; background: #fff; border: 1px solid var(--border); color: var(--text-muted);">Expired</button>
+          <div class="op-filters"
+            style="display: flex; gap: 10px; margin-bottom: 24px; overflow-x: auto; padding-bottom: 5px;">
+            <button class="op-filter-tab active" onclick="filterOpProperties('all', this)"
+              style="padding: 8px 16px; border-radius: 20px; font-size: 14px; font-weight: 500; cursor: pointer; background: var(--text-dark); color: #fff; border: 1px solid var(--text-dark);">All</button>
+            <button class="op-filter-tab" onclick="filterOpProperties('Active', this)"
+              style="padding: 8px 16px; border-radius: 20px; font-size: 14px; font-weight: 500; cursor: pointer; background: #fff; border: 1px solid var(--border); color: var(--text-muted);">Active</button>
+            <button class="op-filter-tab" onclick="filterOpProperties('Pending', this)"
+              style="padding: 8px 16px; border-radius: 20px; font-size: 14px; font-weight: 500; cursor: pointer; background: #fff; border: 1px solid var(--border); color: var(--text-muted);">Pending</button>
+            <button class="op-filter-tab" onclick="filterOpProperties('Rented', this)"
+              style="padding: 8px 16px; border-radius: 20px; font-size: 14px; font-weight: 500; cursor: pointer; background: #fff; border: 1px solid var(--border); color: var(--text-muted);">Rented</button>
+            <button class="op-filter-tab" onclick="filterOpProperties('Expired', this)"
+              style="padding: 8px 16px; border-radius: 20px; font-size: 14px; font-weight: 500; cursor: pointer; background: #fff; border: 1px solid var(--border); color: var(--text-muted);">Expired</button>
           </div>
 
           <!-- Empty state -->
@@ -469,196 +862,560 @@
           </div>
 
           <!-- Grid filled by JS -->
-          <div class="op-properties-list" id="opPropertiesList" style="display: flex; flex-direction: column; gap: 20px;"></div>
+          <div class="op-properties-list" id="opPropertiesList"
+            style="display: flex; flex-direction: column; gap: 20px;"></div>
         </div>
 
 
         <!-- TAB: Post Property -->
         <div id="tabPost" class="op-tab-content hidden">
-          <div class="wizard-card">
-    <div class="wizard-header">
-      <h1>Post Your Property</h1>
-      <p>Fill in the details below — takes under 2 minutes</p>
-    </div>
 
-    <div class="stepper">
-      <div class="step-line-active" id="stepLine" style="width: 0%;"></div>
-      <div class="step active" id="stepper1">
-        <div class="step-circle">1</div>
-        <div class="step-label">Property Info</div>
-      </div>
-      <div class="step" id="stepper2">
-        <div class="step-circle">2</div>
-        <div class="step-label">Location</div>
-      </div>
-      <div class="step" id="stepper3">
-        <div class="step-circle">3</div>
-        <div class="step-label">Photos</div>
-      </div>
-    </div>
+          <!-- 1. Selection Card: Buy vs Rent -->
+          <div id="postTypeSelectionCard" class="post-type-selection">
+            <div class="post-type-header">
+              <div class="post-type-header-badge">
+                <span>🏠 PROPERTY LISTING PORTAL</span>
+              </div>
+              <h2>Select Listing Category for <span class="accent-text">Salem</span></h2>
+              <p>Choose whether you want to list a property for monthly rent or put it up for sell</p>
+            </div>
+            <div class="post-type-grid">
+              <!-- Rent Card -->
+              <div class="post-option-card rent-card" onclick="selectPostType('rent')"
+                style="cursor:pointer; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:48px 24px; gap:20px;">
+                <div class="post-option-icon-wrap rent-icon-wrap" style="margin:0; width:80px; height:80px;">
+                  <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#8E1638" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+                    <polyline points="9 22 9 12 15 12 15 22"/>
+                  </svg>
+                </div>
+                <h3 class="post-option-title" style="margin:0; font-size:26px;">Rent</h3>
+              </div>
 
-    <div class="wizard-body">
-      
-      <!-- STEP 1: Property Info -->
-      <div class="form-step active" id="step1">
-        <div class="form-grid">
-          <div class="form-group">
-            <label class="form-label">Property Type</label>
-            <select class="form-input" id="propType">
-              <option value="">Select type</option>
-              <option value="Apartment">Apartment</option>
-              <option value="Independent House">Independent House</option>
-              <option value="Villa">Villa</option>
-            </select>
+              <!-- Buy Card -->
+              <div class="post-option-card buy-card" onclick="selectPostType('buy')"
+                style="cursor:pointer; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:48px 24px; gap:20px;">
+                <div class="post-option-icon-wrap buy-icon-wrap" style="margin:0; width:80px; height:80px;">
+                  <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#4F46E5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M22 20v-7.826a4 4 0 0 0-1.253-2.908l-7.373-6.968a4 4 0 0 0-5.505 0L1.92 8.16A4 4 0 0 0 1 10.74V20a2 2 0 0 0 2 2h18a2 2 0 0 0 2-2Z"/>
+                    <path d="M9 22v-6h6v6"/>
+                  </svg>
+                </div>
+                <h3 class="post-option-title" style="margin:0; font-size:26px;">Sell</h3>
+              </div>
+            </div>
           </div>
-          <div class="form-group">
-            <label class="form-label">BHK Type</label>
-            <select class="form-input" id="propBhk">
-              <option value="">Select BHK</option>
-              <option value="1 BHK">1 BHK</option>
-              <option value="2 BHK">2 BHK</option>
-              <option value="3 BHK">3 BHK</option>
-              <option value="4+ BHK">4+ BHK</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label class="form-label">Monthly Rent (₹)</label>
-            <input type="number" class="form-input" id="propRent" placeholder="e.g. 12000" />
-          </div>
-          <div class="form-group">
-            <label class="form-label">Security Deposit (₹)</label>
-            <input type="number" class="form-input" id="propDeposit" placeholder="e.g. 24000" />
-          </div>
-          <div class="form-group">
-            <label class="form-label">Furnishing</label>
-            <select class="form-input" id="propFurnishing">
-              <option value="">Select</option>
-              <option value="Fully Furnished">Fully Furnished</option>
-              <option value="Semi Furnished">Semi Furnished</option>
-              <option value="Unfurnished">Unfurnished</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label class="form-label">Built-up Area (sq.ft)</label>
-            <input type="number" class="form-input" id="propArea" placeholder="e.g. 850" />
-          </div>
-        </div>
 
-        <label class="form-label">Front Facing</label>
-        <div class="pill-group" id="facingPills">
-          <div class="pill" data-val="North">North</div>
-          <div class="pill" data-val="East">East</div>
-          <div class="pill" data-val="West">West</div>
-          <div class="pill" data-val="South">South</div>
-        </div>
+          <!-- 2. Rent Wizard Card (Existing Form) -->
+          <div id="rentWizardCard" class="wizard-card hidden">
+            <div class="wizard-header">
+              <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;">
+                <div>
+                  <h1>Post Your Rental Property</h1>
+                  <p>Fill in the details below — takes under 2 minutes</p>
+                </div>
+                <button type="button" class="btn-back"
+                  style="flex:none; padding:8px 16px; background:rgba(255,255,255,0.2); color:white; border:1px solid rgba(255,255,255,0.4);"
+                  onclick="resetPostTypeSelection()">← Change Option</button>
+              </div>
+            </div>
 
-        <label class="form-label">Preferred Tenants</label>
-        <div class="pill-group" id="tenantPills">
-          <div class="pill" data-val="Family">Family</div>
-          <div class="pill" data-val="Bachelors">Bachelors</div>
-          <div class="pill" data-val="Company">Company</div>
-          <div class="pill" data-val="Girls Only">Girls Only</div>
-        </div>
+            <div class="stepper">
+              <div class="step-line-active" id="stepLine" style="width: 0%;"></div>
+              <div class="step active" id="stepper1">
+                <div class="step-circle">1</div>
+                <div class="step-label">Property Info</div>
+              </div>
+              <div class="step" id="stepper2">
+                <div class="step-circle">2</div>
+                <div class="step-label">Location</div>
+              </div>
+              <div class="step" id="stepper3">
+                <div class="step-circle">3</div>
+                <div class="step-label">Photos</div>
+              </div>
+            </div>
 
-        <label class="form-label">Amenities</label>
-        <div class="pill-group" id="amenityPills">
-          <div class="pill" data-val="Parking"><span class="pill-icon">🅿️</span> Parking</div>
-          <div class="pill" data-val="24/7 Water"><span class="pill-icon">💧</span> 24/7 Water</div>
-          <div class="pill" data-val="Power Backup"><span class="pill-icon">⚡</span> Power Backup</div>
-          <div class="pill" data-val="AC"><span class="pill-icon">❄️</span> AC</div>
-          <div class="pill" data-val="Lift"><span class="pill-icon">🛗</span> Lift</div>
-          <div class="pill" data-val="CCTV"><span class="pill-icon">🔒</span> CCTV</div>
-        </div>
+            <div class="wizard-body">
 
-        <div class="wizard-footer">
-          <button class="btn-next" onclick="goToStep(2)">Next: Location →</button>
-        </div>
-      </div>
+              <!-- STEP 1: Property Info -->
+              <div class="form-step active" id="step1">
+                <div class="form-grid">
+                  <div class="form-group">
+                    <label class="form-label">Property Type</label>
+                    <select class="form-input" id="propType">
+                      <option value="">Select type</option>
+                      <option value="Apartment">Apartment</option>
+                      <option value="Independent House">Independent House</option>
+                      <option value="Villa">Villa</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">BHK Type</label>
+                    <select class="form-input" id="propBhk">
+                      <option value="">Select BHK</option>
+                      <option value="1 BHK">1 BHK</option>
+                      <option value="2 BHK">2 BHK</option>
+                      <option value="3 BHK">3 BHK</option>
+                      <option value="4+ BHK">4+ BHK</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Monthly Rent (₹)</label>
+                    <input type="number" class="form-input" id="propRent" placeholder="e.g. 12000" />
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Security Deposit (₹)</label>
+                    <input type="number" class="form-input" id="propDeposit" placeholder="e.g. 24000" />
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Furnishing</label>
+                    <select class="form-input" id="propFurnishing">
+                      <option value="">Select</option>
+                      <option value="Fully Furnished">Fully Furnished</option>
+                      <option value="Semi Furnished">Semi Furnished</option>
+                      <option value="Unfurnished">Unfurnished</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Built-up Area (sq.ft)</label>
+                    <input type="number" class="form-input" id="propArea" placeholder="e.g. 850" />
+                  </div>
+                </div>
 
-      <!-- STEP 2: Location -->
-      <div class="form-step" id="step2">
-        <div class="form-grid">
-          <div class="form-group full">
-            <label class="form-label">Door No</label>
-            <input type="text" class="form-input" id="locDoor" placeholder="" />
-          </div>
-          <div class="form-group full">
-            <label class="form-label">Street</label>
-            <input type="text" class="form-input" id="locStreet" placeholder="" />
-          </div>
-          <div class="form-group full">
-            <label class="form-label">Area</label>
-            <input type="text" class="form-input" id="locArea" placeholder="" />
-          </div>
-          <div class="form-group">
-            <label class="form-label">Locality</label>
-            <input type="text" class="form-input" id="locLocality" placeholder="" />
-          </div>
-          <div class="form-group">
-            <label class="form-label">City</label>
-            <input type="text" class="form-input" id="locCity" value="Salem" disabled style="background:#F5F5F5;"/>
-          </div>
-          <div class="form-group">
-            <label class="form-label">State</label>
-            <input type="text" class="form-input" id="locState" value="Tamil Nadu" disabled style="background:#F5F5F5;"/>
-          </div>
-          <div class="form-group">
-            <label class="form-label">Pincode</label>
-            <input type="number" class="form-input" id="locPin" placeholder="e.g. 636009" />
-          </div>
-          <div class="form-group full">
-            <label class="form-label">Landmark (optional)</label>
-            <input type="text" class="form-input" id="locLandmark" placeholder="e.g. Near bus stop" />
-          </div>
-          <div class="form-group full">
-            <label class="form-label">Description</label>
-            <textarea class="form-input" id="propDesc" rows="3" placeholder="Tell tenants more — floor, surroundings, nearby facilities..."></textarea>
-          </div>
-          <div class="form-group">
-            <label class="form-label">Your Name</label>
-            <input type="text" class="form-input" id="ownerName" disabled style="background:#F5F5F5;" />
-          </div>
-          <div class="form-group">
-            <label class="form-label">Contact Number</label>
-            <input type="tel" class="form-input" id="ownerPhone" disabled style="background:#F5F5F5;" />
-          </div>
-        </div>
+                <label class="form-label">Front Facing</label>
+                <div class="pill-group" id="facingPills">
+                  <div class="pill" data-val="North">North</div>
+                  <div class="pill" data-val="East">East</div>
+                  <div class="pill" data-val="West">West</div>
+                  <div class="pill" data-val="South">South</div>
+                </div>
 
-        <div class="wizard-footer">
-          <button class="btn-back" onclick="goToStep(1)">← Back</button>
-          <button class="btn-next" onclick="goToStep(3)">Next: Photos →</button>
-        </div>
-      </div>
+                <label class="form-label">Preferred Tenants</label>
+                <div class="pill-group" id="tenantPills">
+                  <div class="pill" data-val="Family">Family</div>
+                  <div class="pill" data-val="Bachelors">Bachelors</div>
+                  <div class="pill" data-val="Company">Company</div>
+                  <div class="pill" data-val="Girls Only">Girls Only</div>
+                </div>
 
-      <!-- STEP 3: Photos -->
-      <div class="form-step" id="step3">
-        <h3 style="margin-top:0; font-size:16px;">Add Photos (Optional)</h3>
-        <p style="font-size:13px; color:#757575; margin-bottom:16px;">Photos are optional, but properties with good photos rent out 3x faster!</p>
+                <label class="form-label">Amenities</label>
+                <div class="pill-group" id="amenityPills">
+                  <div class="pill" data-val="Parking"><span class="pill-icon">🅿️</span> Parking</div>
+                  <div class="pill" data-val="24/7 Water"><span class="pill-icon">💧</span> 24/7 Water</div>
+                  <div class="pill" data-val="Power Backup"><span class="pill-icon">⚡</span> Power Backup</div>
+                  <div class="pill" data-val="AC"><span class="pill-icon">❄️</span> AC</div>
+                  <div class="pill" data-val="Lift"><span class="pill-icon">🛗</span> Lift</div>
+                  <div class="pill" data-val="CCTV"><span class="pill-icon">🔒</span> CCTV</div>
+                </div>
 
-        <input type="file" id="photoInput" multiple accept="image/*" style="display:none;" onchange="handleFiles(this.files)" />
-        <div class="photo-upload-zone" onclick="document.getElementById('photoInput').click()">
-          <div class="photo-upload-icon">📸</div>
-          <strong style="display:block; color:#1A1A1A; margin-bottom:4px;">Click to browse photos</strong>
-          <span style="font-size:13px; color:#757575;">or drag and drop here</span>
-        </div>
+                <div class="wizard-footer">
+                  <button class="btn-next" onclick="goToStep(2)">Next: Location →</button>
+                </div>
+              </div>
 
-        <div class="photo-preview-grid" id="photoPreviewGrid">
-          <!-- Previews will go here -->
-        </div>
+              <!-- STEP 2: Location -->
+              <div class="form-step" id="step2">
+                <div class="form-grid">
+                  <div class="form-group full">
+                    <label class="form-label">Door No</label>
+                    <input type="text" class="form-input" id="locDoor" placeholder="" />
+                  </div>
+                  <div class="form-group full">
+                    <label class="form-label">Street</label>
+                    <input type="text" class="form-input" id="locStreet" placeholder="" />
+                  </div>
+                  <div class="form-group full">
+                    <label class="form-label">Area</label>
+                    <input type="text" class="form-input" id="locArea" placeholder="" />
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Locality</label>
+                    <input type="text" class="form-input" id="locLocality" placeholder="" />
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">City</label>
+                    <input type="text" class="form-input" id="locCity" value="Salem" disabled
+                      style="background:#F5F5F5;" />
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">State</label>
+                    <input type="text" class="form-input" id="locState" value="Tamil Nadu" disabled
+                      style="background:#F5F5F5;" />
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Pincode</label>
+                    <input type="number" class="form-input" id="locPin" placeholder="e.g. 636009" />
+                  </div>
+                  <div class="form-group full">
+                    <label class="form-label">Landmark (optional)</label>
+                    <input type="text" class="form-input" id="locLandmark" placeholder="e.g. Near bus stop" />
+                  </div>
+                  <div class="form-group full">
+                    <label class="form-label">Description</label>
+                    <textarea class="form-input" id="propDesc" rows="3"
+                      placeholder="Tell tenants more — floor, surroundings, nearby facilities..."></textarea>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Your Name</label>
+                    <input type="text" class="form-input" id="ownerName" disabled style="background:#F5F5F5;" />
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Contact Number</label>
+                    <input type="tel" class="form-input" id="ownerPhone" disabled style="background:#F5F5F5;" />
+                  </div>
+                </div>
 
-        <p id="photoErrorMsg" style="color:#D32F2F; font-size:13px; font-weight:600; display:none;">ℹ️ Photos are optional — recommended for better responses.</p>
+                <div class="wizard-footer">
+                  <button class="btn-back" onclick="goToStep(1)">← Back</button>
+                  <button class="btn-next" onclick="goToStep(3)">Next: Photos →</button>
+                </div>
+              </div>
 
-        <div class="wizard-footer">
-          <button class="btn-back" onclick="goToStep(2)">← Back</button>
-          <button class="btn-submit" onclick="submitProperty()">Post Property</button>
-        </div>
-      </div>
+              <!-- STEP 3: Photos -->
+              <div class="form-step" id="step3">
+                <h3 style="margin-top:0; font-size:16px;">Add Photos (Optional)</h3>
+                <p style="font-size:13px; color:#757575; margin-bottom:16px;">Photos are optional, but properties with
+                  good photos rent out 3x faster!</p>
 
-    </div>
-  </div>
+                <input type="file" id="photoInput" multiple accept="image/*" style="display:none;"
+                  onchange="handleFiles(this.files)" />
+                <div class="photo-upload-zone" onclick="document.getElementById('photoInput').click()">
+                  <div class="photo-upload-icon">📸</div>
+                  <strong style="display:block; color:#1A1A1A; margin-bottom:4px;">Click to browse photos</strong>
+                  <span style="font-size:13px; color:#757575;">or drag and drop here</span>
+                </div>
 
-  
-        </div>
+                <div class="photo-preview-grid" id="photoPreviewGrid">
+                  <!-- Previews will go here -->
+                </div>
+
+                <p id="photoErrorMsg" style="color:#D32F2F; font-size:13px; font-weight:600; display:none;">ℹ️ Photos
+                  are optional — recommended for better responses.</p>
+
+                <div class="wizard-footer">
+                  <button class="btn-back" onclick="goToStep(2)">← Back</button>
+                  <button class="btn-submit" onclick="submitProperty()">Post Property</button>
+                </div>
+              </div>
+
+            </div>
+          </div><!-- /#rentWizardCard -->
+
+          <!-- 3. Buy Property Card -->
+          <div id="buyWizardCard" class="wizard-card hidden">
+            <div class="wizard-header"
+              style="background: linear-gradient(135deg, #4F46E5 0%, #3730A3 100%); color: white;">
+              <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;">
+                <div>
+                  <h1>Post Property for Sale</h1>
+                  <p>Fill in the details below — takes under 3 minutes</p>
+                </div>
+                <button type="button" class="btn-back"
+                  style="flex:none; padding:8px 16px; background:rgba(255,255,255,0.2); color:white; border:1px solid rgba(255,255,255,0.4);"
+                  onclick="resetPostTypeSelection()">← Change Option</button>
+              </div>
+            </div>
+
+            <div class="stepper" style="overflow-x: auto; padding-bottom: 10px; margin-bottom: 22px;">
+              <div class="step-line-active" id="sellStepLine" style="width: 0%; background: #4F46E5;"></div>
+              <!-- Using inline styles to override the maroon active color for sell workflow -->
+              <style>
+                .step.sell-active .step-circle { background: #4F46E5; color: white; }
+                .step.sell-active .step-label { color: #4F46E5; }
+              </style>
+              <div class="step sell-active" id="sellStepper1">
+                <div class="step-circle">1</div><div class="step-label">Category</div>
+              </div>
+              <div class="step" id="sellStepper2">
+                <div class="step-circle">2</div><div class="step-label">Type</div>
+              </div>
+              <div class="step" id="sellStepper3">
+                <div class="step-circle">3</div><div class="step-label">Details</div>
+              </div>
+              <div class="step" id="sellStepper4">
+                <div class="step-circle">4</div><div class="step-label">Address</div>
+              </div>
+              <div class="step" id="sellStepper5">
+                <div class="step-circle">5</div><div class="step-label">Photos</div>
+              </div>
+              <div class="step" id="sellStepper6">
+                <div class="step-circle">6</div><div class="step-label">Review</div>
+              </div>
+            </div>
+
+            <div class="wizard-body">
+
+              <!-- SELL STEP 1: Category -->
+              <div class="form-step active" id="sellStep1">
+                <h3 style="margin-top:0; margin-bottom: 24px; text-align: center;">What would you like to sell?</h3>
+                <div class="post-type-grid">
+                  <!-- Building Card -->
+                  <div class="post-option-card" onclick="selectSellCategory('Building')" id="catBuilding"
+                    style="cursor:pointer; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:32px 16px; gap:16px;">
+                    <div style="font-size:48px;">🏢</div>
+                    <h3 class="post-option-title" style="margin:0; font-size:22px;">Building</h3>
+                    <p style="margin:0; font-size:13px; color:#6B7280;">Sell an existing building or constructed property.</p>
+                  </div>
+                  <!-- Land Card -->
+                  <div class="post-option-card" onclick="selectSellCategory('Land')" id="catLand"
+                    style="cursor:pointer; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:32px 16px; gap:16px;">
+                    <div style="font-size:48px;">🌾</div>
+                    <h3 class="post-option-title" style="margin:0; font-size:22px;">Land</h3>
+                    <p style="margin:0; font-size:13px; color:#6B7280;">Sell an empty plot or agricultural land.</p>
+                  </div>
+                </div>
+                <div class="wizard-footer" style="justify-content: flex-end;">
+                  <button class="btn-next" style="background:#4F46E5; flex:none; padding: 12px 32px;" onclick="goToSellStep(2)">Next →</button>
+                </div>
+              </div>
+
+              <!-- SELL STEP 2: Type -->
+              <div class="form-step" id="sellStep2">
+                <h3 style="margin-top:0; margin-bottom: 24px;" id="sellTypeHeading">Select Type</h3>
+                
+                <!-- Building Types -->
+                <div id="buildingTypeOptions" class="sell-type-group" style="display:none;">
+                  <div class="sell-type-pill" data-val="House" onclick="selectSellType(event, this, 'buildingTypeOptions')"><span>🏠</span> House</div>
+                  <div class="sell-type-pill" data-val="Apartment / Flat" onclick="selectSellType(event, this, 'buildingTypeOptions')"><span>🏢</span> Apartment / Flat</div>
+                  <div class="sell-type-pill" data-val="Villa" onclick="selectSellType(event, this, 'buildingTypeOptions')"><span>🏘️</span> Villa</div>
+                  <div class="sell-type-pill" data-val="Commercial Building" onclick="selectSellType(event, this, 'buildingTypeOptions')"><span>🏬</span> Commercial Building</div>
+                </div>
+
+                <!-- Land Types -->
+                <div id="landTypeOptions" class="sell-type-group" style="display:none;">
+                  <div class="sell-type-pill" data-val="Residential Plot" onclick="selectSellType(event, this, 'landTypeOptions')"><span>🏡</span> Residential Plot</div>
+                  <div class="sell-type-pill" data-val="Commercial Plot" onclick="selectSellType(event, this, 'landTypeOptions')"><span>🏬</span> Commercial Plot</div>
+                  <div class="sell-type-pill" data-val="Agricultural Land" onclick="selectSellType(event, this, 'landTypeOptions')"><span>🌾</span> Agricultural Land</div>
+                </div>
+
+                <div class="wizard-footer">
+                  <button class="btn-back" onclick="goToSellStep(1)">← Back</button>
+                  <button class="btn-next" style="background:#4F46E5;" onclick="goToSellStep(3)">Next: Details →</button>
+                </div>
+              </div>
+
+              <!-- SELL STEP 3: Details -->
+              <div class="form-step" id="sellStep3">
+                <h4 style="margin:0 0 16px 0; color:#4F46E5; border-bottom:1px solid #E5E7EB; padding-bottom:8px;">Basic Information</h4>
+                <div class="form-grid">
+                  <div class="form-group full">
+                    <label class="form-label">Property Title *</label>
+                    <input type="text" class="form-input" id="sellTitle" oninput="saveSellDraft()" placeholder="e.g. Beautiful 3 BHK Villa in Alagapuram" />
+                  </div>
+                  <div class="form-group full">
+                    <label class="form-label">Description *</label>
+                    <textarea class="form-input" id="sellDesc" rows="3" oninput="saveSellDraft()" placeholder="Highlight key features, neighborhood, etc."></textarea>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Selling Price (₹) *</label>
+                    <input type="number" class="form-input" id="sellPrice" oninput="calculatePricePerSqFt(); saveSellDraft()" placeholder="e.g. 8500000" />
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Negotiable</label>
+                    <select class="form-input" id="sellNegotiable" onchange="saveSellDraft()">
+                      <option value="Yes">Yes</option>
+                      <option value="No">No</option>
+                    </select>
+                  </div>
+                </div>
+
+                <!-- Building Details Section -->
+                <div id="sellBuildingDetails" style="display:none; margin-top:24px;">
+                  <h4 style="margin:0 0 16px 0; color:#4F46E5; border-bottom:1px solid #E5E7EB; padding-bottom:8px;">Property Details</h4>
+                  <div class="form-grid">
+                    <div class="form-group">
+                      <label class="form-label">Built-up Area *</label>
+                      <div style="display:flex; gap:8px;">
+                        <input type="number" class="form-input" id="sellBuiltupArea" oninput="saveSellDraft()" style="flex:2;" placeholder="e.g. 1500" />
+                        <select class="form-input" id="sellBuiltupUnit" onchange="saveSellDraft()" style="flex:1; padding:0 8px;">
+                          <option value="sq ft">sq ft</option>
+                          <option value="sq m">sq m</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="form-label">Total Land Area</label>
+                      <div style="display:flex; gap:8px;">
+                        <input type="number" class="form-input" id="sellLandAreaBuilding" oninput="saveSellDraft()" style="flex:2;" placeholder="e.g. 2400" />
+                        <select class="form-input" id="sellLandUnitBuilding" onchange="saveSellDraft()" style="flex:1; padding:0 8px;">
+                          <option value="sq ft">sq ft</option>
+                          <option value="sq m">sq m</option>
+                          <option value="cents">cents</option>
+                          <option value="grounds">grounds</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="form-label">Bedrooms</label>
+                      <input type="number" class="form-input" id="sellBedrooms" oninput="saveSellDraft()" placeholder="e.g. 3" />
+                    </div>
+                    <div class="form-group">
+                      <label class="form-label">Bathrooms</label>
+                      <input type="number" class="form-input" id="sellBathrooms" oninput="saveSellDraft()" placeholder="e.g. 3" />
+                    </div>
+                    <div class="form-group">
+                      <label class="form-label">Total Floors</label>
+                      <input type="number" class="form-input" id="sellFloors" oninput="saveSellDraft()" placeholder="e.g. 2" />
+                    </div>
+                    <div class="form-group">
+                      <label class="form-label">Property Age (Years)</label>
+                      <input type="number" class="form-input" id="sellAge" oninput="saveSellDraft()" placeholder="e.g. 5" />
+                    </div>
+                    <div class="form-group">
+                      <label class="form-label">Corner Property</label>
+                      <select class="form-input" id="sellCornerBuilding" onchange="saveSellDraft()">
+                        <option value="No">No</option>
+                        <option value="Yes">Yes</option>
+                      </select>
+                    </div>
+                    <div class="form-group">
+                      <label class="form-label">Facing</label>
+                      <select class="form-input" id="sellFacingBuilding" onchange="saveSellDraft()">
+                        <option value="">Select Direction</option>
+                        <option value="North">North</option>
+                        <option value="South">South</option>
+                        <option value="East">East</option>
+                        <option value="West">West</option>
+                        <option value="North-East">North-East</option>
+                        <option value="North-West">North-West</option>
+                        <option value="South-East">South-East</option>
+                        <option value="South-West">South-West</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Land Details Section -->
+                <div id="sellLandDetails" style="display:none; margin-top:24px;">
+                  <h4 style="margin:0 0 16px 0; color:#4F46E5; border-bottom:1px solid #E5E7EB; padding-bottom:8px;">Land Details</h4>
+                  <div class="form-grid">
+                    <div class="form-group full">
+                      <label class="form-label">Total Land Size *</label>
+                      <div style="display:flex; gap:8px;">
+                        <input type="number" class="form-input" id="sellLandSize" oninput="calculatePricePerSqFt(); saveSellDraft()" style="flex:2;" placeholder="e.g. 1200" />
+                        <select class="form-input" id="sellLandUnit" onchange="calculatePricePerSqFt(); saveSellDraft()" style="flex:1; padding:0 8px;">
+                          <option value="sq ft">sq ft</option>
+                          <option value="sq yd">sq yd</option>
+                          <option value="cents">cents</option>
+                          <option value="grounds">grounds</option>
+                          <option value="acres">acres</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="form-label">Road Width (ft)</label>
+                      <input type="number" class="form-input" id="sellRoadWidth" oninput="saveSellDraft()" placeholder="e.g. 30" />
+                    </div>
+                    <div class="form-group">
+                      <label class="form-label">Price per Sq Ft (₹)</label>
+                      <input type="number" class="form-input" id="sellPricePerSqFt" oninput="saveSellDraft()" placeholder="Auto-calculated" />
+                    </div>
+                    <div class="form-group full">
+                      <label class="form-label">Facing</label>
+                      <select class="form-input" id="sellFacingLand" onchange="saveSellDraft()">
+                        <option value="">Select Direction</option>
+                        <option value="North">North</option>
+                        <option value="South">South</option>
+                        <option value="East">East</option>
+                        <option value="West">West</option>
+                        <option value="North-East">North-East</option>
+                        <option value="North-West">North-West</option>
+                        <option value="South-East">South-East</option>
+                        <option value="South-West">South-West</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="wizard-footer">
+                  <button class="btn-back" onclick="goToSellStep(2)">← Back</button>
+                  <button class="btn-next" style="background:#4F46E5;" onclick="goToSellStep(4)">Next: Address →</button>
+                </div>
+              </div>
+
+              <!-- SELL STEP 4: Address -->
+              <div class="form-step" id="sellStep4">
+                <h4 style="margin:0 0 16px 0; color:#4F46E5; border-bottom:1px solid #E5E7EB; padding-bottom:8px;">Property Address</h4>
+                <div class="form-grid">
+                  <div class="form-group full">
+                    <label class="form-label">House Number / Plot Number</label>
+                    <input type="text" class="form-input" id="sellLocDoor" oninput="saveSellDraft()" placeholder="" />
+                  </div>
+                  <div class="form-group full">
+                    <label class="form-label">Street Name *</label>
+                    <input type="text" class="form-input" id="sellLocStreet" oninput="saveSellDraft()" placeholder="" />
+                  </div>
+                  <div class="form-group full">
+                    <label class="form-label">Area / Locality *</label>
+                    <input type="text" class="form-input" id="sellLocArea" oninput="saveSellDraft()" placeholder="" />
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">City</label>
+                    <input type="text" class="form-input" id="sellLocCity" value="Salem" disabled style="background:#F5F5F5;"/>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">State</label>
+                    <input type="text" class="form-input" id="sellLocState" value="Tamil Nadu" disabled style="background:#F5F5F5;"/>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Pincode</label>
+                    <input type="number" class="form-input" id="sellLocPin" oninput="saveSellDraft()" placeholder="e.g. 636009" />
+                  </div>
+                  <div class="form-group full">
+                    <label class="form-label">Landmark (Optional)</label>
+                    <input type="text" class="form-input" id="sellLocLandmark" oninput="saveSellDraft()" placeholder="e.g. Near bus stop" />
+                  </div>
+                </div>
+
+                <div class="wizard-footer">
+                  <button class="btn-back" onclick="goToSellStep(3)">← Back</button>
+                  <button class="btn-next" style="background:#4F46E5;" onclick="goToSellStep(5)">Next: Photos →</button>
+                </div>
+              </div>
+
+              <!-- SELL STEP 5: Photos -->
+              <div class="form-step" id="sellStep5">
+                <h3 style="margin-top:0; font-size:16px;">Upload Property Photos</h3>
+                <p style="font-size:13px; color:#757575; margin-bottom:16px;">Minimum 5 photos required for sale properties. Max 20 photos.</p>
+
+                <input type="file" id="sellPhotoInput" multiple accept="image/*" style="display:none;" onchange="handleSellFiles(this.files)" />
+                <div class="photo-upload-zone" style="border-color:#4F46E5;" onclick="document.getElementById('sellPhotoInput').click()" ondragover="event.preventDefault()" ondrop="event.preventDefault(); handleSellFiles(event.dataTransfer.files)">
+                  <div class="photo-upload-icon">📸</div>
+                  <strong style="display:block; color:#1A1A1A; margin-bottom:4px;">Click or drag and drop photos here</strong>
+                  <span style="font-size:13px; color:#757575;">Max 2MB per photo</span>
+                </div>
+
+                <div class="photo-preview-grid" id="sellPhotoPreviewGrid">
+                  <!-- Previews will go here -->
+                </div>
+
+                <p id="sellPhotoErrorMsg" style="color:#D32F2F; font-size:13px; font-weight:600; display:none; margin-top:8px;"></p>
+
+                <div class="wizard-footer">
+                  <button class="btn-back" onclick="goToSellStep(4)">← Back</button>
+                  <button class="btn-next" style="background:#4F46E5;" onclick="goToSellStep(6)">Review Listing →</button>
+                </div>
+              </div>
+
+              <!-- SELL STEP 6: Review -->
+              <div class="form-step" id="sellStep6">
+                <h3 style="margin-top:0; margin-bottom: 24px; text-align:center;">Review Your Listing</h3>
+                
+                <div id="sellReviewContent" style="background:#F9FAFB; border:1px solid #E5E7EB; border-radius:16px; padding:24px; text-align:left;">
+                  <!-- Dynamically populated by JS -->
+                </div>
+
+                <div class="wizard-footer">
+                  <button class="btn-back" onclick="goToSellStep(5)">← Edit Details</button>
+                  <button class="btn-submit" id="sellSubmitBtn" style="background:#4F46E5;" onclick="submitSellProperty()">🚀 Publish Listing</button>
+                </div>
+              </div>
+
+            </div>
+          </div><!-- /#buyWizardCard -->
+
+        </div><!-- /#tabPost -->
 
         <!-- TAB: Change Password -->
         <div id="tabPassword" class="op-tab-content hidden">
@@ -670,7 +1427,8 @@
             <div class="tab-form-grid">
               <div class="form-group full-width">
                 <label>Current Password</label>
-                <input type="password" id="currentPassword" class="form-input" placeholder="Enter current password" required />
+                <input type="password" id="currentPassword" class="form-input" placeholder="Enter current password"
+                  required />
               </div>
               <div class="form-group">
                 <label>New Password</label>
@@ -678,7 +1436,8 @@
               </div>
               <div class="form-group">
                 <label>Confirm New Password</label>
-                <input type="password" id="confirmPassword" class="form-input" placeholder="Re-enter new password" required />
+                <input type="password" id="confirmPassword" class="form-input" placeholder="Re-enter new password"
+                  required />
               </div>
             </div>
             <button type="submit" class="btn-primary tab-submit-btn">🔒 Update Password</button>
@@ -690,29 +1449,35 @@
     </div>
   </div>
 
-    <!-- ===== FOOTER ===== -->
+  <!-- ===== FOOTER ===== -->
   <footer class="footer">
     <div class="footer-container">
       <div class="footer-brand">
         <div class="footer-logo">
           <img src="assets/images/logo.png" alt="ToLetNow.in Logo" class="logo-img-footer" />
         </div>
-        <p class="footer-tagline">Simple. Local. Direct.<br/>Rental homes in Salem, directly from owners.</p>
+        <p class="footer-tagline">Simple. Local. Direct.<br />Rental homes in Salem, directly from owners.</p>
         <div class="footer-social">
           <a href="#" class="social-link">ig</a>
         </div>
       </div>
 
-      <div class="footer-col"><h4>Legal</h4><ul>
-        <li><a href="https://toletnow.in/privacy">Privacy Policy</a></li>
-        <li><a href="https://toletnow.in/terms">Terms &amp; Conditions</a></li>
-        <li><a href="https://toletnow.in/disclaimer">Disclaimer</a></li>
-        <li><a href="https://toletnow.in/about">About Us</a></li>
-      </ul></div>
-      <div class="footer-col"><h4>Support</h4><ul>
-        <li><a href="mailto:support@toletnow.in">support@toletnow.in</a></li>
-        <li><a href="https://toletnow.in/contact">Contact Us</a></li>
-      </ul></div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="https://toletnow.in/privacy">Privacy Policy</a></li>
+          <li><a href="https://toletnow.in/terms">Terms &amp; Conditions</a></li>
+          <li><a href="https://toletnow.in/disclaimer">Disclaimer</a></li>
+          <li><a href="https://toletnow.in/about">About Us</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Support</h4>
+        <ul>
+          <li><a href="mailto:support@toletnow.in">support@toletnow.in</a></li>
+          <li><a href="https://toletnow.in/contact">Contact Us</a></li>
+        </ul>
+      </div>
     </div>
     <div class="footer-bottom">
       <p>© 2024 ToLetNow.in · All rights reserved · Made with ❤️ for Salem</p>
@@ -720,7 +1485,7 @@
   </footer>
 
   <!-- Mobile Bottom Nav -->
-  
+
 
   <!-- Toast -->
   <div class="toast" id="toast"></div>
@@ -732,9 +1497,43 @@
   <script src="js/owner-auth.js"></script>
   <script src="js/owner-profile.js"></script>
 
-  
+
   <script>
     // ===== OWNER DASHBOARD LOGIC =====
+
+    function selectPostType(type) {
+      const selectionCard = document.getElementById('postTypeSelectionCard');
+      const rentCard = document.getElementById('rentWizardCard');
+      const buyCard = document.getElementById('buyWizardCard');
+
+      if (type === 'rent') {
+        if (selectionCard) selectionCard.classList.add('hidden');
+        if (buyCard) buyCard.classList.add('hidden');
+        if (rentCard) rentCard.classList.remove('hidden');
+
+        // Auto-fill contact fields from profile when opening Rent tab
+        if (typeof currentOwner !== 'undefined' && currentOwner) {
+          const n = document.getElementById('ownerName');
+          const p = document.getElementById('ownerPhone');
+          if (n) n.value = currentOwner.name || '';
+          if (p) p.value = currentOwner.phone || '';
+        }
+      } else if (type === 'buy') {
+        if (selectionCard) selectionCard.classList.add('hidden');
+        if (rentCard) rentCard.classList.add('hidden');
+        if (buyCard) buyCard.classList.remove('hidden');
+      }
+    }
+
+    function resetPostTypeSelection() {
+      const selectionCard = document.getElementById('postTypeSelectionCard');
+      const rentCard = document.getElementById('rentWizardCard');
+      const buyCard = document.getElementById('buyWizardCard');
+
+      if (selectionCard) selectionCard.classList.remove('hidden');
+      if (rentCard) rentCard.classList.add('hidden');
+      if (buyCard) buyCard.classList.add('hidden');
+    }
 
     function switchProfileTab(tab) {
       const tabs = ['edit', 'properties', 'post', 'password'];
@@ -752,12 +1551,8 @@
         }
       });
 
-      // Auto-fill contact fields from profile when opening Post tab
-      if (tab === 'post' && typeof currentOwner !== 'undefined' && currentOwner) {
-        const n = document.getElementById('ownerName');
-        const p = document.getElementById('ownerPhone');
-        if (n) n.value = currentOwner.name || '';
-        if (p) p.value = currentOwner.phone || '';
+      if (tab === 'post') {
+        resetPostTypeSelection();
       }
     }
 
@@ -769,23 +1564,24 @@
     function goToStep(step) {
       if (step === 2 && currentStep === 1) {
         if (!document.getElementById('propType').value ||
-            !document.getElementById('propBhk').value ||
-            !document.getElementById('propRent').value) {
+          !document.getElementById('propBhk').value ||
+          !document.getElementById('propRent').value) {
           showToast('⚠️ Please fill required fields (Type, BHK, Rent)');
           return;
         }
       }
       if (step === 3 && currentStep === 2) {
         if (!document.getElementById('locDoor').value ||
-            !document.getElementById('locStreet').value ||
-            !document.getElementById('locArea').value ||
-            !document.getElementById('ownerName').value ||
-            !document.getElementById('ownerPhone').value) {
+          !document.getElementById('locStreet').value ||
+          !document.getElementById('locArea').value ||
+          !document.getElementById('ownerName').value ||
+          !document.getElementById('ownerPhone').value) {
           showToast('⚠️ Please fill all required location and contact details');
           return;
         }
       }
-      document.querySelectorAll('.form-step').forEach(el => el.classList.remove('active'));
+      // Scope to rentWizardCard only — do NOT touch sell wizard steps
+      document.querySelectorAll('#rentWizardCard .form-step').forEach(el => el.classList.remove('active'));
       document.getElementById('step' + step).classList.add('active');
       currentStep = step;
       updateStepperUI();
@@ -884,6 +1680,7 @@
       const propertyData = {
         title: propertyTitle,
         property_type: propType,
+        listing_mode: 'rent',
         bhk,
         rent: parseInt(document.getElementById('propRent').value) || 0,
         deposit: parseInt(document.getElementById('propDeposit').value) || 0,
@@ -934,7 +1731,7 @@
             currentStep = 1;
             updateStepperUI();
           } else {
-            window.location.href = '/owner-profile';
+            window.location.href = 'owner-profile.html';
           }
         }, 1500);
       } catch (err) {
@@ -948,6 +1745,8 @@
     // Pill toggle logic
     document.addEventListener('DOMContentLoaded', () => {
       document.querySelectorAll('.pill').forEach(pill => {
+        // Skip pills that are inside the sell wizard — those are handled by selectSellType()
+        if (pill.closest('#buyWizardCard')) return;
         pill.addEventListener('click', () => {
           if (pill.parentElement.id === 'facingPills') {
             Array.from(pill.parentElement.children).forEach(p => {
@@ -961,11 +1760,522 @@
 
     // ===== END POST PROPERTY LOGIC =====
 
-    function toggleLike(e) {
-        e.preventDefault();
-        e.stopPropagation();
+    // ===== SELL PROPERTY LOGIC =====
+    let sellCurrentStep = 1;
+    const sellTotalSteps = 6;
+    let sellCategory = null; // 'Building' or 'Land'
+    let sellUploadedPhotos = [];
+    
+    // Draft logic
+    const DRAFT_KEY = 'sell_property_draft';
+    
+    function saveSellDraft() {
+      const draft = {
+        category: sellCategory,
+        title: document.getElementById('sellTitle').value,
+        desc: document.getElementById('sellDesc').value,
+        price: document.getElementById('sellPrice').value,
+        negotiable: document.getElementById('sellNegotiable').value,
+        builtupArea: document.getElementById('sellBuiltupArea').value,
+        builtupUnit: document.getElementById('sellBuiltupUnit').value,
+        landAreaBuilding: document.getElementById('sellLandAreaBuilding').value,
+        landUnitBuilding: document.getElementById('sellLandUnitBuilding').value,
+        bedrooms: document.getElementById('sellBedrooms').value,
+        bathrooms: document.getElementById('sellBathrooms').value,
+        floors: document.getElementById('sellFloors').value,
+        age: document.getElementById('sellAge').value,
+        cornerBuilding: document.getElementById('sellCornerBuilding').value,
+        facingBuilding: document.getElementById('sellFacingBuilding').value,
+        landSize: document.getElementById('sellLandSize').value,
+        landUnit: document.getElementById('sellLandUnit').value,
+        roadWidth: document.getElementById('sellRoadWidth').value,
+        pricePerSqFt: document.getElementById('sellPricePerSqFt').value,
+        facingLand: document.getElementById('sellFacingLand').value,
+        locDoor: document.getElementById('sellLocDoor').value,
+        locStreet: document.getElementById('sellLocStreet').value,
+        locArea: document.getElementById('sellLocArea').value,
+        locPin: document.getElementById('sellLocPin').value,
+        locLandmark: document.getElementById('sellLocLandmark').value,
+      };
+      
+      // FIX: sell type pills use class 'sell-type-pill', not 'pill'
+      const typePill = document.querySelector('#' + (sellCategory === 'Building' ? 'buildingTypeOptions' : 'landTypeOptions') + ' .sell-type-pill.selected');
+      if (typePill) draft.propertyType = typePill.getAttribute('data-val');
+
+      localStorage.setItem(DRAFT_KEY, JSON.stringify(draft));
     }
     
+    function calculatePricePerSqFt() {
+      const price = parseFloat(document.getElementById('sellPrice').value);
+      if (!price) return;
+      
+      let area = 0;
+      let unit = '';
+      if (sellCategory === 'Land') {
+        area = parseFloat(document.getElementById('sellLandSize').value);
+        unit = document.getElementById('sellLandUnit').value;
+      }
+      
+      if (!area || area <= 0) {
+        document.getElementById('sellPricePerSqFt').value = '';
+        return;
+      }
+      
+      let areaInSqFt = area;
+      if (unit === 'sq yd') areaInSqFt = area * 9;
+      else if (unit === 'cents') areaInSqFt = area * 435.6;
+      else if (unit === 'grounds') areaInSqFt = area * 2400;
+      else if (unit === 'acres') areaInSqFt = area * 43560;
+      
+      const psqft = Math.round(price / areaInSqFt);
+      document.getElementById('sellPricePerSqFt').value = psqft;
+    }
+
+    function selectSellCategory(cat) {
+      sellCategory = cat;
+      // Visually mark which card is selected
+      document.querySelectorAll('#sellStep1 .post-option-card').forEach(c => {
+        c.style.borderColor = '#F3F4F6';
+        c.style.background = '#FFFFFF';
+        c.style.boxShadow = '';
+      });
+      const selected = document.getElementById('cat' + cat);
+      if (selected) {
+        selected.style.borderColor = '#4F46E5';
+        selected.style.background = '#F0F0FF';
+        selected.style.boxShadow = '0 0 0 3px rgba(79,70,229,0.15)';
+      }
+
+      const buildingOpts = document.getElementById('buildingTypeOptions');
+      const landOpts = document.getElementById('landTypeOptions');
+
+      if (cat === 'Building') {
+        buildingOpts.style.display = 'flex';
+        landOpts.style.display = 'none';
+        document.getElementById('sellBuildingDetails').style.display = 'block';
+        document.getElementById('sellLandDetails').style.display = 'none';
+      } else {
+        buildingOpts.style.display = 'none';
+        landOpts.style.display = 'flex';
+        document.getElementById('sellBuildingDetails').style.display = 'none';
+        document.getElementById('sellLandDetails').style.display = 'block';
+      }
+      saveSellDraft();
+    }
+
+    function selectSellType(event, el, containerId) {
+      event.stopPropagation();
+      document.querySelectorAll('#' + containerId + ' .sell-type-pill').forEach(p => p.classList.remove('selected'));
+      el.classList.add('selected');
+      saveSellDraft();
+    }
+
+    function handleSellFiles(files) {
+      const maxPhotos = 20;
+      const maxSize = 2 * 1024 * 1024;
+      if (sellUploadedPhotos.length >= maxPhotos) { showToast('⚠️ Maximum 20 photos allowed.'); return; }
+      
+      Array.from(files).forEach(file => {
+        if (!file.type.startsWith('image/')) return;
+        if (sellUploadedPhotos.length >= maxPhotos) return;
+        if (file.size > maxSize) { showToast('⚠️ Each photo must be 2MB or smaller.'); return; }
+        const reader = new FileReader();
+        reader.onload = (e) => { sellUploadedPhotos.push(e.target.result); renderSellPhotoPreviews(); };
+        reader.readAsDataURL(file);
+      });
+    }
+
+    function removeSellPhoto(index) {
+      sellUploadedPhotos.splice(index, 1);
+      renderSellPhotoPreviews();
+    }
+
+    function renderSellPhotoPreviews() {
+      const grid = document.getElementById('sellPhotoPreviewGrid');
+      if (!grid) return;
+      grid.innerHTML = '';
+      sellUploadedPhotos.forEach((src, idx) => {
+        const item = document.createElement('div');
+        item.className = 'photo-preview-item';
+        const img = document.createElement('img');
+        img.src = src; img.alt = 'Sell property photo ' + (idx + 1);
+        item.appendChild(img);
+        const removeBtn = document.createElement('button');
+        removeBtn.className = 'photo-remove';
+        removeBtn.type = 'button';
+        removeBtn.textContent = '✕';
+        removeBtn.addEventListener('click', () => removeSellPhoto(idx));
+        item.appendChild(removeBtn);
+        grid.appendChild(item);
+      });
+      const err = document.getElementById('sellPhotoErrorMsg');
+      if (err && sellUploadedPhotos.length >= 5) err.style.display = 'none';
+    }
+
+    function goToSellStep(step) {
+      // Validations — only run when moving forward
+      if (step > sellCurrentStep) {
+        if (sellCurrentStep === 1) {
+          if (!sellCategory) { showToast('⚠️ Please select a category (Building or Land)'); return; }
+        }
+        else if (sellCurrentStep === 2) {
+          // FIX: pills in sell wizard use class 'sell-type-pill', not 'pill'
+          const typeContainer = sellCategory === 'Building' ? 'buildingTypeOptions' : 'landTypeOptions';
+          const selectedType = document.querySelector('#' + typeContainer + ' .sell-type-pill.selected');
+          if (!selectedType) { showToast('⚠️ Please select a property type'); return; }
+        }
+        else if (sellCurrentStep === 3) {
+          const title = (document.getElementById('sellTitle').value || '').trim();
+          const desc = (document.getElementById('sellDesc').value || '').trim();
+          const price = (document.getElementById('sellPrice').value || '').trim();
+          if (!title || !desc || !price) {
+            showToast('⚠️ Please fill Title, Description and Price'); return;
+          }
+          if (sellCategory === 'Building') {
+            if (!(document.getElementById('sellBuiltupArea').value || '').trim()) { showToast('⚠️ Built-up Area is required'); return; }
+          } else {
+            if (!(document.getElementById('sellLandSize').value || '').trim()) { showToast('⚠️ Total Land Size is required'); return; }
+          }
+        }
+        else if (sellCurrentStep === 4) {
+          const street = (document.getElementById('sellLocStreet').value || '').trim();
+          const area = (document.getElementById('sellLocArea').value || '').trim();
+          if (!street || !area) {
+            showToast('⚠️ Please provide Street Name and Area/Locality'); return;
+          }
+        }
+        else if (sellCurrentStep === 5) {
+          if (sellUploadedPhotos.length < 5) {
+            const errMsg = document.getElementById('sellPhotoErrorMsg');
+            if (errMsg) {
+              errMsg.textContent = '⚠️ You have uploaded ' + sellUploadedPhotos.length + ' photos. Minimum 5 required.';
+              errMsg.style.display = 'block';
+            }
+            showToast('⚠️ Minimum 5 photos required');
+            return;
+          }
+          renderSellReview();
+        }
+      }
+
+      document.querySelectorAll('#buyWizardCard .form-step').forEach(el => el.classList.remove('active'));
+      document.getElementById('sellStep' + step).classList.add('active');
+      sellCurrentStep = step;
+      updateSellStepperUI();
+      // Scroll smoothly to top of wizard
+      document.getElementById('buyWizardCard').scrollIntoView({behavior: 'smooth', block: 'start'});
+    }
+
+    function updateSellStepperUI() {
+      const line = document.getElementById('sellStepLine');
+      const progress = ((sellCurrentStep - 1) / (sellTotalSteps - 1)) * 100;
+      line.style.width = `${progress}%`;
+      
+      for (let i = 1; i <= sellTotalSteps; i++) {
+        const stepEl = document.getElementById('sellStepper' + i);
+        if (!stepEl) continue;
+        if (i < sellCurrentStep) stepEl.className = 'step sell-active';
+        else if (i === sellCurrentStep) stepEl.className = 'step sell-active';
+        else stepEl.className = 'step';
+      }
+    }
+
+    function renderSellReview() {
+      const container = document.getElementById('sellReviewContent');
+      if (!container) return;
+      
+      const typeContainer = sellCategory === 'Building' ? 'buildingTypeOptions' : 'landTypeOptions';
+      // FIX: sell type pills use class 'sell-type-pill', not 'pill'
+      const selectedType = document.querySelector('#' + typeContainer + ' .sell-type-pill.selected');
+      const typeVal = selectedType ? selectedType.getAttribute('data-val') : 'N/A';
+      
+      const price = parseFloat(document.getElementById('sellPrice').value) || 0;
+      const formattedPrice = new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR', maximumFractionDigits: 0 }).format(price);
+      
+      let detailsHTML = '';
+      if (sellCategory === 'Building') {
+        const builtArea = document.getElementById('sellBuiltupArea').value + ' ' + document.getElementById('sellBuiltupUnit').value;
+        const beds = document.getElementById('sellBedrooms').value || '-';
+        const baths = document.getElementById('sellBathrooms').value || '-';
+        const facing = document.getElementById('sellFacingBuilding').value || 'Not specified';
+        detailsHTML = `
+          <div style="margin-bottom:8px;"><strong>Built-up Area:</strong> ${builtArea}</div>
+          <div style="margin-bottom:8px;"><strong>BHK:</strong> ${beds} Bed, ${baths} Bath</div>
+          <div style="margin-bottom:8px;"><strong>Facing:</strong> ${facing}</div>
+        `;
+      } else {
+        const landArea = document.getElementById('sellLandSize').value + ' ' + document.getElementById('sellLandUnit').value;
+        const ppsqft = document.getElementById('sellPricePerSqFt').value ? `₹${document.getElementById('sellPricePerSqFt').value}/sqft` : 'N/A';
+        const facing = document.getElementById('sellFacingLand').value || 'Not specified';
+        detailsHTML = `
+          <div style="margin-bottom:8px;"><strong>Land Area:</strong> ${landArea}</div>
+          <div style="margin-bottom:8px;"><strong>Price / Sq Ft:</strong> ${ppsqft}</div>
+          <div style="margin-bottom:8px;"><strong>Facing:</strong> ${facing}</div>
+        `;
+      }
+
+      container.innerHTML = `
+        <h4 style="margin:0 0 12px 0; color:#4F46E5;">${escapeHtml(document.getElementById('sellTitle').value)}</h4>
+        <div style="font-size:24px; font-weight:700; margin-bottom:16px;">${formattedPrice}</div>
+        <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 16px; font-size:14px; margin-bottom: 24px;">
+          <div>
+            <div style="color:#6B7280; font-size:12px; font-weight:600; margin-bottom:8px; text-transform:uppercase;">Property Info</div>
+            <div style="margin-bottom:8px;"><strong>Category:</strong> ${sellCategory} > ${typeVal}</div>
+            ${detailsHTML}
+          </div>
+          <div>
+            <div style="color:#6B7280; font-size:12px; font-weight:600; margin-bottom:8px; text-transform:uppercase;">Location</div>
+            <div style="margin-bottom:4px;">${escapeHtml(document.getElementById('sellLocDoor').value)} ${escapeHtml(document.getElementById('sellLocStreet').value)}</div>
+            <div style="margin-bottom:4px;">${escapeHtml(document.getElementById('sellLocArea').value)}, ${escapeHtml(document.getElementById('sellLocLandmark').value)}</div>
+            <div style="margin-bottom:4px;">${escapeHtml(document.getElementById('sellLocCity').value)} - ${escapeHtml(document.getElementById('sellLocPin').value)}</div>
+          </div>
+        </div>
+        <div style="font-size:14px;">
+          <div style="color:#6B7280; font-size:12px; font-weight:600; margin-bottom:8px; text-transform:uppercase;">Description</div>
+          <p style="margin:0; line-height:1.5;">${escapeHtml(document.getElementById('sellDesc').value).replace(/\n/g, '<br/>')}</p>
+        </div>
+        <div style="margin-top:24px;">
+          <div style="color:#6B7280; font-size:12px; font-weight:600; margin-bottom:8px; text-transform:uppercase;">Photos (${sellUploadedPhotos.length})</div>
+          <div style="display:flex; gap:8px; overflow-x:auto; padding-bottom:8px;">
+            ${sellUploadedPhotos.slice(0, 5).map(src => `<img src="${src}" style="width:60px; height:60px; object-fit:cover; border-radius:8px;" />`).join('')}
+            ${sellUploadedPhotos.length > 5 ? `<div style="width:60px; height:60px; border-radius:8px; background:#E5E7EB; display:flex; align-items:center; justify-content:center; font-size:12px; font-weight:600;">+${sellUploadedPhotos.length - 5}</div>` : ''}
+          </div>
+        </div>
+      `;
+    }
+
+    async function submitSellProperty() {
+      const btn = document.getElementById('sellSubmitBtn');
+      if (!btn) return;
+      
+      if (!window.supabaseClient) {
+        showToast('⚠️ Connection issue. Please refresh and try again.');
+        return;
+      }
+      
+      btn.disabled = true;
+      btn.textContent = 'Publishing...';
+
+      // ── 1. Auth check ──────────────────────────────────────────────────
+      let session;
+      try {
+        const { data } = await window.supabaseClient.auth.getSession();
+        session = data.session;
+      } catch (e) { session = null; }
+
+      if (!session) {
+        btn.disabled = false; btn.textContent = '🚀 Publish Listing';
+        showToast('⚠️ Please login to post a property');
+        setTimeout(() => { window.location.replace('/'); }, 1200);
+        return;
+      }
+
+      // ── 2. Collect form values ─────────────────────────────────────────
+      const typeContainer = sellCategory === 'Building' ? 'buildingTypeOptions' : 'landTypeOptions';
+      const selectedType  = document.querySelector('#' + typeContainer + ' .sell-type-pill.selected');
+      const propertyType  = selectedType ? selectedType.getAttribute('data-val') : '';
+
+      const price       = parseInt(document.getElementById('sellPrice').value) || 0;
+      const builtupArea = parseInt(document.getElementById('sellBuiltupArea').value) || 0;
+      const landArea    = parseInt(document.getElementById('sellLandSize').value) || 0;
+
+      const g = (id) => sanitizePropertyInput(document.getElementById(id)?.value || '');
+
+      const sellDetails = {
+        negotiable:      g('sellNegotiable'),
+        builtupUnit:     g('sellBuiltupUnit'),
+        landAreaBuilding:g('sellLandAreaBuilding'),
+        landUnitBuilding:g('sellLandUnitBuilding'),
+        totalFloors:     g('sellFloors'),
+        propertyAge:     g('sellAge'),
+        cornerProperty:  g('sellCornerBuilding'),
+        landUnit:        g('sellLandUnit'),
+        roadWidth:       g('sellRoadWidth'),
+        pricePerSqFt:    g('sellPricePerSqFt'),
+        facingBuilding:  g('sellFacingBuilding'),
+        facingLand:      g('sellFacingLand'),
+      };
+
+      // ── 3. Upload photos to Supabase Storage ───────────────────────────
+      btn.textContent = `Uploading photos (0/${sellUploadedPhotos.length})…`;
+      const photoUrls = [];
+
+      if (sellUploadedPhotos.length > 0) {
+        for (let i = 0; i < sellUploadedPhotos.length; i++) {
+          try {
+            const base64 = sellUploadedPhotos[i];
+            // Convert base64 dataURL → Blob
+            const res  = await fetch(base64);
+            const blob = await res.blob();
+            const ext  = blob.type.split('/')[1] || 'jpg';
+            const fileName = `sell/${session.user.id}/${Date.now()}_${i}.${ext}`;
+
+            const { data: uploadData, error: uploadErr } = await window.supabaseClient
+              .storage
+              .from('property-photos')
+              .upload(fileName, blob, { contentType: blob.type, upsert: false });
+
+            if (uploadErr) {
+              console.warn('Photo upload failed:', uploadErr.message);
+              // Store base64 as fallback (only first 5 to stay within payload limits)
+              if (i < 5) photoUrls.push(base64);
+            } else {
+              const { data: urlData } = window.supabaseClient
+                .storage
+                .from('property-photos')
+                .getPublicUrl(fileName);
+              photoUrls.push(urlData.publicUrl);
+            }
+
+            btn.textContent = `Uploading photos (${i + 1}/${sellUploadedPhotos.length})…`;
+          } catch (photoErr) {
+            console.warn('Photo processing error:', photoErr);
+          }
+        }
+      }
+
+      btn.textContent = 'Saving to database…';
+
+      // ── 4. Build payload ───────────────────────────────────────────────
+      const propertyData = {
+        owner_id:      session.user.id,
+        title:         g('sellTitle'),
+        property_type: propertyType,
+        listing_mode:  'sell',
+        sell_category: sellCategory,
+        bhk:           g('sellBedrooms'),
+        rent:          0,
+        deposit:       0,
+        sell_price:    price,
+        area_sqft:     sellCategory === 'Building' ? builtupArea : landArea,
+        facing:        sellCategory === 'Building' ? g('sellFacingBuilding') : g('sellFacingLand'),
+        door_no:       g('sellLocDoor'),
+        street:        g('sellLocStreet'),
+        area:          g('sellLocArea'),
+        city:          sanitizePropertyInput(document.getElementById('sellLocCity')?.value || 'Salem'),
+        state:         sanitizePropertyInput(document.getElementById('sellLocState')?.value || 'Tamil Nadu'),
+        pincode:       g('sellLocPin'),
+        landmark:      g('sellLocLandmark'),
+        description:   g('sellDesc'),
+        contact_name:  sanitizePropertyInput(typeof currentOwner !== 'undefined' ? currentOwner?.name || '' : ''),
+        contact_phone: sanitizePropertyInput(typeof currentOwner !== 'undefined' ? currentOwner?.phone || '' : ''),
+        photos:        photoUrls,
+        metadata:      sellDetails,
+        status:        'Active',
+        created_at:    new Date().toISOString(),
+        expires_at:    new Date(Date.now() + 180 * 24 * 60 * 60 * 1000).toISOString(),
+      };
+
+      // ── 5. Insert with 3-tier fallback ────────────────────────────────
+      let savedOk = false;
+      let lastError = null;
+
+      // Tier 1: Full schema (all sell columns + photos + metadata)
+      try {
+        const { error } = await window.supabaseClient.from('properties').insert([propertyData]);
+        if (!error) { savedOk = true; }
+        else { lastError = error; console.warn('Tier-1 insert failed:', error.message); }
+      } catch (e) { lastError = e; }
+
+      // Tier 2: Without photos/metadata JSONB columns (if DB doesn't have them)
+      if (!savedOk) {
+        try {
+          const t2 = { ...propertyData };
+          delete t2.photos;
+          delete t2.metadata;
+          const { error } = await window.supabaseClient.from('properties').insert([t2]);
+          if (!error) { savedOk = true; }
+          else { lastError = error; console.warn('Tier-2 insert failed:', error.message); }
+        } catch (e) { lastError = e; }
+      }
+
+      // Tier 3: Minimal rent-schema-compatible insert (guaranteed to work)
+      if (!savedOk) {
+        try {
+          const t3 = {
+            owner_id:      session.user.id,
+            title:         propertyData.title,
+            property_type: propertyData.property_type,
+            bhk:           propertyData.bhk,
+            rent:          price,
+            deposit:       0,
+            area_sqft:     propertyData.area_sqft,
+            facing:        propertyData.facing,
+            door_no:       propertyData.door_no,
+            street:        propertyData.street,
+            area:          propertyData.area,
+            city:          propertyData.city,
+            state:         propertyData.state,
+            pincode:       propertyData.pincode,
+            landmark:      propertyData.landmark,
+            description:   '[FOR SALE \u2014 ' + sellCategory + ']\n' + propertyData.description + '\nAsking Price: \u20b9' + price.toLocaleString('en-IN'),
+            contact_name:  propertyData.contact_name,
+            contact_phone: propertyData.contact_phone,
+            status:        'Active',
+            created_at:    propertyData.created_at,
+            expires_at:    propertyData.expires_at,
+          };
+          const { error } = await window.supabaseClient.from('properties').insert([t3]);
+          if (!error) { savedOk = true; }
+          else { lastError = error; console.warn('Tier-3 insert failed:', error.message); }
+        } catch (e) { lastError = e; }
+      }
+
+      // ── 6. Handle result ───────────────────────────────────────────────
+      if (!savedOk) {
+        console.error('All insert tiers failed. Last error:', lastError);
+        showToast('\u274c Error saving property. Please try again.');
+        btn.disabled = false;
+        btn.textContent = '\ud83d\ude80 Publish Listing';
+        return;
+      }
+
+      // ── 7. Success ─────────────────────────────────────────────────────
+      const photoNote = photoUrls.length > 0
+        ? ' with ' + photoUrls.length + ' photo' + (photoUrls.length > 1 ? 's' : '')
+        : '';
+      showToast('\u2705 Property Listing Published Successfully' + photoNote + '!');
+      localStorage.removeItem(DRAFT_KEY);
+
+      setTimeout(async () => {
+        if (typeof initOwnerProfilePage === 'function') {
+          await initOwnerProfilePage();
+          switchProfileTab('properties');
+          resetPostTypeSelection();
+          document.querySelectorAll('#buyWizardCard .form-step').forEach((el, i) => {
+            if (i === 0) el.classList.add('active');
+            else el.classList.remove('active');
+          });
+          const previewGrid = document.getElementById('sellPhotoPreviewGrid');
+          if (previewGrid) previewGrid.innerHTML = '';
+          sellUploadedPhotos = [];
+          sellCurrentStep = 1;
+          sellCategory = null;
+          ['sellTitle','sellDesc','sellPrice','sellBuiltupArea','sellLandAreaBuilding',
+           'sellBedrooms','sellBathrooms','sellFloors','sellAge','sellPricePerSqFt',
+           'sellLandSize','sellRoadWidth','sellLocDoor','sellLocStreet','sellLocArea',
+           'sellLocPin','sellLocLandmark'].forEach(id => {
+            const el = document.getElementById(id);
+            if (el) el.value = '';
+          });
+          document.querySelectorAll('#buyWizardCard .sell-type-pill').forEach(p => p.classList.remove('selected'));
+          document.querySelectorAll('#buyWizardCard .post-option-card').forEach(c => {
+            c.style.borderColor = '#F3F4F6';
+            c.style.background  = '#FFFFFF';
+            c.style.boxShadow   = '';
+          });
+          updateSellStepperUI();
+        } else {
+          window.location.href = 'owner-profile.html';
+        }
+      }, 1800);
+    }
+
+    function toggleLike(e) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+
     // Modify saveProfileDetails to use owner logic (from owner-profile.js)
     function saveProfileDetails(e) {
       e.preventDefault();
@@ -977,4 +2287,5 @@
   </script>
 
 </body>
+
 </html>

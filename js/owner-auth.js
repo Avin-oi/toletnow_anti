@@ -25,7 +25,7 @@ window.addEventListener('pageshow', async (event) => {
           window.location.replace('/');
         } else if (session && isHomePage) {
           // Logged in but on login page — send to profile
-          window.location.replace('/owner-profile');
+          window.location.replace('owner-profile.html');
         }
       } catch (e) {
         if (isProtectedPage) window.location.replace('/');
@@ -132,7 +132,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const phone = user.user_metadata?.phone || '';
 
         // Fetch or build owner details
-        window.supabaseClient.from('users').select('*').eq('id', user.id).single().then(({ data }) => {
+        window.supabaseClient.from('users').select('*').eq('id', user.id).maybeSingle().then(({ data }) => {
           ownerUser = data || { id: user.id, name, email: user.email, phone, role: 'OWNER', address: '' };
           localStorage.removeItem('tenantUser');
           localStorage.setItem('ownerUser', JSON.stringify(ownerUser));
@@ -178,7 +178,7 @@ window.scrollToAuth = function (mode) {
 };
 function scrollToAuthInternal(mode) {
   if (ownerUser) {
-    window.location.replace('/owner-profile');
+    window.location.replace('owner-profile.html');
     return;
   }
   const authSection = document.getElementById('ownerAuthSection');
@@ -198,7 +198,7 @@ function scrollToAuthInternal(mode) {
 function showAuthSection(mode) {
   if (ownerUser) {
     // Already logged in — redirect straight to form page
-    window.location.replace('/owner-profile');
+    window.location.replace('owner-profile.html');
     return;
   }
   scrollToAuthInternal(mode);
@@ -242,7 +242,7 @@ function handleOwnerLogin(e) {
         showToast('⚠️ Login failed. Please try again or reset your password.');
         return;
       }
-      window.supabaseClient.from('users').select('*').eq('id', user.id).single().then(({ data: docData }) => {
+      window.supabaseClient.from('users').select('*').eq('id', user.id).maybeSingle().then(({ data: docData }) => {
         ownerUser = docData || { id: user.id, name: user.user_metadata?.full_name || 'Verified Owner', email: email, phone: '', address: '', role: 'OWNER' };
         localStorage.removeItem('tenantUser');
         localStorage.setItem('ownerUser', JSON.stringify(ownerUser));
@@ -425,7 +425,7 @@ function activateOwnerSession(animate) {
     ownerNavInfo.onclick = (e) => {
       // Don't navigate if logout button clicked
       if (!e.target.closest('button')) {
-        window.location.replace('/owner-profile');
+        window.location.replace('owner-profile.html');
       }
     };
   }
@@ -442,8 +442,8 @@ function activateOwnerSession(animate) {
 
   // Redirect to profile if on index/home page and session exists
   const currentPath = window.location.pathname;
-  if (currentPath === '/' || currentPath === '/index.html') {
-    window.location.replace('/owner-profile');
+  if (currentPath === '/' || currentPath === '/index.html' || currentPath.endsWith('/') || currentPath.endsWith('/index.html')) {
+    window.location.replace('owner-profile.html');
     return;
   }
   const authSection = document.getElementById('ownerAuthSection');
