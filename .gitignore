@@ -8,3 +8,10 @@ test/
 README.md
 readme.md
 TEST-REPORT.md
+
+# wrangler files
+.wrangler
+.dev.vars*
+!.dev.vars.example
+.env*
+!.env.example
