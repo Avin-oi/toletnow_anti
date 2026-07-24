@@ -2246,6 +2246,7 @@
         listing_mode: 'sell',
         sell_category: sellCategory,
         bhk: g('sellBedrooms'),
+        furnishing: 'Unfurnished', // Avoid NOT NULL constraint violation in database
         rent: 0,
         deposit: 0,
         sell_price: price,
@@ -2299,6 +2300,7 @@
             title: propertyData.title,
             property_type: propertyData.property_type,
             bhk: propertyData.bhk,
+            furnishing: 'Unfurnished',
             rent: price,
             deposit: 0,
             area_sqft: propertyData.area_sqft,
