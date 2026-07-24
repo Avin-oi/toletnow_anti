@@ -280,7 +280,7 @@
       background: #EEF2FF;
       border-color: #4F46E5;
       color: #4F46E5;
-      box-shadow: 0 0 0 3px rgba(79,70,229,0.12);
+      box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.12);
     }
 
     .sell-type-pill span {
@@ -390,267 +390,310 @@
       justify-content: center;
     }
 
-      /* ===== ENHANCED POST TYPE SELECTION CARD STYLES ===== */
-      .post-type-selection {
-        background: white;
-        border-radius: 28px;
-        padding: 44px 36px;
-        box-shadow: 0 24px 60px rgba(142, 22, 56, 0.09), 0 4px 16px rgba(0, 0, 0, 0.02);
-        margin-bottom: 24px;
-        border: 1px solid rgba(142, 22, 56, 0.12);
-        position: relative;
-        overflow: hidden;
-      }
+    /* ===== ENHANCED POST TYPE SELECTION CARD STYLES ===== */
+    .post-type-selection {
+      background: white;
+      border-radius: 28px;
+      padding: 44px 36px;
+      box-shadow: 0 24px 60px rgba(142, 22, 56, 0.09), 0 4px 16px rgba(0, 0, 0, 0.02);
+      margin-bottom: 24px;
+      border: 1px solid rgba(142, 22, 56, 0.12);
+      position: relative;
+      overflow: hidden;
+    }
 
-      .post-type-selection::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 4px;
-        background: linear-gradient(90deg, #8E1638 0%, #B72A54 50%, #4F46E5 100%);
-      }
+    .post-type-selection::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, #8E1638 0%, #B72A54 50%, #4F46E5 100%);
+    }
 
-      .post-type-header {
-        text-align: center;
-        margin-bottom: 40px;
-      }
+    .post-type-header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
 
-      .post-type-header-badge {
-        display: inline-flex;
-        align-items: center;
-        gap: 6px;
-        padding: 6px 16px;
-        border-radius: 99px;
-        background: rgba(142, 22, 56, 0.08);
-        color: #8E1638;
-        font-size: 12px;
-        font-weight: 700;
-        letter-spacing: 0.5px;
-        margin-bottom: 12px;
-      }
+    .post-type-header-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 16px;
+      border-radius: 99px;
+      background: rgba(142, 22, 56, 0.08);
+      color: #8E1638;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      margin-bottom: 12px;
+    }
 
-      .post-type-header h2 {
-        font-family: inherit;
-        font-size: clamp(24px, 2.6vw, 32px);
-        font-weight: 900;
-        color: #111827;
-        margin: 0 0 10px 0;
-        letter-spacing: -0.5px;
-      }
+    .post-type-header h2 {
+      font-family: inherit;
+      font-size: clamp(24px, 2.6vw, 32px);
+      font-weight: 900;
+      color: #111827;
+      margin: 0 0 10px 0;
+      letter-spacing: -0.5px;
+    }
 
-      .post-type-header h2 .accent-text {
-        background: linear-gradient(135deg, #8E1638 0%, #B72A54 100%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-      }
+    .post-type-header h2 .accent-text {
+      background: linear-gradient(135deg, #8E1638 0%, #B72A54 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
 
-      .post-type-header p {
-        font-size: 15px;
-        color: #6B7280;
-        margin: 0;
-      }
+    .post-type-header p {
+      font-size: 15px;
+      color: #6B7280;
+      margin: 0;
+    }
 
+    .post-type-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+    }
+
+    @media (max-width: 768px) {
       .post-type-grid {
-        display: grid;
         grid-template-columns: 1fr 1fr;
-        gap: 28px;
+        gap: 16px;
       }
 
-      @media (max-width: 768px) {
-        .post-type-grid {
-          grid-template-columns: 1fr 1fr;
-          gap: 16px;
-        }
-
-        .post-type-selection {
-          padding: 32px 16px;
-        }
+      .post-type-selection {
+        padding: 32px 16px;
       }
+    }
 
-      .post-option-card {
-        background: #FFFFFF;
-        border: 2px solid #F3F4F6;
-        border-radius: 24px;
-        padding: 36px 28px;
-        text-align: center;
-        cursor: pointer;
-        transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
-        position: relative;
-        overflow: hidden;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
+    .post-option-card {
+      background: #FFFFFF;
+      border: 2px solid #F3F4F6;
+      border-radius: 24px;
+      padding: 36px 28px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03);
+    }
+
+    .post-option-card.rent-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, #8E1638, #B72A54);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .post-option-card.buy-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, #4F46E5, #6366F1);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .post-option-card:hover::before {
+      opacity: 1;
+    }
+
+    .post-option-card.rent-card:hover {
+      border-color: #8E1638;
+      background: #FFF8FA;
+      transform: translateY(-8px);
+      box-shadow: 0 20px 40px rgba(142, 22, 56, 0.14);
+    }
+
+    .post-option-card.buy-card:hover {
+      border-color: #4F46E5;
+      background: #F8F8FF;
+      transform: translateY(-8px);
+      box-shadow: 0 20px 40px rgba(79, 70, 229, 0.14);
+    }
+
+    .post-option-badge {
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      padding: 6px 16px;
+      border-radius: 99px;
+      margin-bottom: 20px;
+    }
+
+    .rent-badge {
+      background: rgba(142, 22, 56, 0.08);
+      color: #8E1638;
+      border: 1px solid rgba(142, 22, 56, 0.15);
+    }
+
+    .buy-badge {
+      background: rgba(79, 70, 229, 0.08);
+      color: #4F46E5;
+      border: 1px solid rgba(79, 70, 229, 0.15);
+    }
+
+    .post-option-icon-wrap {
+      width: 80px;
+      height: 80px;
+      border-radius: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 40px;
+      margin-bottom: 20px;
+      transition: all 0.35s ease;
+    }
+
+    .rent-icon-wrap {
+      background: linear-gradient(135deg, #FFF0F4 0%, #FCE4EC 100%);
+      box-shadow: 0 8px 20px rgba(142, 22, 56, 0.1);
+    }
+
+    .buy-icon-wrap {
+      background: linear-gradient(135deg, #EEF2FF 0%, #E0E7FF 100%);
+      box-shadow: 0 8px 20px rgba(79, 70, 229, 0.1);
+    }
+
+    .post-option-card:hover .post-option-icon-wrap {
+      transform: scale(1.12) rotate(-4deg);
+    }
+
+    .post-option-title {
+      font-family: inherit;
+      font-size: 24px;
+      font-weight: 900;
+      color: #111827;
+      margin: 0 0 10px 0;
+    }
+
+    .post-option-desc {
+      font-size: 13.5px;
+      color: #6B7280;
+      line-height: 1.6;
+      margin: 0 0 20px 0;
+    }
+
+    .post-option-features {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      width: 100%;
+      margin-bottom: 24px;
+      text-align: left;
+    }
+
+    .post-option-feature {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12.5px;
+      font-weight: 600;
+      color: #374151;
+      background: rgba(255, 255, 255, 0.8);
+      padding: 6px 12px;
+      border-radius: 8px;
+      border: 1px solid #F3F4F6;
+    }
+
+    .post-option-feature .check-icon {
+      font-size: 14px;
+    }
+
+    .post-option-btn {
+      width: 100%;
+      padding: 14px 20px;
+      border-radius: 14px;
+      font-weight: 800;
+      font-size: 14.5px;
+      color: white;
+      border: none;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
+    }
+
+    .rent-btn {
+      background: linear-gradient(135deg, #8E1638 0%, #B72A54 100%);
+    }
+
+    .rent-btn:hover {
+      background: linear-gradient(135deg, #70102B 0%, #9B2043 100%);
+      box-shadow: 0 8px 24px rgba(142, 22, 56, 0.3);
+    }
+
+    .buy-btn {
+      background: linear-gradient(135deg, #4F46E5 0%, #6366F1 100%);
+    }
+
+    .buy-btn:hover {
+      background: linear-gradient(135deg, #4338CA 0%, #4F46E5 100%);
+      box-shadow: 0 8px 24px rgba(79, 70, 229, 0.3);
+    }
+
+    /* Responsive overrides for Stepper and Wizards */
+    @media (max-width: 768px) {
+      .stepper {
+        padding: 0 8px;
         justify-content: space-between;
-        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03);
       }
+      .step-label {
+        display: none !important;
+      }
+      .step {
+        gap: 0;
+        padding: 0;
+      }
+      .stepper::before {
+        left: 20px;
+        right: 20px;
+        top: 14px;
+      }
+      .step-line-active {
+        left: 20px;
+      }
+    }
 
-      .post-option-card.rent-card::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 4px;
-        background: linear-gradient(90deg, #8E1638, #B72A54);
-        opacity: 0;
-        transition: opacity 0.3s ease;
+    @media (max-width: 600px) {
+      .form-grid {
+        grid-template-columns: 1fr !important;
+        gap: 16px;
       }
-
-      .post-option-card.buy-card::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 4px;
-        background: linear-gradient(90deg, #4F46E5, #6366F1);
-        opacity: 0;
-        transition: opacity 0.3s ease;
+      .post-type-grid {
+        grid-template-columns: 1fr !important;
+        gap: 16px;
       }
-
-      .post-option-card:hover::before {
-        opacity: 1;
+      .wizard-header {
+        padding: 24px 16px;
       }
-
-      .post-option-card.rent-card:hover {
-        border-color: #8E1638;
-        background: #FFF8FA;
-        transform: translateY(-8px);
-        box-shadow: 0 20px 40px rgba(142, 22, 56, 0.14);
+      .wizard-header h1 {
+        font-size: 20px;
       }
-
-      .post-option-card.buy-card:hover {
-        border-color: #4F46E5;
-        background: #F8F8FF;
-        transform: translateY(-8px);
-        box-shadow: 0 20px 40px rgba(79, 70, 229, 0.14);
+      .wizard-body {
+        padding: 0 16px 24px;
       }
-
-      .post-option-badge {
-        font-size: 11px;
-        font-weight: 800;
-        text-transform: uppercase;
-        letter-spacing: 0.6px;
-        padding: 6px 16px;
-        border-radius: 99px;
-        margin-bottom: 20px;
-      }
-
-      .rent-badge {
-        background: rgba(142, 22, 56, 0.08);
-        color: #8E1638;
-        border: 1px solid rgba(142, 22, 56, 0.15);
-      }
-
-      .buy-badge {
-        background: rgba(79, 70, 229, 0.08);
-        color: #4F46E5;
-        border: 1px solid rgba(79, 70, 229, 0.15);
-      }
-
-      .post-option-icon-wrap {
-        width: 80px;
-        height: 80px;
-        border-radius: 24px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 40px;
-        margin-bottom: 20px;
-        transition: all 0.35s ease;
-      }
-
-      .rent-icon-wrap {
-        background: linear-gradient(135deg, #FFF0F4 0%, #FCE4EC 100%);
-        box-shadow: 0 8px 20px rgba(142, 22, 56, 0.1);
-      }
-
-      .buy-icon-wrap {
-        background: linear-gradient(135deg, #EEF2FF 0%, #E0E7FF 100%);
-        box-shadow: 0 8px 20px rgba(79, 70, 229, 0.1);
-      }
-
-      .post-option-card:hover .post-option-icon-wrap {
-        transform: scale(1.12) rotate(-4deg);
-      }
-
-      .post-option-title {
-        font-family: inherit;
-        font-size: 24px;
-        font-weight: 900;
-        color: #111827;
-        margin: 0 0 10px 0;
-      }
-
-      .post-option-desc {
-        font-size: 13.5px;
-        color: #6B7280;
-        line-height: 1.6;
-        margin: 0 0 20px 0;
-      }
-
-      .post-option-features {
-        display: flex;
-        flex-direction: column;
-        gap: 8px;
-        width: 100%;
-        margin-bottom: 24px;
-        text-align: left;
-      }
-
-      .post-option-feature {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        font-size: 12.5px;
-        font-weight: 600;
-        color: #374151;
-        background: rgba(255, 255, 255, 0.8);
-        padding: 6px 12px;
-        border-radius: 8px;
-        border: 1px solid #F3F4F6;
-      }
-
-      .post-option-feature .check-icon {
-        font-size: 14px;
-      }
-
-      .post-option-btn {
-        width: 100%;
-        padding: 14px 20px;
-        border-radius: 14px;
-        font-weight: 800;
-        font-size: 14.5px;
-        color: white;
-        border: none;
-        cursor: pointer;
-        transition: all 0.25s ease;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 8px;
-        box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
-      }
-
-      .rent-btn {
-        background: linear-gradient(135deg, #8E1638 0%, #B72A54 100%);
-      }
-
-      .rent-btn:hover {
-        background: linear-gradient(135deg, #70102B 0%, #9B2043 100%);
-        box-shadow: 0 8px 24px rgba(142, 22, 56, 0.3);
-      }
-
-      .buy-btn {
-        background: linear-gradient(135deg, #4F46E5 0%, #6366F1 100%);
-      }
-
-      .buy-btn:hover {
-        background: linear-gradient(135deg, #4338CA 0%, #4F46E5 100%);
-        box-shadow: 0 8px 24px rgba(79, 70, 229, 0.3);
-      }
+    }
   </style>
 </head>
 
@@ -884,9 +927,10 @@
               <div class="post-option-card rent-card" onclick="selectPostType('rent')"
                 style="cursor:pointer; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:48px 24px; gap:20px;">
                 <div class="post-option-icon-wrap rent-icon-wrap" style="margin:0; width:80px; height:80px;">
-                  <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#8E1638" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
-                    <polyline points="9 22 9 12 15 12 15 22"/>
+                  <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#8E1638" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+                    <polyline points="9 22 9 12 15 12 15 22" />
                   </svg>
                 </div>
                 <h3 class="post-option-title" style="margin:0; font-size:26px;">Rent</h3>
@@ -896,9 +940,11 @@
               <div class="post-option-card buy-card" onclick="selectPostType('buy')"
                 style="cursor:pointer; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:48px 24px; gap:20px;">
                 <div class="post-option-icon-wrap buy-icon-wrap" style="margin:0; width:80px; height:80px;">
-                  <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#4F46E5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M22 20v-7.826a4 4 0 0 0-1.253-2.908l-7.373-6.968a4 4 0 0 0-5.505 0L1.92 8.16A4 4 0 0 0 1 10.74V20a2 2 0 0 0 2 2h18a2 2 0 0 0 2-2Z"/>
-                    <path d="M9 22v-6h6v6"/>
+                  <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#4F46E5" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path
+                      d="M22 20v-7.826a4 4 0 0 0-1.253-2.908l-7.373-6.968a4 4 0 0 0-5.505 0L1.92 8.16A4 4 0 0 0 1 10.74V20a2 2 0 0 0 2 2h18a2 2 0 0 0 2-2Z" />
+                    <path d="M9 22v-6h6v6" />
                   </svg>
                 </div>
                 <h3 class="post-option-title" style="margin:0; font-size:26px;">Sell</h3>
@@ -1121,26 +1167,38 @@
               <div class="step-line-active" id="sellStepLine" style="width: 0%; background: #4F46E5;"></div>
               <!-- Using inline styles to override the maroon active color for sell workflow -->
               <style>
-                .step.sell-active .step-circle { background: #4F46E5; color: white; }
-                .step.sell-active .step-label { color: #4F46E5; }
+                .step.sell-active .step-circle {
+                  background: #4F46E5;
+                  color: white;
+                }
+
+                .step.sell-active .step-label {
+                  color: #4F46E5;
+                }
               </style>
               <div class="step sell-active" id="sellStepper1">
-                <div class="step-circle">1</div><div class="step-label">Category</div>
+                <div class="step-circle">1</div>
+                <div class="step-label">Category</div>
               </div>
               <div class="step" id="sellStepper2">
-                <div class="step-circle">2</div><div class="step-label">Type</div>
+                <div class="step-circle">2</div>
+                <div class="step-label">Type</div>
               </div>
               <div class="step" id="sellStepper3">
-                <div class="step-circle">3</div><div class="step-label">Details</div>
+                <div class="step-circle">3</div>
+                <div class="step-label">Details</div>
               </div>
               <div class="step" id="sellStepper4">
-                <div class="step-circle">4</div><div class="step-label">Address</div>
+                <div class="step-circle">4</div>
+                <div class="step-label">Address</div>
               </div>
               <div class="step" id="sellStepper5">
-                <div class="step-circle">5</div><div class="step-label">Photos</div>
+                <div class="step-circle">5</div>
+                <div class="step-label">Photos</div>
               </div>
               <div class="step" id="sellStepper6">
-                <div class="step-circle">6</div><div class="step-label">Review</div>
+                <div class="step-circle">6</div>
+                <div class="step-label">Review</div>
               </div>
             </div>
 
@@ -1155,7 +1213,8 @@
                     style="cursor:pointer; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:32px 16px; gap:16px;">
                     <div style="font-size:48px;">🏢</div>
                     <h3 class="post-option-title" style="margin:0; font-size:22px;">Building</h3>
-                    <p style="margin:0; font-size:13px; color:#6B7280;">Sell an existing building or constructed property.</p>
+                    <p style="margin:0; font-size:13px; color:#6B7280;">Sell an existing building or constructed
+                      property.</p>
                   </div>
                   <!-- Land Card -->
                   <div class="post-option-card" onclick="selectSellCategory('Land')" id="catLand"
@@ -1166,50 +1225,64 @@
                   </div>
                 </div>
                 <div class="wizard-footer" style="justify-content: flex-end;">
-                  <button class="btn-next" style="background:#4F46E5; flex:none; padding: 12px 32px;" onclick="goToSellStep(2)">Next →</button>
+                  <button class="btn-next" style="background:#4F46E5; flex:none; padding: 12px 32px;"
+                    onclick="goToSellStep(2)">Next →</button>
                 </div>
               </div>
 
               <!-- SELL STEP 2: Type -->
               <div class="form-step" id="sellStep2">
                 <h3 style="margin-top:0; margin-bottom: 24px;" id="sellTypeHeading">Select Type</h3>
-                
+
                 <!-- Building Types -->
                 <div id="buildingTypeOptions" class="sell-type-group" style="display:none;">
-                  <div class="sell-type-pill" data-val="House" onclick="selectSellType(event, this, 'buildingTypeOptions')"><span>🏠</span> House</div>
-                  <div class="sell-type-pill" data-val="Apartment / Flat" onclick="selectSellType(event, this, 'buildingTypeOptions')"><span>🏢</span> Apartment / Flat</div>
-                  <div class="sell-type-pill" data-val="Villa" onclick="selectSellType(event, this, 'buildingTypeOptions')"><span>🏘️</span> Villa</div>
-                  <div class="sell-type-pill" data-val="Commercial Building" onclick="selectSellType(event, this, 'buildingTypeOptions')"><span>🏬</span> Commercial Building</div>
+                  <div class="sell-type-pill" data-val="House"
+                    onclick="selectSellType(event, this, 'buildingTypeOptions')"><span>🏠</span> House</div>
+                  <div class="sell-type-pill" data-val="Apartment / Flat"
+                    onclick="selectSellType(event, this, 'buildingTypeOptions')"><span>🏢</span> Apartment / Flat</div>
+                  <div class="sell-type-pill" data-val="Villa"
+                    onclick="selectSellType(event, this, 'buildingTypeOptions')"><span>🏘️</span> Villa</div>
+                  <div class="sell-type-pill" data-val="Commercial Building"
+                    onclick="selectSellType(event, this, 'buildingTypeOptions')"><span>🏬</span> Commercial Building
+                  </div>
                 </div>
 
                 <!-- Land Types -->
                 <div id="landTypeOptions" class="sell-type-group" style="display:none;">
-                  <div class="sell-type-pill" data-val="Residential Plot" onclick="selectSellType(event, this, 'landTypeOptions')"><span>🏡</span> Residential Plot</div>
-                  <div class="sell-type-pill" data-val="Commercial Plot" onclick="selectSellType(event, this, 'landTypeOptions')"><span>🏬</span> Commercial Plot</div>
-                  <div class="sell-type-pill" data-val="Agricultural Land" onclick="selectSellType(event, this, 'landTypeOptions')"><span>🌾</span> Agricultural Land</div>
+                  <div class="sell-type-pill" data-val="Residential Plot"
+                    onclick="selectSellType(event, this, 'landTypeOptions')"><span>🏡</span> Residential Plot</div>
+                  <div class="sell-type-pill" data-val="Commercial Plot"
+                    onclick="selectSellType(event, this, 'landTypeOptions')"><span>🏬</span> Commercial Plot</div>
+                  <div class="sell-type-pill" data-val="Agricultural Land"
+                    onclick="selectSellType(event, this, 'landTypeOptions')"><span>🌾</span> Agricultural Land</div>
                 </div>
 
                 <div class="wizard-footer">
                   <button class="btn-back" onclick="goToSellStep(1)">← Back</button>
-                  <button class="btn-next" style="background:#4F46E5;" onclick="goToSellStep(3)">Next: Details →</button>
+                  <button class="btn-next" style="background:#4F46E5;" onclick="goToSellStep(3)">Next: Details
+                    →</button>
                 </div>
               </div>
 
               <!-- SELL STEP 3: Details -->
               <div class="form-step" id="sellStep3">
-                <h4 style="margin:0 0 16px 0; color:#4F46E5; border-bottom:1px solid #E5E7EB; padding-bottom:8px;">Basic Information</h4>
+                <h4 style="margin:0 0 16px 0; color:#4F46E5; border-bottom:1px solid #E5E7EB; padding-bottom:8px;">Basic
+                  Information</h4>
                 <div class="form-grid">
                   <div class="form-group full">
                     <label class="form-label">Property Title *</label>
-                    <input type="text" class="form-input" id="sellTitle" oninput="saveSellDraft()" placeholder="e.g. Beautiful 3 BHK Villa in Alagapuram" />
+                    <input type="text" class="form-input" id="sellTitle" oninput="saveSellDraft()"
+                      placeholder="e.g. Beautiful 3 BHK Villa in Alagapuram" />
                   </div>
                   <div class="form-group full">
                     <label class="form-label">Description *</label>
-                    <textarea class="form-input" id="sellDesc" rows="3" oninput="saveSellDraft()" placeholder="Highlight key features, neighborhood, etc."></textarea>
+                    <textarea class="form-input" id="sellDesc" rows="3" oninput="saveSellDraft()"
+                      placeholder="Highlight key features, neighborhood, etc."></textarea>
                   </div>
                   <div class="form-group">
                     <label class="form-label">Selling Price (₹) *</label>
-                    <input type="number" class="form-input" id="sellPrice" oninput="calculatePricePerSqFt(); saveSellDraft()" placeholder="e.g. 8500000" />
+                    <input type="number" class="form-input" id="sellPrice"
+                      oninput="calculatePricePerSqFt(); saveSellDraft()" placeholder="e.g. 8500000" />
                   </div>
                   <div class="form-group">
                     <label class="form-label">Negotiable</label>
@@ -1222,13 +1295,16 @@
 
                 <!-- Building Details Section -->
                 <div id="sellBuildingDetails" style="display:none; margin-top:24px;">
-                  <h4 style="margin:0 0 16px 0; color:#4F46E5; border-bottom:1px solid #E5E7EB; padding-bottom:8px;">Property Details</h4>
+                  <h4 style="margin:0 0 16px 0; color:#4F46E5; border-bottom:1px solid #E5E7EB; padding-bottom:8px;">
+                    Property Details</h4>
                   <div class="form-grid">
                     <div class="form-group">
                       <label class="form-label">Built-up Area *</label>
                       <div style="display:flex; gap:8px;">
-                        <input type="number" class="form-input" id="sellBuiltupArea" oninput="saveSellDraft()" style="flex:2;" placeholder="e.g. 1500" />
-                        <select class="form-input" id="sellBuiltupUnit" onchange="saveSellDraft()" style="flex:1; padding:0 8px;">
+                        <input type="number" class="form-input" id="sellBuiltupArea" oninput="saveSellDraft()"
+                          style="flex:2;" placeholder="e.g. 1500" />
+                        <select class="form-input" id="sellBuiltupUnit" onchange="saveSellDraft()"
+                          style="flex:1; padding:0 8px;">
                           <option value="sq ft">sq ft</option>
                           <option value="sq m">sq m</option>
                         </select>
@@ -1237,8 +1313,10 @@
                     <div class="form-group">
                       <label class="form-label">Total Land Area</label>
                       <div style="display:flex; gap:8px;">
-                        <input type="number" class="form-input" id="sellLandAreaBuilding" oninput="saveSellDraft()" style="flex:2;" placeholder="e.g. 2400" />
-                        <select class="form-input" id="sellLandUnitBuilding" onchange="saveSellDraft()" style="flex:1; padding:0 8px;">
+                        <input type="number" class="form-input" id="sellLandAreaBuilding" oninput="saveSellDraft()"
+                          style="flex:2;" placeholder="e.g. 2400" />
+                        <select class="form-input" id="sellLandUnitBuilding" onchange="saveSellDraft()"
+                          style="flex:1; padding:0 8px;">
                           <option value="sq ft">sq ft</option>
                           <option value="sq m">sq m</option>
                           <option value="cents">cents</option>
@@ -1248,19 +1326,23 @@
                     </div>
                     <div class="form-group">
                       <label class="form-label">Bedrooms</label>
-                      <input type="number" class="form-input" id="sellBedrooms" oninput="saveSellDraft()" placeholder="e.g. 3" />
+                      <input type="number" class="form-input" id="sellBedrooms" oninput="saveSellDraft()"
+                        placeholder="e.g. 3" />
                     </div>
                     <div class="form-group">
                       <label class="form-label">Bathrooms</label>
-                      <input type="number" class="form-input" id="sellBathrooms" oninput="saveSellDraft()" placeholder="e.g. 3" />
+                      <input type="number" class="form-input" id="sellBathrooms" oninput="saveSellDraft()"
+                        placeholder="e.g. 3" />
                     </div>
                     <div class="form-group">
                       <label class="form-label">Total Floors</label>
-                      <input type="number" class="form-input" id="sellFloors" oninput="saveSellDraft()" placeholder="e.g. 2" />
+                      <input type="number" class="form-input" id="sellFloors" oninput="saveSellDraft()"
+                        placeholder="e.g. 2" />
                     </div>
                     <div class="form-group">
                       <label class="form-label">Property Age (Years)</label>
-                      <input type="number" class="form-input" id="sellAge" oninput="saveSellDraft()" placeholder="e.g. 5" />
+                      <input type="number" class="form-input" id="sellAge" oninput="saveSellDraft()"
+                        placeholder="e.g. 5" />
                     </div>
                     <div class="form-group">
                       <label class="form-label">Corner Property</label>
@@ -1288,13 +1370,16 @@
 
                 <!-- Land Details Section -->
                 <div id="sellLandDetails" style="display:none; margin-top:24px;">
-                  <h4 style="margin:0 0 16px 0; color:#4F46E5; border-bottom:1px solid #E5E7EB; padding-bottom:8px;">Land Details</h4>
+                  <h4 style="margin:0 0 16px 0; color:#4F46E5; border-bottom:1px solid #E5E7EB; padding-bottom:8px;">
+                    Land Details</h4>
                   <div class="form-grid">
                     <div class="form-group full">
                       <label class="form-label">Total Land Size *</label>
                       <div style="display:flex; gap:8px;">
-                        <input type="number" class="form-input" id="sellLandSize" oninput="calculatePricePerSqFt(); saveSellDraft()" style="flex:2;" placeholder="e.g. 1200" />
-                        <select class="form-input" id="sellLandUnit" onchange="calculatePricePerSqFt(); saveSellDraft()" style="flex:1; padding:0 8px;">
+                        <input type="number" class="form-input" id="sellLandSize"
+                          oninput="calculatePricePerSqFt(); saveSellDraft()" style="flex:2;" placeholder="e.g. 1200" />
+                        <select class="form-input" id="sellLandUnit" onchange="calculatePricePerSqFt(); saveSellDraft()"
+                          style="flex:1; padding:0 8px;">
                           <option value="sq ft">sq ft</option>
                           <option value="sq yd">sq yd</option>
                           <option value="cents">cents</option>
@@ -1305,11 +1390,13 @@
                     </div>
                     <div class="form-group">
                       <label class="form-label">Road Width (ft)</label>
-                      <input type="number" class="form-input" id="sellRoadWidth" oninput="saveSellDraft()" placeholder="e.g. 30" />
+                      <input type="number" class="form-input" id="sellRoadWidth" oninput="saveSellDraft()"
+                        placeholder="e.g. 30" />
                     </div>
                     <div class="form-group">
                       <label class="form-label">Price per Sq Ft (₹)</label>
-                      <input type="number" class="form-input" id="sellPricePerSqFt" oninput="saveSellDraft()" placeholder="Auto-calculated" />
+                      <input type="number" class="form-input" id="sellPricePerSqFt" oninput="saveSellDraft()"
+                        placeholder="Auto-calculated" />
                     </div>
                     <div class="form-group full">
                       <label class="form-label">Facing</label>
@@ -1330,13 +1417,15 @@
 
                 <div class="wizard-footer">
                   <button class="btn-back" onclick="goToSellStep(2)">← Back</button>
-                  <button class="btn-next" style="background:#4F46E5;" onclick="goToSellStep(4)">Next: Address →</button>
+                  <button class="btn-next" style="background:#4F46E5;" onclick="goToSellStep(4)">Next: Address
+                    →</button>
                 </div>
               </div>
 
               <!-- SELL STEP 4: Address -->
               <div class="form-step" id="sellStep4">
-                <h4 style="margin:0 0 16px 0; color:#4F46E5; border-bottom:1px solid #E5E7EB; padding-bottom:8px;">Property Address</h4>
+                <h4 style="margin:0 0 16px 0; color:#4F46E5; border-bottom:1px solid #E5E7EB; padding-bottom:8px;">
+                  Property Address</h4>
                 <div class="form-grid">
                   <div class="form-group full">
                     <label class="form-label">House Number / Plot Number</label>
@@ -1352,19 +1441,23 @@
                   </div>
                   <div class="form-group">
                     <label class="form-label">City</label>
-                    <input type="text" class="form-input" id="sellLocCity" value="Salem" disabled style="background:#F5F5F5;"/>
+                    <input type="text" class="form-input" id="sellLocCity" value="Salem" disabled
+                      style="background:#F5F5F5;" />
                   </div>
                   <div class="form-group">
                     <label class="form-label">State</label>
-                    <input type="text" class="form-input" id="sellLocState" value="Tamil Nadu" disabled style="background:#F5F5F5;"/>
+                    <input type="text" class="form-input" id="sellLocState" value="Tamil Nadu" disabled
+                      style="background:#F5F5F5;" />
                   </div>
                   <div class="form-group">
                     <label class="form-label">Pincode</label>
-                    <input type="number" class="form-input" id="sellLocPin" oninput="saveSellDraft()" placeholder="e.g. 636009" />
+                    <input type="number" class="form-input" id="sellLocPin" oninput="saveSellDraft()"
+                      placeholder="e.g. 636009" />
                   </div>
                   <div class="form-group full">
                     <label class="form-label">Landmark (Optional)</label>
-                    <input type="text" class="form-input" id="sellLocLandmark" oninput="saveSellDraft()" placeholder="e.g. Near bus stop" />
+                    <input type="text" class="form-input" id="sellLocLandmark" oninput="saveSellDraft()"
+                      placeholder="e.g. Near bus stop" />
                   </div>
                 </div>
 
@@ -1377,12 +1470,17 @@
               <!-- SELL STEP 5: Photos -->
               <div class="form-step" id="sellStep5">
                 <h3 style="margin-top:0; font-size:16px;">Upload Property Photos</h3>
-                <p style="font-size:13px; color:#757575; margin-bottom:16px;">Minimum 5 photos required for sale properties. Max 20 photos.</p>
+                <p style="font-size:13px; color:#757575; margin-bottom:16px;">Minimum 5 photos required for sale
+                  properties. Max 20 photos.</p>
 
-                <input type="file" id="sellPhotoInput" multiple accept="image/*" style="display:none;" onchange="handleSellFiles(this.files)" />
-                <div class="photo-upload-zone" style="border-color:#4F46E5;" onclick="document.getElementById('sellPhotoInput').click()" ondragover="event.preventDefault()" ondrop="event.preventDefault(); handleSellFiles(event.dataTransfer.files)">
+                <input type="file" id="sellPhotoInput" multiple accept="image/*" style="display:none;"
+                  onchange="handleSellFiles(this.files)" />
+                <div class="photo-upload-zone" style="border-color:#4F46E5;"
+                  onclick="document.getElementById('sellPhotoInput').click()" ondragover="event.preventDefault()"
+                  ondrop="event.preventDefault(); handleSellFiles(event.dataTransfer.files)">
                   <div class="photo-upload-icon">📸</div>
-                  <strong style="display:block; color:#1A1A1A; margin-bottom:4px;">Click or drag and drop photos here</strong>
+                  <strong style="display:block; color:#1A1A1A; margin-bottom:4px;">Click or drag and drop photos
+                    here</strong>
                   <span style="font-size:13px; color:#757575;">Max 2MB per photo</span>
                 </div>
 
@@ -1390,25 +1488,29 @@
                   <!-- Previews will go here -->
                 </div>
 
-                <p id="sellPhotoErrorMsg" style="color:#D32F2F; font-size:13px; font-weight:600; display:none; margin-top:8px;"></p>
+                <p id="sellPhotoErrorMsg"
+                  style="color:#D32F2F; font-size:13px; font-weight:600; display:none; margin-top:8px;"></p>
 
                 <div class="wizard-footer">
                   <button class="btn-back" onclick="goToSellStep(4)">← Back</button>
-                  <button class="btn-next" style="background:#4F46E5;" onclick="goToSellStep(6)">Review Listing →</button>
+                  <button class="btn-next" style="background:#4F46E5;" onclick="goToSellStep(6)">Review Listing
+                    →</button>
                 </div>
               </div>
 
               <!-- SELL STEP 6: Review -->
               <div class="form-step" id="sellStep6">
                 <h3 style="margin-top:0; margin-bottom: 24px; text-align:center;">Review Your Listing</h3>
-                
-                <div id="sellReviewContent" style="background:#F9FAFB; border:1px solid #E5E7EB; border-radius:16px; padding:24px; text-align:left;">
+
+                <div id="sellReviewContent"
+                  style="background:#F9FAFB; border:1px solid #E5E7EB; border-radius:16px; padding:24px; text-align:left;">
                   <!-- Dynamically populated by JS -->
                 </div>
 
                 <div class="wizard-footer">
                   <button class="btn-back" onclick="goToSellStep(5)">← Edit Details</button>
-                  <button class="btn-submit" id="sellSubmitBtn" style="background:#4F46E5;" onclick="submitSellProperty()">🚀 Publish Listing</button>
+                  <button class="btn-submit" id="sellSubmitBtn" style="background:#4F46E5;"
+                    onclick="submitSellProperty()">🚀 Publish Listing</button>
                 </div>
               </div>
 
@@ -1765,10 +1867,10 @@
     const sellTotalSteps = 6;
     let sellCategory = null; // 'Building' or 'Land'
     let sellUploadedPhotos = [];
-    
+
     // Draft logic
     const DRAFT_KEY = 'sell_property_draft';
-    
+
     function saveSellDraft() {
       const draft = {
         category: sellCategory,
@@ -1797,36 +1899,36 @@
         locPin: document.getElementById('sellLocPin').value,
         locLandmark: document.getElementById('sellLocLandmark').value,
       };
-      
+
       // FIX: sell type pills use class 'sell-type-pill', not 'pill'
       const typePill = document.querySelector('#' + (sellCategory === 'Building' ? 'buildingTypeOptions' : 'landTypeOptions') + ' .sell-type-pill.selected');
       if (typePill) draft.propertyType = typePill.getAttribute('data-val');
 
       localStorage.setItem(DRAFT_KEY, JSON.stringify(draft));
     }
-    
+
     function calculatePricePerSqFt() {
       const price = parseFloat(document.getElementById('sellPrice').value);
       if (!price) return;
-      
+
       let area = 0;
       let unit = '';
       if (sellCategory === 'Land') {
         area = parseFloat(document.getElementById('sellLandSize').value);
         unit = document.getElementById('sellLandUnit').value;
       }
-      
+
       if (!area || area <= 0) {
         document.getElementById('sellPricePerSqFt').value = '';
         return;
       }
-      
+
       let areaInSqFt = area;
       if (unit === 'sq yd') areaInSqFt = area * 9;
       else if (unit === 'cents') areaInSqFt = area * 435.6;
       else if (unit === 'grounds') areaInSqFt = area * 2400;
       else if (unit === 'acres') areaInSqFt = area * 43560;
-      
+
       const psqft = Math.round(price / areaInSqFt);
       document.getElementById('sellPricePerSqFt').value = psqft;
     }
@@ -1874,7 +1976,7 @@
       const maxPhotos = 20;
       const maxSize = 2 * 1024 * 1024;
       if (sellUploadedPhotos.length >= maxPhotos) { showToast('⚠️ Maximum 20 photos allowed.'); return; }
-      
+
       Array.from(files).forEach(file => {
         if (!file.type.startsWith('image/')) return;
         if (sellUploadedPhotos.length >= maxPhotos) return;
@@ -1963,14 +2065,14 @@
       sellCurrentStep = step;
       updateSellStepperUI();
       // Scroll smoothly to top of wizard
-      document.getElementById('buyWizardCard').scrollIntoView({behavior: 'smooth', block: 'start'});
+      document.getElementById('buyWizardCard').scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
 
     function updateSellStepperUI() {
       const line = document.getElementById('sellStepLine');
       const progress = ((sellCurrentStep - 1) / (sellTotalSteps - 1)) * 100;
       line.style.width = `${progress}%`;
-      
+
       for (let i = 1; i <= sellTotalSteps; i++) {
         const stepEl = document.getElementById('sellStepper' + i);
         if (!stepEl) continue;
@@ -1983,15 +2085,15 @@
     function renderSellReview() {
       const container = document.getElementById('sellReviewContent');
       if (!container) return;
-      
+
       const typeContainer = sellCategory === 'Building' ? 'buildingTypeOptions' : 'landTypeOptions';
       // FIX: sell type pills use class 'sell-type-pill', not 'pill'
       const selectedType = document.querySelector('#' + typeContainer + ' .sell-type-pill.selected');
       const typeVal = selectedType ? selectedType.getAttribute('data-val') : 'N/A';
-      
+
       const price = parseFloat(document.getElementById('sellPrice').value) || 0;
       const formattedPrice = new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR', maximumFractionDigits: 0 }).format(price);
-      
+
       let detailsHTML = '';
       if (sellCategory === 'Building') {
         const builtArea = document.getElementById('sellBuiltupArea').value + ' ' + document.getElementById('sellBuiltupUnit').value;
@@ -2047,12 +2149,12 @@
     async function submitSellProperty() {
       const btn = document.getElementById('sellSubmitBtn');
       if (!btn) return;
-      
+
       if (!window.supabaseClient) {
         showToast('⚠️ Connection issue. Please refresh and try again.');
         return;
       }
-      
+
       btn.disabled = true;
       btn.textContent = 'Publishing...';
 
@@ -2072,28 +2174,28 @@
 
       // ── 2. Collect form values ─────────────────────────────────────────
       const typeContainer = sellCategory === 'Building' ? 'buildingTypeOptions' : 'landTypeOptions';
-      const selectedType  = document.querySelector('#' + typeContainer + ' .sell-type-pill.selected');
-      const propertyType  = selectedType ? selectedType.getAttribute('data-val') : '';
+      const selectedType = document.querySelector('#' + typeContainer + ' .sell-type-pill.selected');
+      const propertyType = selectedType ? selectedType.getAttribute('data-val') : '';
 
-      const price       = parseInt(document.getElementById('sellPrice').value) || 0;
+      const price = parseInt(document.getElementById('sellPrice').value) || 0;
       const builtupArea = parseInt(document.getElementById('sellBuiltupArea').value) || 0;
-      const landArea    = parseInt(document.getElementById('sellLandSize').value) || 0;
+      const landArea = parseInt(document.getElementById('sellLandSize').value) || 0;
 
       const g = (id) => sanitizePropertyInput(document.getElementById(id)?.value || '');
 
       const sellDetails = {
-        negotiable:      g('sellNegotiable'),
-        builtupUnit:     g('sellBuiltupUnit'),
-        landAreaBuilding:g('sellLandAreaBuilding'),
-        landUnitBuilding:g('sellLandUnitBuilding'),
-        totalFloors:     g('sellFloors'),
-        propertyAge:     g('sellAge'),
-        cornerProperty:  g('sellCornerBuilding'),
-        landUnit:        g('sellLandUnit'),
-        roadWidth:       g('sellRoadWidth'),
-        pricePerSqFt:    g('sellPricePerSqFt'),
-        facingBuilding:  g('sellFacingBuilding'),
-        facingLand:      g('sellFacingLand'),
+        negotiable: g('sellNegotiable'),
+        builtupUnit: g('sellBuiltupUnit'),
+        landAreaBuilding: g('sellLandAreaBuilding'),
+        landUnitBuilding: g('sellLandUnitBuilding'),
+        totalFloors: g('sellFloors'),
+        propertyAge: g('sellAge'),
+        cornerProperty: g('sellCornerBuilding'),
+        landUnit: g('sellLandUnit'),
+        roadWidth: g('sellRoadWidth'),
+        pricePerSqFt: g('sellPricePerSqFt'),
+        facingBuilding: g('sellFacingBuilding'),
+        facingLand: g('sellFacingLand'),
       };
 
       // ── 3. Upload photos to Supabase Storage ───────────────────────────
@@ -2105,9 +2207,9 @@
           try {
             const base64 = sellUploadedPhotos[i];
             // Convert base64 dataURL → Blob
-            const res  = await fetch(base64);
+            const res = await fetch(base64);
             const blob = await res.blob();
-            const ext  = blob.type.split('/')[1] || 'jpg';
+            const ext = blob.type.split('/')[1] || 'jpg';
             const fileName = `sell/${session.user.id}/${Date.now()}_${i}.${ext}`;
 
             const { data: uploadData, error: uploadErr } = await window.supabaseClient
@@ -2138,32 +2240,32 @@
 
       // ── 4. Build payload ───────────────────────────────────────────────
       const propertyData = {
-        owner_id:      session.user.id,
-        title:         g('sellTitle'),
+        owner_id: session.user.id,
+        title: g('sellTitle'),
         property_type: propertyType,
-        listing_mode:  'sell',
+        listing_mode: 'sell',
         sell_category: sellCategory,
-        bhk:           g('sellBedrooms'),
-        rent:          0,
-        deposit:       0,
-        sell_price:    price,
-        area_sqft:     sellCategory === 'Building' ? builtupArea : landArea,
-        facing:        sellCategory === 'Building' ? g('sellFacingBuilding') : g('sellFacingLand'),
-        door_no:       g('sellLocDoor'),
-        street:        g('sellLocStreet'),
-        area:          g('sellLocArea'),
-        city:          sanitizePropertyInput(document.getElementById('sellLocCity')?.value || 'Salem'),
-        state:         sanitizePropertyInput(document.getElementById('sellLocState')?.value || 'Tamil Nadu'),
-        pincode:       g('sellLocPin'),
-        landmark:      g('sellLocLandmark'),
-        description:   g('sellDesc'),
-        contact_name:  sanitizePropertyInput(typeof currentOwner !== 'undefined' ? currentOwner?.name || '' : ''),
+        bhk: g('sellBedrooms'),
+        rent: 0,
+        deposit: 0,
+        sell_price: price,
+        area_sqft: sellCategory === 'Building' ? builtupArea : landArea,
+        facing: sellCategory === 'Building' ? g('sellFacingBuilding') : g('sellFacingLand'),
+        door_no: g('sellLocDoor'),
+        street: g('sellLocStreet'),
+        area: g('sellLocArea'),
+        city: sanitizePropertyInput(document.getElementById('sellLocCity')?.value || 'Salem'),
+        state: sanitizePropertyInput(document.getElementById('sellLocState')?.value || 'Tamil Nadu'),
+        pincode: g('sellLocPin'),
+        landmark: g('sellLocLandmark'),
+        description: g('sellDesc'),
+        contact_name: sanitizePropertyInput(typeof currentOwner !== 'undefined' ? currentOwner?.name || '' : ''),
         contact_phone: sanitizePropertyInput(typeof currentOwner !== 'undefined' ? currentOwner?.phone || '' : ''),
-        photos:        photoUrls,
-        metadata:      sellDetails,
-        status:        'Active',
-        created_at:    new Date().toISOString(),
-        expires_at:    new Date(Date.now() + 180 * 24 * 60 * 60 * 1000).toISOString(),
+        photos: photoUrls,
+        metadata: sellDetails,
+        status: 'Active',
+        created_at: new Date().toISOString(),
+        expires_at: new Date(Date.now() + 180 * 24 * 60 * 60 * 1000).toISOString(),
       };
 
       // ── 5. Insert with 3-tier fallback ────────────────────────────────
@@ -2193,27 +2295,27 @@
       if (!savedOk) {
         try {
           const t3 = {
-            owner_id:      session.user.id,
-            title:         propertyData.title,
+            owner_id: session.user.id,
+            title: propertyData.title,
             property_type: propertyData.property_type,
-            bhk:           propertyData.bhk,
-            rent:          price,
-            deposit:       0,
-            area_sqft:     propertyData.area_sqft,
-            facing:        propertyData.facing,
-            door_no:       propertyData.door_no,
-            street:        propertyData.street,
-            area:          propertyData.area,
-            city:          propertyData.city,
-            state:         propertyData.state,
-            pincode:       propertyData.pincode,
-            landmark:      propertyData.landmark,
-            description:   '[FOR SALE \u2014 ' + sellCategory + ']\n' + propertyData.description + '\nAsking Price: \u20b9' + price.toLocaleString('en-IN'),
-            contact_name:  propertyData.contact_name,
+            bhk: propertyData.bhk,
+            rent: price,
+            deposit: 0,
+            area_sqft: propertyData.area_sqft,
+            facing: propertyData.facing,
+            door_no: propertyData.door_no,
+            street: propertyData.street,
+            area: propertyData.area,
+            city: propertyData.city,
+            state: propertyData.state,
+            pincode: propertyData.pincode,
+            landmark: propertyData.landmark,
+            description: '[FOR SALE \u2014 ' + sellCategory + ']\n' + propertyData.description + '\nAsking Price: \u20b9' + price.toLocaleString('en-IN'),
+            contact_name: propertyData.contact_name,
             contact_phone: propertyData.contact_phone,
-            status:        'Active',
-            created_at:    propertyData.created_at,
-            expires_at:    propertyData.expires_at,
+            status: 'Active',
+            created_at: propertyData.created_at,
+            expires_at: propertyData.expires_at,
           };
           const { error } = await window.supabaseClient.from('properties').insert([t3]);
           if (!error) { savedOk = true; }
@@ -2251,18 +2353,18 @@
           sellUploadedPhotos = [];
           sellCurrentStep = 1;
           sellCategory = null;
-          ['sellTitle','sellDesc','sellPrice','sellBuiltupArea','sellLandAreaBuilding',
-           'sellBedrooms','sellBathrooms','sellFloors','sellAge','sellPricePerSqFt',
-           'sellLandSize','sellRoadWidth','sellLocDoor','sellLocStreet','sellLocArea',
-           'sellLocPin','sellLocLandmark'].forEach(id => {
-            const el = document.getElementById(id);
-            if (el) el.value = '';
-          });
+          ['sellTitle', 'sellDesc', 'sellPrice', 'sellBuiltupArea', 'sellLandAreaBuilding',
+            'sellBedrooms', 'sellBathrooms', 'sellFloors', 'sellAge', 'sellPricePerSqFt',
+            'sellLandSize', 'sellRoadWidth', 'sellLocDoor', 'sellLocStreet', 'sellLocArea',
+            'sellLocPin', 'sellLocLandmark'].forEach(id => {
+              const el = document.getElementById(id);
+              if (el) el.value = '';
+            });
           document.querySelectorAll('#buyWizardCard .sell-type-pill').forEach(p => p.classList.remove('selected'));
           document.querySelectorAll('#buyWizardCard .post-option-card').forEach(c => {
             c.style.borderColor = '#F3F4F6';
-            c.style.background  = '#FFFFFF';
-            c.style.boxShadow   = '';
+            c.style.background = '#FFFFFF';
+            c.style.boxShadow = '';
           });
           updateSellStepperUI();
         } else {
