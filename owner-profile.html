@@ -2238,6 +2238,17 @@
 
       btn.textContent = 'Saving to database…';
 
+      // Format bhk to match DB check constraint format: "1 BHK", "2 BHK", etc.
+      let formattedBhk = '1 BHK';
+      const rawBedrooms = parseInt(document.getElementById('sellBedrooms')?.value) || 0;
+      if (sellCategory === 'Building' && rawBedrooms > 0) {
+        if (rawBedrooms >= 4) {
+          formattedBhk = '4+ BHK';
+        } else {
+          formattedBhk = rawBedrooms + ' BHK';
+        }
+      }
+
       // ── 4. Build payload ───────────────────────────────────────────────
       const propertyData = {
         owner_id: session.user.id,
@@ -2245,23 +2256,23 @@
         property_type: propertyType,
         listing_mode: 'sell',
         sell_category: sellCategory,
-        bhk: g('sellBedrooms'),
+        bhk: formattedBhk,
         furnishing: 'Unfurnished', // Avoid NOT NULL constraint violation in database
         rent: 0,
         deposit: 0,
         sell_price: price,
         area_sqft: sellCategory === 'Building' ? builtupArea : landArea,
-        facing: sellCategory === 'Building' ? g('sellFacingBuilding') : g('sellFacingLand'),
-        door_no: g('sellLocDoor'),
+        facing: (sellCategory === 'Building' ? g('sellFacingBuilding') : g('sellFacingLand')) || null,
+        door_no: g('sellLocDoor') || null,
         street: g('sellLocStreet'),
         area: g('sellLocArea'),
         city: sanitizePropertyInput(document.getElementById('sellLocCity')?.value || 'Salem'),
         state: sanitizePropertyInput(document.getElementById('sellLocState')?.value || 'Tamil Nadu'),
-        pincode: g('sellLocPin'),
-        landmark: g('sellLocLandmark'),
+        pincode: g('sellLocPin') || null,
+        landmark: g('sellLocLandmark') || null,
         description: g('sellDesc'),
-        contact_name: sanitizePropertyInput(typeof currentOwner !== 'undefined' ? currentOwner?.name || '' : ''),
-        contact_phone: sanitizePropertyInput(typeof currentOwner !== 'undefined' ? currentOwner?.phone || '' : ''),
+        contact_name: sanitizePropertyInput(typeof currentOwner !== 'undefined' ? currentOwner?.name || '' : '') || 'Owner',
+        contact_phone: sanitizePropertyInput(typeof currentOwner !== 'undefined' ? currentOwner?.phone || '' : '') || '',
         photos: photoUrls,
         metadata: sellDetails,
         status: 'Active',
